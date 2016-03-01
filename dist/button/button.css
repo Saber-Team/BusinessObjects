@@ -1,0 +1,124 @@
+/**
+ * @file button
+ * @author jinwei01
+ */
+.setGrayBorder {
+    box-shadow: 0 0 0 1px #dfe2e3 inset;
+}
+/**
+ * button
+ */
+.zdh-button {
+    display: inline-block;
+    box-sizing: border-box;
+    text-align: center;
+    white-space: nowrap;
+    cursor: pointer;
+    -webkit-user-select: none;
+       -moz-user-select: none;
+        -ms-user-select: none;
+            user-select: none;
+    border-radius: 2px;
+    -webkit-transition: all .2s ease-in;
+            transition: all .2s ease-in;
+    /**
+     * button theme
+     */
+    /**
+     * button size
+     */
+}
+.zdh-button:focus {
+    outline: none;
+}
+.zdh-button:not(.zdh-button-disabled),
+.zdh-button-blue:not(.zdh-button-disabled),
+.zdh-button-primary:not(.zdh-button-disabled),
+.zdh-button:not(.zdh-button-disabled):visited,
+.zdh-button-blue:not(.zdh-button-disabled):visited,
+.zdh-button-primary:not(.zdh-button-disabled):visited {
+    background-color: #4497ff;
+    color: #fff;
+}
+.zdh-button:not(.zdh-button-disabled):hover,
+.zdh-button-blue:not(.zdh-button-disabled):hover,
+.zdh-button-primary:not(.zdh-button-disabled):hover {
+    background-color: #3f8ef1;
+    color: #fff;
+}
+.zdh-button:not(.zdh-button-disabled):active,
+.zdh-button-blue:not(.zdh-button-disabled):active,
+.zdh-button-primary:not(.zdh-button-disabled):active {
+    background-color: #3b88e8;
+    color: #fff;
+}
+.zdh-button-green:not(.zdh-button-disabled),
+.zdh-button-secondary:not(.zdh-button-disabled),
+.zdh-button-green:not(.zdh-button-disabled):visited,
+.zdh-button-secondary:not(.zdh-button-disabled):visited {
+    background-color: #7cc123;
+    color: #fff;
+}
+.zdh-button-green:not(.zdh-button-disabled):hover,
+.zdh-button-secondary:not(.zdh-button-disabled):hover {
+    background-color: #77b823;
+    color: #fff;
+}
+.zdh-button-green:not(.zdh-button-disabled):active,
+.zdh-button-secondary:not(.zdh-button-disabled):active {
+    background-color: #6eaa1f;
+    color: #fff;
+}
+.zdh-button-gray:not(.zdh-button-disabled),
+.zdh-button-default:not(.zdh-button-disabled) {
+    box-shadow: 0 0 0 1px #dfe2e3 inset;
+}
+.zdh-button-gray:not(.zdh-button-disabled),
+.zdh-button-default:not(.zdh-button-disabled),
+.zdh-button-gray:not(.zdh-button-disabled):visited,
+.zdh-button-default:not(.zdh-button-disabled):visited {
+    background-color: #f6f8f9;
+    color: #4497ff;
+}
+.zdh-button-gray:not(.zdh-button-disabled):hover,
+.zdh-button-default:not(.zdh-button-disabled):hover {
+    background-color: #f3f5f6;
+    color: #4497ff;
+}
+.zdh-button-gray:not(.zdh-button-disabled):active,
+.zdh-button-default:not(.zdh-button-disabled):active {
+    background-color: #eff3f5;
+    color: #4497ff;
+}
+.zdh-button-disabled,
+.zdh-button[disabled] {
+    box-shadow: 0 0 0 1px #dfe2e3 inset;
+}
+.zdh-button-disabled,
+.zdh-button[disabled],
+.zdh-button-disabled:visited,
+.zdh-button[disabled]:visited,
+.zdh-button-disabled:hover,
+.zdh-button[disabled]:hover,
+.zdh-button-disabled:active,
+.zdh-button[disabled]:active {
+    background-color: #f6f8f9;
+    color: #ccc;
+    cursor: default;
+}
+.zdh-button,
+.zdh-button-large {
+    height: 38px;
+    padding: 12px 20px;
+    font-size: 14px;
+}
+.zdh-button-medium {
+    height: 30px;
+    padding: 8px 20px;
+    font-size: 14px;
+}
+.zdh-button-small {
+    height: 24px;
+    padding: 6px 10px;
+    font-size: 12px;
+}
