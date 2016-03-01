@@ -1,0 +1,63 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="stylesheet" href="../dist/base/base.css">
+        <link rel="stylesheet" href="../dist/radio/radio.css">
+        <style>
+            body {
+                margin: 50px;
+            }
+            div {
+                margin: 10px 0;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="zdh-radio">
+            <input type="radio" id="normal" name="radio">
+            <label for="normal">正常checkbox</label>
+        </div>
+
+        <div class="zdh-radio ">
+            <input type="radio" id="enable" name="radio" checked>
+            <label for="enable">正常checkbox</label>
+        </div>
+
+        <div class="zdh-radio">
+            <input type="radio" id="disabled-checked" name="radio-disabled" checked disabled>
+            <label for="disabled-checked">禁用状态checkbox（选中）</label>
+        </div>
+
+        <div class="zdh-radio">
+            <input type="radio" id="disabled" name="radio-disabled" disabled>
+            <label for="disabled">禁用状态checkbox（未选中）</label>
+        </div>
+
+        <hr>
+        <div class="zdh-radio zdh-radio-inline">
+            <input type="radio" id="normal-inline" name="radio-inline">
+            <label for="normal-inline">正常checkbox</label>
+        </div>
+
+        <div class="zdh-radio zdh-radio-inline">
+            <input type="radio" id="enable-inline" checked name="radio-inline">
+            <label for="enable-inline">正常checkbox</label>
+        </div>
+
+        <div class="zdh-radio zdh-radio-inline">
+            <input type="radio" id="disabled-checked-inline" name="radio-disabled-inline" checked disabled>
+            <label for="disabled-checked-inline">禁用状态checkbox（选中）</label>
+        </div>
+
+        <div class="zdh-radio zdh-radio-inline">
+            <input type="radio" id="disabled-inline" name="radio-disabled-inline" disabled>
+            <label for="disabled-inline">禁用状态checkbox（未选中）</label>
+        </div>
+    </body>
+</html>

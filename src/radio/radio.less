@@ -1,0 +1,82 @@
+@base-path: '../base';
+
+@radio-text-color: #474747;
+@radio-border-color: #d0d0d0;
+@radio-checked-color: #4497ff;
+@radio-disabled-color: #dfe2e3;
+@radio-height: 20px;
+@radio-size: 14px;
+
+@import "@{base-path}/conf";
+@import "@{base-path}/color";
+
+.@{namespace}-radio {
+    position: relative;
+    color: @radio-text-color;
+    font-size: 12px;
+    height: @radio-height;
+    line-height: @radio-height;
+
+    input[type=radio] {
+        display: none;
+    }
+
+
+    label {
+        position: relative;
+        display: inline-block;
+        cursor: pointer;
+        padding-left: @radio-height;
+
+        &:before {
+            display: block;
+            content: "";
+            width: @radio-size;
+            height: @radio-size;
+            position: absolute;
+            left: 0;
+            top: 2px;
+            background: @white;
+            border: 1px solid  @radio-border-color;
+            border-radius: 100%;
+        }
+
+        &:after {
+            display: none;
+            content: "";
+            position: absolute;
+            left: 4px;
+            top: 6px;
+
+            width: (@radio-size + 2 ) / 2;
+            height: (@radio-size + 2 ) / 2;
+            background: @radio-checked-color;
+            border-radius: 100%;
+        }
+        &.disabled{
+            cursor: not-allowed;
+        }:after {
+            background: @radio-disabled-color;
+         }
+    }
+
+    input[type=radio]:checked + label:after {
+        display: block;
+    }
+    input[type=radio]:disabled + label{
+        cursor: not-allowed;
+        &:after {
+            background: @radio-disabled-color;
+        }
+    }
+
+    &.disabled {
+        label:after {
+            background: @radio-disabled-color;
+        }
+    }
+
+    &-inline {
+        display: inline-block;
+    }
+}
