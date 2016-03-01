@@ -1,0 +1,31 @@
+{
+  "name": "BusinessObjects",
+  "version": "0.0.0",
+  "description": "",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Saber-Team/BusinessObjects"
+  },
+  "contributors": [],
+  "license": "MIT",
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-autoprefixer": "^3.1.0",
+    "gulp-cssbeautify": "^0.1.3",
+    "gulp-csscomb": "^3.0.6",
+    "gulp-watch": "^4.3.5",
+    "gulp-notify": "^2.2.0",
+    "gulp-plumber": "^1.1.0"
+  },
+  "dependencies": {
+    "normalize.css": "^3.0.3"
+  },
+  "scripts": {
+    "watch-css": "gulp watch-css",
+    "watch-js": "gulp watch-js",
+    "watch": "npm run watch-css & npm run watch-js",
+    "build-css": "gulp build-css",
+    "build-js": "gulp build-js",
+    "build": "npm run build-css && npm run build-js"
+  }
+}

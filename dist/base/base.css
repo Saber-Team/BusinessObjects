@@ -1,0 +1,70 @@
+@import '../../node_modules/normalize.css/normalize.css';
+html {
+    color: #333;
+    background-color: #fff;
+    text-rendering: optimizeLegibility;
+}
+body {
+    font-family: 'Helvetica, Tahoma, Arial, STXihei, \'Microsoft YaHei\', SimSun, Heiti, sans-serif';
+    font-size: 14px;
+    line-height: 1;
+}
+body,
+dl,
+dd,
+ul,
+ol,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+pre,
+form,
+fieldset,
+legend,
+input,
+textarea,
+optgroup,
+p,
+blockquote,
+figure,
+hr,
+menu,
+dir,
+thead,
+tbody,
+tfoot,
+th,
+td {
+    margin: 0;
+    padding: 0;
+}
+a {
+    text-decoration: none;
+    color: #4497ff;
+}
+ul,
+ol {
+    list-style-type: none;
+}
+textarea {
+    resize: vertical;
+}
+button,
+input {
+    background: none;
+    border: none;
+}
+.clearfix:before,
+.clearfix:after {
+    content: '';
+    display: table;
+}
+.clearfix:after {
+    clear: both;
+}
+.clearfix {
+    zoom: 1;
+}
