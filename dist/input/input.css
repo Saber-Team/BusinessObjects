@@ -8,7 +8,6 @@
  */
 .zdh-input {
     height: 30px;
-    border: 1px solid #dfe2e3;
 }
 .zdh-input > label,
 .zdh-input > input {
@@ -22,6 +21,7 @@
 .zdh-input > input {
     vertical-align: middle;
     height: 30px;
+    border: 1px solid #dfe2e3;
     padding-left: 10px;
     padding-right: 10px;
 }
