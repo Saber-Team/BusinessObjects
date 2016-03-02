@@ -3,29 +3,58 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
-        <title></title>
+        <title>button</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
 
         <link rel="stylesheet" href="../dist/base/base.css">
         <link rel="stylesheet" href="../dist/button/button.css">
+
     </head>
     <body>
-        <div>
-            <a class="zdh-button zdh-button-primary zdh-button-secondary" href="#">默认按钮</a>
+        <style>
+            body {
+                padding: 30px;
+            }
+            .item {
+                margin: 20px 0
+            }
+            h3 {
+                line-height: 2;
+            }
+        </style>
+        <div class="item">
+            <h3>large</h3>
+            <a class="zdh-button zdh-button-primary" href="#">默认按钮</a>
+            <a class="zdh-button zdh-button-secondary" href="#">默认按钮</a>
+            <a class="zdh-button zdh-button-default" href="#">默认按钮</a>
         </div>
-        <div>
-            <span class="zdh-button zdh-button-blue zdh-button-small">次级按钮</span>
+        <div class="item">
+            <h3>medium</h3>
+            <a class="zdh-button zdh-button-primary zdh-button-medium" href="#">默认按钮</a>
+            <a class="zdh-button zdh-button-secondary zdh-button-medium" href="#">默认按钮</a>
+            <a class="zdh-button zdh-button-default zdh-button-medium" href="#">默认按钮</a>
         </div>
-        <div>
-            <button class="zdh-button zdh-button-green zdh-button-medium">button</button>
+        <div class="item">
+            <h3>small</h3>
+            <a class="zdh-button zdh-button-primary zdh-button-small" href="#">默认按钮</a>
+            <a class="zdh-button zdh-button-secondary zdh-button-small" href="#">默认按钮</a>
+            <a class="zdh-button zdh-button-default zdh-button-small" href="#">默认按钮</a>
         </div>
-        <div>
-            <input type="submit" class="zdh-button zdh-button-gray zdh-button-small zdh-button-bordered" value="有边框按钮"/>
+        <div class="item">
+            <h3>bordered</h3>
+            <input type="submit" class="zdh-button zdh-button-gray zdh-button-small zdh-button-bordered" value="1"/>
+            <input type="submit" class="zdh-button zdh-button-gray zdh-button-small zdh-button-bordered" value="2"/>
+            <input type="submit" class="zdh-button zdh-button-gray zdh-button-small zdh-button-bordered" value="3"/>
+            <input type="submit" class="zdh-button zdh-button-gray zdh-button-small zdh-button-bordered" value="4"/>
+            <span class="zdh-button zdh-button-gray zdh-button-small zdh-button-bordered">边框按钮</span>
         </div>
-        <div>
-            <button class="zdh-button zdh-button-disabled zdh-button-green">不可用按钮</button>
+        <div class="item">
+            <h3>disabled</h3>
+            <button class="zdh-button zdh-button-disabled zdh-button-small">不可用按钮</button>
+            <button class="zdh-button zdh-button-disabled zdh-button-medium">不可用按钮</button>
+            <button class="zdh-button zdh-button-disabled zdh-button-large">不可用按钮</button>
         </div>
     </body>
 </html>
