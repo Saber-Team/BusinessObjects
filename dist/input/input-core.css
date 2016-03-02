@@ -1,8 +1,4 @@
 /**
- * @file input
- * @author jinwei01
- */
-/**
  * @file input core
  * @author jinwei01
  */
@@ -39,14 +35,4 @@
 }
 .zdh-input:-ms-input-placeholder {
     color: #999;
-}
-/**
- * @file search input
- * @author jinwei01
- */
-.zdh-input-search > .zdh-button {
-    vertical-align: middle;
-    margin-left: -1px;
-    border-top-left-radius: 0;
-    border-bottom-left-radius: 0;
 }

@@ -2,9 +2,6 @@
  * @file button
  * @author jinwei01
  */
-.setGrayBorder {
-    box-shadow: 0 0 0 1px #dfe2e3 inset;
-}
 .zdh-button {
     display: inline-block;
     box-sizing: border-box;
