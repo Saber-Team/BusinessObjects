@@ -1,0 +1,38 @@
+/**
+ * @file input core
+ * @author jinwei01
+ */
+.zdh-input {
+    height: 30px;
+}
+.zdh-input > label,
+.zdh-input > input {
+    box-sizing: border-box;
+    display: inline-block;
+}
+.zdh-input > label {
+    line-height: 30px;
+    vertical-align: top;
+}
+.zdh-input > input {
+    vertical-align: middle;
+    height: 30px;
+    border: 1px solid #dfe2e3;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+.zdh-input > input:focus {
+    outline: none;
+}
+.zdh-input::-webkit-input-placeholder {
+    color: #999;
+}
+.zdh-input:-moz-placeholder {
+    color: #999;
+}
+.zdh-input::-moz-placeholder {
+    color: #999;
+}
+.zdh-input:-ms-input-placeholder {
+    color: #999;
+}

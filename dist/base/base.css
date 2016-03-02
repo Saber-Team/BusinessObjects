@@ -55,7 +55,6 @@ textarea {
 button,
 input {
     background: none;
-    border: none;
 }
 .clearfix:before,
 .clearfix:after {

@@ -18,7 +18,7 @@
 }
 
 // border color
-@gray-bordered-color: #dfe2e3;
+@gray-bordered-color: @default-border-color;
 
 // set grayed border
 .setGrayBorder {
@@ -32,9 +32,6 @@
     font-size: @fontsize;
 }
 
-/**
- * button
- */
 .@{namespace}-button {
     display: inline-block;
     box-sizing: border-box;
@@ -48,6 +45,12 @@
     // focus
     &:focus {
         outline: none;
+    }
+
+    // with input or button tag
+    input&,
+    button& {
+        border: none;
     }
 
     /**
