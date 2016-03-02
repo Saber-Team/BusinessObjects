@@ -6,12 +6,13 @@
  * dropdown
  */
 .zdh-dropdown {
+    position: relative;
     display: inline-block;
     height: 30px;
     box-shadow: 0 0 0 1px #dfe2e3 inset;
 }
 .zdh-dropdown-label,
-.zdh-dropdown-down {
+.zdh-dropdown-icon {
     box-sizing: border-box;
     display: inline-block;
 }
@@ -22,10 +23,7 @@
     padding-left: 10px;
     padding-right: 10px;
 }
-.zdh-dropdown-label:focus {
-    outline: none;
-}
-.zdh-dropdown-down {
+.zdh-dropdown-icon {
     position: relative;
     width: 16px;
     height: 28px;
@@ -33,11 +31,14 @@
     right: 1px;
     background-color: #f3f3f3;
 }
-.zdh-dropdown-down:hover .zdh-dropdown-list {
+.zdh-dropdown-icon:focus {
+    outline: none;
+}
+.zdh-dropdown-icon:focus + .zdh-dropdown-list {
     display: block;
 }
-.zdh-dropdown-down:before,
-.zdh-dropdown-down:after {
+.zdh-dropdown-icon:before,
+.zdh-dropdown-icon:after {
     position: absolute;
     left: 50%;
     top: 50%;
@@ -46,21 +47,20 @@
     width: 0;
     height: 0;
     border-style: solid;
-}
-.zdh-dropdown-down:before {
-    margin-top: -3px;
     border-width: 6px 6px 0 6px;
+}
+.zdh-dropdown-icon:before {
+    margin-top: -3px;
     border-color: #888 transparent transparent transparent;
 }
-.zdh-dropdown-down:after {
+.zdh-dropdown-icon:after {
     margin-top: -5px;
-    border-width: 6px 6px 0 6px;
     border-color: #f3f3f3 transparent transparent transparent;
 }
 .zdh-dropdown-list {
     display: none;
     position: absolute;
-    top: 28px;
+    top: 31px;
     right: -1px;
     box-shadow: 0 0 0 1px #dfe2e3 inset;
 }
