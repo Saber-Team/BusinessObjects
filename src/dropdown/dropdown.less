@@ -11,19 +11,22 @@
 @group-height: 30px;
 @group-border-color: @default-border-color;
 @group-padding-hoziron: 10px;
-@down-bg-color: #f3f3f3;
-@down-icon-color: #888;
+
+@active-icon-bg-color: #f3f3f3;
+@active-icon-color: #888;
 
 
 /**
  * dropdown
  */
 .@{namespace}-dropdown {
+    position: relative;
     display: inline-block;
     height: @group-height;
     box-shadow: 0 0 0 1px @default-border-color inset;
+
     &-label,
-    &-down {
+    &-icon {
         box-sizing: border-box;
         display: inline-block;
     }
@@ -33,25 +36,23 @@
         height: @group-height;
         padding-left: @group-padding-hoziron;
         padding-right: @group-padding-hoziron;
-        &:focus {
-            outline: none;
-        }
     }
 
-    &-down {
+    &-icon {
         position: relative;
         width: 16px;
         height: @group-height - 2;
         top: 1px;
         right: 1px;
-        background-color: @down-bg-color;
+        background-color: @active-icon-bg-color;
 
-        &:hover {
-            .@{namespace}-dropdown-list {
+        &:focus {
+            outline: none;
+            +.@{namespace}-dropdown-list {
                 display: block;
             }
         }
-        // down icon
+        // active icon
         &:before,
         &:after {
             position: absolute;
@@ -62,16 +63,15 @@
             width: 0px;
             height: 0px;
             border-style: solid;
+            border-width: 6px 6px 0 6px;
         }
         &:before {
             margin-top: -3px;
-            border-width: 6px 6px 0 6px;
-            border-color: @down-icon-color transparent transparent transparent;
+            border-color: @active-icon-color transparent transparent transparent;
         }
         &:after {
             margin-top: -5px;
-            border-width: 6px 6px 0 6px;
-            border-color: @down-bg-color transparent transparent transparent;
+            border-color: @active-icon-bg-color transparent transparent transparent;
         }
     }
 
@@ -79,7 +79,7 @@
     &-list {
         display: none;
         position: absolute;
-        top: @group-height - 2;
+        top: @group-height + 1;
         right: -1px;
         box-shadow: 0 0 0 1px @default-border-color inset;
 
