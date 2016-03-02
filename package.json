@@ -18,8 +18,7 @@
     "gulp-plumber": "^1.1.0"
   },
   "dependencies": {
-    "gulp-less": "^3.0.5",
-    "normalize.css": "^3.0.3"
+    "gulp-less": "^3.0.5"
   },
   "scripts": {
     "watch-css": "gulp watch-css",

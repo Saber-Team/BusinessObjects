@@ -12,6 +12,10 @@
 @group-height: 30px;
 @input-border-color: @default-border-color;
 @input-padding-hoziron: 10px;
+@disabled-color: @silver;
+@disabled-bg-color: #f6f8f9;
+
+@default-label-width: 140px;
 
 // reset placeholder
 .placeholder(@rules) {
@@ -43,6 +47,10 @@
     >label {
         line-height: @group-height;
         vertical-align: top;
+        &.align-label {
+            text-align: right;
+            width: @default-label-width;
+        }
     }
 
     // input
@@ -55,6 +63,18 @@
         &:focus {
             outline: none;
         }
+        &[disabled] {
+            color: @disabled-color !important;
+            background-color: @disabled-bg-color !important;
+            border-color: @input-border-color !important;
+            cursor: default !important;
+        }
+    }
+
+    >.error-msg {
+        margin-left: @default-label-width;
+        padding: 1em 0;
+        font-size: 12px;
     }
 
     // set placeholder

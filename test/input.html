@@ -19,7 +19,7 @@
                 padding: 30px;
             }
             .item {
-                margin: 20px 0
+                padding: 20px 0
             }
             h3 {
                 line-height: 2;
@@ -33,7 +33,19 @@
         <div class="item">
             <h3>simple</h3>
             <div class="zdh-input">
-                <label>输入框</label><input type="text" placeholder="你好啊输入框" />
+                <label class="align-label">输入框</label><input type="text" placeholder="你好啊输入框" />
+            </div>
+
+            <div class="zdh-input error item">
+                <label class="align-label">验证不通过</label><input type="text" placeholder="验证不通过" /><p class="error-msg">验证不通过哈</p>
+            </div>
+
+            <div class="zdh-input ok item">
+                <label class="align-label">验证通过</label><input type="text" placeholder="验证通过" />
+            </div>
+
+            <div class="zdh-input ok item">
+                <label class="align-label">禁用输入框</label><input type="text" placeholder="禁用输入框" disabled/>
             </div>
         </div>
 
