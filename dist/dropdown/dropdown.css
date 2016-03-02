@@ -1,0 +1,78 @@
+/**
+ * @file dropdown
+ * @author jinwei01
+ */
+/**
+ * dropdown
+ */
+.zdh-dropdown {
+    display: inline-block;
+    height: 30px;
+    box-shadow: 0 0 0 1px #dfe2e3 inset;
+}
+.zdh-dropdown-label,
+.zdh-dropdown-down {
+    box-sizing: border-box;
+    display: inline-block;
+}
+.zdh-dropdown-label {
+    vertical-align: top;
+    line-height: 30px;
+    height: 30px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+.zdh-dropdown-label:focus {
+    outline: none;
+}
+.zdh-dropdown-down {
+    position: relative;
+    width: 16px;
+    height: 28px;
+    top: 1px;
+    right: 1px;
+    background-color: #f3f3f3;
+}
+.zdh-dropdown-down:hover .zdh-dropdown-list {
+    display: block;
+}
+.zdh-dropdown-down:before,
+.zdh-dropdown-down:after {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    margin-left: -6px;
+    content: '';
+    width: 0;
+    height: 0;
+    border-style: solid;
+}
+.zdh-dropdown-down:before {
+    margin-top: -3px;
+    border-width: 6px 6px 0 6px;
+    border-color: #888 transparent transparent transparent;
+}
+.zdh-dropdown-down:after {
+    margin-top: -5px;
+    border-width: 6px 6px 0 6px;
+    border-color: #f3f3f3 transparent transparent transparent;
+}
+.zdh-dropdown-list {
+    display: none;
+    position: absolute;
+    top: 28px;
+    right: -1px;
+    box-shadow: 0 0 0 1px #dfe2e3 inset;
+}
+.zdh-dropdown-item {
+    white-space: nowrap;
+    vertical-align: middle;
+    line-height: 30px;
+    padding-left: 10px;
+    padding-right: 10px;
+    cursor: pointer;
+}
+.zdh-dropdown-item:hover {
+    color: #fff;
+    background-color: #4497ff;
+}

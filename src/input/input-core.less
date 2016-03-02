@@ -1,0 +1,62 @@
+/**
+ * @file input core
+ * @author jinwei01
+ */
+
+@base-path: '../base';
+
+@import "@{base-path}/conf";
+@import "@{base-path}/color";
+
+// group height
+@group-height: 30px;
+@input-border-color: @default-border-color;
+@input-padding-hoziron: 10px;
+
+// reset placeholder
+.placeholder(@rules) {
+    &::-webkit-input-placeholder {
+        @rules();
+    }
+    &:-moz-placeholder {
+        @rules();
+    }
+    &::-moz-placeholder {
+        @rules();
+    }
+    &:-ms-input-placeholder {
+        @rules();
+    }
+}
+
+.@{namespace}-input {
+    height: @group-height;
+    border: 1px solid @input-border-color;
+
+    >label,
+    >input {
+        box-sizing: border-box;
+        display: inline-block;
+    }
+
+    // label
+    >label {
+        line-height: @group-height;
+        vertical-align: top;
+    }
+
+    // input
+    >input {
+        vertical-align: middle;
+        height: @group-height;
+
+        padding-left: @input-padding-hoziron;
+        padding-right: @input-padding-hoziron;
+        &:focus {
+            outline: none;
+        }
+    }
+
+    // set placeholder
+    .placeholder({color: @gray;});
+}
