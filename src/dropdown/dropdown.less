@@ -1,0 +1,100 @@
+/**
+ * @file dropdown
+ * @author jinwei01
+ */
+
+@base-path: '../base';
+
+@import "@{base-path}/conf";
+@import "@{base-path}/color";
+
+@group-height: 30px;
+@group-border-color: @default-border-color;
+@group-padding-hoziron: 10px;
+@down-bg-color: #f3f3f3;
+@down-icon-color: #888;
+
+
+/**
+ * dropdown
+ */
+.@{namespace}-dropdown {
+    display: inline-block;
+    height: @group-height;
+    box-shadow: 0 0 0 1px @default-border-color inset;
+    &-label,
+    &-down {
+        box-sizing: border-box;
+        display: inline-block;
+    }
+    &-label {
+        vertical-align: top;
+        line-height: @group-height;
+        height: @group-height;
+        padding-left: @group-padding-hoziron;
+        padding-right: @group-padding-hoziron;
+        &:focus {
+            outline: none;
+        }
+    }
+
+    &-down {
+        position: relative;
+        width: 16px;
+        height: @group-height - 2;
+        top: 1px;
+        right: 1px;
+        background-color: @down-bg-color;
+
+        &:hover {
+            .@{namespace}-dropdown-list {
+                display: block;
+            }
+        }
+        // down icon
+        &:before,
+        &:after {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            margin-left: -6px;
+            content: "";
+            width: 0px;
+            height: 0px;
+            border-style: solid;
+        }
+        &:before {
+            margin-top: -3px;
+            border-width: 6px 6px 0 6px;
+            border-color: @down-icon-color transparent transparent transparent;
+        }
+        &:after {
+            margin-top: -5px;
+            border-width: 6px 6px 0 6px;
+            border-color: @down-bg-color transparent transparent transparent;
+        }
+    }
+
+    // list
+    &-list {
+        display: none;
+        position: absolute;
+        top: @group-height - 2;
+        right: -1px;
+        box-shadow: 0 0 0 1px @default-border-color inset;
+
+    }
+    // item
+    &-item {
+        white-space: nowrap;
+        vertical-align: middle;
+        line-height: @group-height;
+        padding-left: @group-padding-hoziron;
+        padding-right: @group-padding-hoziron;
+        cursor: pointer;
+        &:hover {
+            color: @white;
+            background-color: @blue;
+        }
+    }
+}

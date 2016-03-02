@@ -3,14 +3,14 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
-        <title>input</title>
+        <title>button</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
 
         <link rel="stylesheet" href="../dist/base/base.css">
-        <link rel="stylesheet" href="../dist/button/button.css">
         <link rel="stylesheet" href="../dist/input/input.css">
+        <link rel="stylesheet" href="../dist/dropdown/dropdown.css">
 
     </head>
     <body>
@@ -31,16 +31,18 @@
             }
         </style>
         <div class="item">
-            <h3>simple</h3>
-            <div class="zdh-input">
-                <label>输入框</label><input type="text" placeholder="你好啊输入框" />
-            </div>
-        </div>
-
-        <div class="item">
-            <h3>search</h3>
-            <div class="zdh-input zdh-input-search">
-                <input type="search" placeholder="你好啊输入框" /><button class="zdh-button zdh-button-primary zdh-button-medium">百度一下</button>
+            <h3>dropdown</h3>
+            <div class="zdh-dropdown">
+                <label class="zdh-dropdown-label">dropdown</label>
+                <div class="zdh-dropdown-down">
+                    <ul class="zdh-dropdown-list">
+                        <li class="zdh-dropdown-item">dropdown item 1</li>
+                        <li class="zdh-dropdown-item">dropdown item 2</li>
+                        <li class="zdh-dropdown-item">dropdown item 3</li>
+                        <li class="zdh-dropdown-item">dropdown item 4</li>
+                        <li class="zdh-dropdown-item">dropdown item 5</li>
+                    </ul>
+                </div>
             </div>
         </div>
 
