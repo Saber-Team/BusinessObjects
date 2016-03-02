@@ -14,6 +14,10 @@
     line-height: 30px;
     vertical-align: top;
 }
+.zdh-input > label.align-label {
+    text-align: right;
+    width: 140px;
+}
 .zdh-input > input {
     vertical-align: middle;
     height: 30px;
@@ -23,6 +27,17 @@
 }
 .zdh-input > input:focus {
     outline: none;
+}
+.zdh-input > input[disabled] {
+    color: #ccc !important;
+    background-color: #f6f8f9 !important;
+    border-color: #dfe2e3 !important;
+    cursor: default !important;
+}
+.zdh-input > .error-msg {
+    margin-left: 140px;
+    padding: 1em 0;
+    font-size: 12px;
 }
 .zdh-input::-webkit-input-placeholder {
     color: #999;
