@@ -1,0 +1,54 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="../dist/base/base.css">
+    <link rel="stylesheet" href="../dist/tab/tab-card.css">
+    <link rel="stylesheet" href="../dist/tab/tab-pill.css">
+    <style>
+        body {
+            margin: 50px;
+        }
+        div {
+            margin: 10px 0;
+        }
+        .zdh-tab-card {
+            min-height: 200px;
+        }
+    </style>
+</head>
+<body>
+<legend>卡片Tab</legend>
+<div class="zdh-tab-card">
+    <ul class="tab-header">
+        <input type="radio" name="tab" id="zdh" checked>
+        <label for="zdh" class="tab-cell">直达号生成</label>
+        <input type="radio" name="tab" id="sh">
+        <label for="sh" class="tab-cell">商户导入</label>
+    </ul>
+
+    <script>
+
+    </script>
+</div>
+
+<br>
+<br>
+<legend>文字Tab</legend>
+<div class="zdh-tab-pill">
+    <input type="radio" name="tab-word" id="all" checked>
+    <label for="all" class="tab-cell">全部</label>
+    <input type="radio" name="tab-word" id="yesterday">
+    <label for="yesterday" class="tab-cell">昨天</label>
+    <input type="radio" name="tab-word" id="last-7">
+    <label for="last-7" class="tab-cell">最近7天</label>
+    <input type="radio" name="tab-word" id="last-30">
+    <label for="last-30" class="tab-cell">最近30天</label>
+</div>
+</body>
+</html>

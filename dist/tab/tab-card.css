@@ -1,0 +1,36 @@
+.zdh-tab-card {
+    position: relative;
+    width: 100%;
+    border-radius: 2px;
+    border: 1px solid #dfe2e3;
+}
+.zdh-tab-card .tab-header {
+    height: 50px;
+    line-height: 50px;
+    font-size: 16px;
+    color: #333;
+    border-bottom: 1px solid #f2f2f5;
+}
+.zdh-tab-card .tab-header input {
+    display: none;
+}
+.zdh-tab-card .tab-header input:checked + label {
+    color: #4497ff;
+    border-color: #4497ff;
+}
+.zdh-tab-card .tab-header .tab-cell {
+    display: inline-block;
+    height: 100%;
+    margin-left: 20px;
+    box-sizing: border-box;
+    cursor: pointer;
+    -webkit-animation: all .2s ease;
+            animation: all .2s ease;
+    border-bottom: 2px solid;
+    border-color: transparent;
+    bottom: -1px;
+}
+.zdh-tab-card .tab-header .tab-cell.active {
+    color: #4497ff;
+    border-color: #4497ff;
+}

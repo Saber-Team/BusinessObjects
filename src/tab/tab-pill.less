@@ -1,0 +1,38 @@
+@base-path: '../base';
+
+@tab-active-color: #4497ff;
+@tab-normal-color: #333;
+
+@tab-height: 30px;
+@tab-fontsize: 12px;
+@tab-padding: 0 10px;
+
+@import "@{base-path}/conf";
+@import "@{base-path}/color";
+
+.@{namespace}-tab-pill {
+    position: relative;
+    width: 100%;
+    font-size: @tab-fontsize;
+    color: @tab-normal-color;
+
+    input {
+        display: none;
+
+        &:checked + label {
+            color: @white;
+            background-color: @tab-active-color;
+        }
+    }
+
+    label,
+    .tab-cell {
+        display: inline-block;
+        height: @tab-height;
+        line-height: @tab-height;
+        padding: @tab-padding;
+        border-radius: 2px;
+        cursor: pointer;
+        animation: all .2s ease;
+    }
+}
