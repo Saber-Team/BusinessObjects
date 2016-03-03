@@ -1,0 +1,26 @@
+/**
+ * @file textarea
+ * @author jinwei01
+ */
+textarea.zdh-textarea,
+.zdh-textarea textarea {
+    vertical-align: top;
+    border: 1px solid #dfe2e3;
+    padding: 5px;
+    line-height: 1.2;
+}
+textarea.zdh-textarea:focus,
+.zdh-textarea textarea:focus {
+    outline: none;
+}
+textarea.zdh-textarea.error,
+.zdh-textarea.error textarea {
+    border-color: #ed5565;
+}
+textarea.zdh-textarea.ok,
+.zdh-textarea.ok textarea {
+    border-color: #7cc123;
+}
+.zdh-textarea .error-msg {
+    padding: 1em 0;
+}

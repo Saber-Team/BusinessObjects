@@ -37,7 +37,6 @@
 .zdh-input > .error-msg {
     margin-left: 140px;
     padding: 1em 0;
-    font-size: 12px;
 }
 .zdh-input::-webkit-input-placeholder {
     color: #999;
