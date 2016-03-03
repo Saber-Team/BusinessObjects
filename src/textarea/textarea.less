@@ -1,0 +1,37 @@
+/**
+ * @file textarea
+ * @author jinwei01
+ */
+
+@base-path: '../base';
+
+@import "@{base-path}/conf";
+@import "@{base-path}/color";
+
+@border-color: @default-border-color;
+@padding: 5px;
+@error-color: @red;
+@ok-color: @green;
+.@{namespace}-textarea {
+    textarea&,
+    textarea {
+        vertical-align: top;
+        border: 1px solid @default-border-color;
+        padding: @padding;
+        line-height: 1.2;
+        &:focus {
+            outline: none;
+        }
+    }
+    textarea&.error,
+    &.error textarea{
+        border-color: @error-color;
+    }
+    textarea&.ok,
+    &.ok textarea{
+        border-color: @ok-color;
+    }
+    .error-msg {
+        padding: 1em 0;
+    }
+}
