@@ -404,7 +404,7 @@ ol {
     list-style-type: none;
 }
 textarea {
-    resize: vertical;
+    resize: none;
 }
 button,
 input {

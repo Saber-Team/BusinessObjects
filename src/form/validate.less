@@ -1,0 +1,19 @@
+/**
+ * @file form validate styles
+ */
+
+ @base-path: '../base';
+
+ @import "@{base-path}/conf";
+ @import "@{base-path}/color";
+
+ // 错误提示
+ @error-color: @red;
+ @error-padding-vertical: unit(10 / 12, em);
+
+ .@{namespace}-error {
+     .error-msg {
+         color: @error-color;
+         margin: @error-padding-vertical 0;
+     }
+ }

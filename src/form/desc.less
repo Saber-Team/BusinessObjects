@@ -1,0 +1,16 @@
+/**
+ * @file 字段说明（描述）
+ */
+
+ @base-path: '../base';
+
+ @import "@{base-path}/conf";
+ @import "@{base-path}/color";
+// 填写说明
+@desc-color: @gray;
+@desc-padding-vertical: unit(10 / 12, em);
+
+.@{namespace}-desc {
+    color: @desc-color;
+    margin: @desc-padding-vertical 0;
+}
