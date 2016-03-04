@@ -1,0 +1,160 @@
+/**
+ * @file input core
+ * @author jinwei01
+ */
+
+@base-path: '../base';
+
+@import "@{base-path}/conf";
+@import "@{base-path}/color";
+@import "@{base-path}/font";
+
+
+
+// group height
+@group-height: 30px;
+
+
+@input-padding-hoziron: unit(10 / 12, em);
+
+// default fontsize
+@default-label-fontsize: 14px;
+@default-fontsize: 12px;
+
+// disabled input
+@disabled-color: @silver;
+@disabled-bg-color: #f6f8f9;
+
+// input
+@input-rounded: 2px;
+@input-border-color: @default-border-color;
+
+// label
+@default-label-width: 140px;
+
+// 错误提示
+@error-color: @red;
+@error-padding-vertical: unit(10 / 12, em);
+
+// 填写说明
+@desc-color: @gray;
+@desc-padding-vertical: unit(10 / 12, em);
+
+// reset placeholder
+.placeholder(@rules) {
+    &::-webkit-input-placeholder {
+        @rules();
+    }
+    &:-moz-placeholder {
+        @rules();
+    }
+    &::-moz-placeholder {
+        @rules();
+    }
+    &:-ms-input-placeholder {
+        @rules();
+    }
+}
+
+.@{namespace}-input-group {
+
+    font-size: @default-fontsize;
+
+    .@{namespace}-input-label,
+    .@{namespace}-input-con {
+        display: inline-block;
+    }
+
+    // label
+    .@{namespace}-input-label {
+        width: 10em;
+        line-height: @group-height;
+        vertical-align: top;
+        text-align: right;
+        font-size: @default-label-fontsize;
+
+        &:after {
+            content: ":";
+            padding-left: 6px;
+            padding-right: 8px;
+        }
+    }
+
+    // input wrapper
+    .@{namespace}-input-con {
+        position: relative;
+        display: inline-block;
+    }
+
+    // input
+    .@{namespace}-input {
+        box-sizing: border-box;
+        vertical-align: middle;
+        height: @group-height;
+        border: 1px solid @input-border-color;
+        padding-left: @input-padding-hoziron;
+        padding-right: @input-padding-hoziron;
+        border-radius: @input-rounded;
+        &:focus {
+            outline: none;
+        }
+        &[disabled] {
+            color: @disabled-color !important;
+            background-color: @disabled-bg-color !important;
+            border-color: @input-border-color !important;
+            cursor: default !important;
+        }
+    }
+
+    // 填写说明
+    .@{namespace}-input-desc {
+        color: @desc-color;
+        margin: @desc-padding-vertical 0;
+    }
+
+    // 填写错误
+    &.error {
+        .@{namespace}-input,
+        .@{namespace}-input-counter {
+            border-color: @error-color;
+        }
+    }
+    .error-msg {
+        color: @error-color;
+        margin: @error-padding-vertical 0;
+    }
+
+    // 字数提示
+    .@{namespace}-input-counter {
+        box-sizing: border-box;
+
+        display: inline-block;
+        vertical-align: top;
+
+        height: @group-height;
+        line-height: @group-height - 2 * 1;
+
+        margin-left: -1px;
+        border: 1px solid @input-border-color;
+        border-left: none;
+        background-color: @white;
+
+        padding-right: @input-padding-hoziron;
+        border-top-right-radius: @input-rounded;
+        border-bottom-right-radius: @input-rounded;
+        > em {
+            font-style: normal;
+        }
+    }
+    &.counter-error {
+        .@{namespace}-input-counter > em {
+            color: @error-color;
+        }
+    }
+
+    // set placeholder
+    .placeholder({
+        color: @gray;
+        font-family: @default-font-stack;
+    });
+}
