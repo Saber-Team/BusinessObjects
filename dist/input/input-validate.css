@@ -2,9 +2,3 @@
  * @file input validate style
  * @author jinwei01
  */
-.zdh-input.error > input[type=text] {
-    border: 1px solid #ed5565;
-}
-.zdh-input.ok > input[type=text] {
-    border: 1px solid #7cc123;
-}

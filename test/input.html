@@ -18,41 +18,75 @@
             body {
                 padding: 30px;
             }
-            .item {
-                padding: 20px 0
+            .item,
+            .zdh-input-group {
+                margin: 20px 0
             }
             h3 {
                 line-height: 2;
             }
-            .zdh-input > label:after {
-                content: ":";
-                margin-left: 6px;
-                margin-right: 6px;
-            }
         </style>
         <div class="item">
             <h3>simple</h3>
-            <div class="zdh-input">
-                <label class="align-label">输入框</label><input type="text" placeholder="你好啊输入框" />
+            <div class="zdh-input-group">
+                <label class="zdh-input-label">输入框</label>
+                <input type="text" class="zdh-input" placeholder="你好啊输入框" />
             </div>
 
-            <div class="zdh-input error item">
-                <label class="align-label">验证不通过</label><input type="text" placeholder="验证不通过" /><p class="error-msg">验证不通过哈</p>
+            <div class="zdh-input-group">
+                <label class="zdh-input-label">输入框</label>
+                <div class="zdh-input-con">
+                    <input type="text" class="zdh-input" placeholder="你好啊输入框" />
+                    <p class="zdh-input-desc">填写说明啦啦啦啦啦啦</p>
+                </div>
+
             </div>
 
-            <div class="zdh-input ok item">
-                <label class="align-label">验证通过</label><input type="text" placeholder="验证通过" />
+            <div class="zdh-input-group error">
+                <label class="zdh-input-label">验证不通过</label>
+                <div class="zdh-input-con">
+                    <input type="text" class="zdh-input" placeholder="验证不通过" />
+                    <p class="error-msg">验证不通过哇哇哇哇</p>
+                    <p class="zdh-input-desc">填写说明啦啦啦啦啦啦</p>
+                </div>
             </div>
 
-            <div class="zdh-input ok item">
-                <label class="align-label">禁用输入框</label><input type="text" placeholder="禁用输入框" disabled/>
+            <div class="zdh-input-group">
+                <label class="zdh-input-label">禁用输入框</label>
+                <input type="text" class="zdh-input" placeholder="禁用输入框" disabled/>
+            </div>
+
+            <div class="zdh-input-group">
+                <label class="zdh-input-label">字数提示</label>
+                <div class="zdh-input-con">
+                    <input type="text" class="zdh-input" placeholder="字数提示" /><!--
+                    --><p class="zdh-input-counter"><em>20</em>/40</p>
+                    <p class="error-msg">验证不通过哇哇哇哇</p>
+                    <p class="zdh-input-desc">填写说明啦啦啦啦啦啦</p>
+                </div>
+            </div>
+            <div class="zdh-input-group counter-error">
+                <label class="zdh-input-label">字数提示</label>
+                <div class="zdh-input-con">
+                    <input type="text" class="zdh-input" placeholder="字数提示" /><!--
+                    --><p class="zdh-input-counter"><em>9999</em>/40</p>
+                </div>
+            </div>
+            <div class="zdh-input-group error counter-error">
+                <label class="zdh-input-label">字数提示</label>
+                <div class="zdh-input-con">
+                    <input type="text" class="zdh-input" placeholder="字数提示" /><!--
+                    --><p class="zdh-input-counter"><em>9999</em>/40</p>
+                    <p class="error-msg">验证不通过哇哇哇哇</p>
+                </div>
             </div>
         </div>
 
         <div class="item">
             <h3>search</h3>
-            <div class="zdh-input zdh-input-search">
-                <input type="search" placeholder="你好啊输入框" /><button class="zdh-button zdh-button-primary zdh-button-medium">百度一下</button>
+            <div class="zdh-input-group zdh-input-search">
+                <input type="search" placeholder="你好啊输入框" class="zdh-input" /><!--
+                --><button class="zdh-button zdh-button-primary zdh-button-medium">百度一下</button>
             </div>
         </div>
 
