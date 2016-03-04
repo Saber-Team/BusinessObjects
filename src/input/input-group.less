@@ -14,7 +14,6 @@
 // group height
 @group-height: 30px;
 
-
 @input-padding-hoziron: unit(10 / 12, em);
 
 // default fontsize
@@ -56,38 +55,9 @@
     }
 }
 
-.@{namespace}-input-group {
-
-    font-size: @default-fontsize;
-
-    .@{namespace}-input-label,
-    .@{namespace}-input-con {
-        display: inline-block;
-    }
-
-    // label
-    .@{namespace}-input-label {
-        width: 10em;
-        line-height: @group-height;
-        vertical-align: top;
-        text-align: right;
-        font-size: @default-label-fontsize;
-
-        &:after {
-            content: ":";
-            padding-left: 6px;
-            padding-right: 8px;
-        }
-    }
-
-    // input wrapper
-    .@{namespace}-input-con {
-        position: relative;
-        display: inline-block;
-    }
-
-    // input
-    .@{namespace}-input {
+.@{namespace}-input {
+    &,
+    .@{namespace}-input-grup & {
         box-sizing: border-box;
         vertical-align: middle;
         height: @group-height;
@@ -105,23 +75,15 @@
             cursor: default !important;
         }
     }
+}
 
-    // 填写说明
-    .@{namespace}-input-desc {
-        color: @desc-color;
-        margin: @desc-padding-vertical 0;
-    }
-
+.@{namespace}-input-group {
     // 填写错误
-    &.error {
+    .@{namespace}-error {
         .@{namespace}-input,
         .@{namespace}-input-counter {
             border-color: @error-color;
         }
-    }
-    .error-msg {
-        color: @error-color;
-        margin: @error-padding-vertical 0;
     }
 
     // 字数提示
@@ -146,7 +108,7 @@
             font-style: normal;
         }
     }
-    &.counter-error {
+    &.@{namespace}-counter-error {
         .@{namespace}-input-counter > em {
             color: @error-color;
         }

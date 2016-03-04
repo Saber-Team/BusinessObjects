@@ -1,0 +1,80 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>input</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+        <link rel="stylesheet" href="../dist/base/base.css">
+        <link rel="stylesheet" href="../dist/button/button.css">
+        <link rel="stylesheet" href="../dist/input/input.css">
+
+    </head>
+    <body>
+        <style>
+            body {
+                padding: 30px;
+            }
+            .item {
+                padding: 20px 0;
+            }
+            h3 {
+                line-height: 2;
+            }
+        </style>
+
+            <div class="item">
+                <input type="text" class="zdh-input" placeholder="你好啊输入框" />
+            </div>
+
+            <div class="item">
+                <input type="text" class="zdh-input" placeholder="你好啊输入框" />
+                <p class="zdh-desc">填写说明啦啦啦啦啦啦</p>
+            </div>
+
+            <div class="item zdh-error">
+                <input type="text" class="zdh-input" placeholder="验证不通过" />
+                <p class="error-msg">验证不通过哇哇哇哇</p>
+                <p class="zdh-desc">填写说明啦啦啦啦啦啦</p>
+            </div>
+
+            <div class="item">
+                <input type="text" class="zdh-input" placeholder="禁用输入框" disabled/>
+            </div>
+
+            <div class="item zdh-error">
+                <div class="zdh-input-group">
+                    <input type="text" class="zdh-input" placeholder="字数提示" /><p class="zdh-input-counter"><em>20</em>/40</p>
+                </div>
+                <p class="error-msg">验证不通过哇哇哇哇</p>
+                <p class="zdh-desc">填写说明啦啦啦啦啦啦</p>
+            </div>
+
+            <div class="item">
+                <div class="zdh-input-group  zdh-counter-error">
+                    <input type="text" class="zdh-input" placeholder="字数提示" /><p class="zdh-input-counter"><em>9999</em>/40</p>
+                </div>
+                <p class="zdh-desc">填写说明啦啦啦啦啦啦填写说明啦啦啦啦啦啦填写说明啦啦啦啦啦啦填写说明啦啦啦啦啦啦</p>
+            </div>
+
+            <div class="item zdh-error">
+                <div class="zdh-input-group  zdh-counter-error">
+                    <input type="text" class="zdh-input" placeholder="字数提示" /><p class="zdh-input-counter"><em>9999</em>/40</p>
+                </div>
+                <p class="error-msg">验证不通过哇哇哇哇验证不通过哇哇哇哇验证不通过哇哇哇哇验证不通过哇哇哇哇验证不通过哇哇哇哇验证不通过哇哇哇哇</p>
+            </div>
+
+
+        <div class="item">
+            <h3>search</h3>
+            <div class="zdh-input-group zdh-input-search">
+                <input type="search" placeholder="你好啊输入框" class="zdh-input" /><!--
+                --><button class="zdh-button zdh-button-primary zdh-button-medium">百度一下</button>
+            </div>
+        </div>
+
+    </body>
+</html>

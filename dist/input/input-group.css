@@ -2,30 +2,8 @@
  * @file input core
  * @author jinwei01
  */
-.zdh-input-group {
-    font-size: 12px;
-}
-.zdh-input-group .zdh-input-label,
-.zdh-input-group .zdh-input-con {
-    display: inline-block;
-}
-.zdh-input-group .zdh-input-label {
-    width: 10em;
-    line-height: 30px;
-    vertical-align: top;
-    text-align: right;
-    font-size: 14px;
-}
-.zdh-input-group .zdh-input-label:after {
-    content: ':';
-    padding-left: 6px;
-    padding-right: 8px;
-}
-.zdh-input-group .zdh-input-con {
-    position: relative;
-    display: inline-block;
-}
-.zdh-input-group .zdh-input {
+.zdh-input,
+.zdh-input-grup .zdh-input {
     box-sizing: border-box;
     vertical-align: middle;
     height: 30px;
@@ -34,26 +12,20 @@
     padding-right: .83333333em;
     border-radius: 2px;
 }
-.zdh-input-group .zdh-input:focus {
+.zdh-input:focus,
+.zdh-input-grup .zdh-input:focus {
     outline: none;
 }
-.zdh-input-group .zdh-input[disabled] {
+.zdh-input[disabled],
+.zdh-input-grup .zdh-input[disabled] {
     color: #ccc !important;
     background-color: #f6f8f9 !important;
     border-color: #dfe2e3 !important;
     cursor: default !important;
 }
-.zdh-input-group .zdh-input-desc {
-    color: #999;
-    margin: .83333333em 0;
-}
-.zdh-input-group.error .zdh-input,
-.zdh-input-group.error .zdh-input-counter {
+.zdh-input-group .zdh-error .zdh-input,
+.zdh-input-group .zdh-error .zdh-input-counter {
     border-color: #ed5565;
-}
-.zdh-input-group .error-msg {
-    color: #ed5565;
-    margin: .83333333em 0;
 }
 .zdh-input-group .zdh-input-counter {
     box-sizing: border-box;
@@ -72,7 +44,7 @@
 .zdh-input-group .zdh-input-counter > em {
     font-style: normal;
 }
-.zdh-input-group.counter-error .zdh-input-counter > em {
+.zdh-input-group.zdh-counter-error .zdh-input-counter > em {
     color: #ed5565;
 }
 .zdh-input-group::-webkit-input-placeholder {

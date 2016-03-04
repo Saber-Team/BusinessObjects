@@ -1,0 +1,7 @@
+/**
+ * @file form validate styles
+ */
+.zdh-error .error-msg {
+    color: #ed5565;
+    margin: .83333333em 0;
+}

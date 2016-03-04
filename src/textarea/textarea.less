@@ -8,30 +8,77 @@
 @import "@{base-path}/conf";
 @import "@{base-path}/color";
 
+@import "../form/validate";
+@import "../form/desc";
+
 @border-color: @default-border-color;
-@padding: 5px;
+
+@padding-horizon: 10px;
+@padding-vertical: 5px;
+
+
 @error-color: @red;
-@ok-color: @green;
-.@{namespace}-textarea {
-    textarea&,
-    textarea {
-        vertical-align: top;
-        border: 1px solid @default-border-color;
-        padding: @padding;
-        line-height: 1.2;
-        &:focus {
-            outline: none;
-        }
+
+.@{namespace}-textarea-group .@{namespace}-textarea,
+.@{namespace}-textarea-group textarea {
+    vertical-align: top;
+    border: 1px solid @default-border-color;
+    padding: @padding-vertical 6px @padding-vertical @padding-horizon;
+    line-height: 1.5;
+    &:focus {
+        outline: none;
     }
-    textarea&.error,
-    &.error textarea{
+    // error
+    .@{namespace}-error & {
         border-color: @error-color;
     }
-    textarea&.ok,
-    &.ok textarea{
-        border-color: @ok-color;
+}
+
+
+.@{namespace}-textarea-group {
+    display: inline-block;
+
+    // counter
+    .@{namespace}-textarea-counter {
+        text-align: right;
+        margin-top: -1px;
+        padding: .5em ;
+        border: 1px solid @border-color;
+        border-top: none;
+        background-color: @white;
+        color: @gray;
+        transform: translate(0, 0);
+        > em {
+            color: @orange;
+            font-style: normal;
+        }
+        // error-color
+        .@{namespace}-error & {
+            border-color: @error-color;
+        }
     }
-    .error-msg {
-        padding: 1em 0;
+
+    // customer scrollbar
+    & ::-webkit-scrollbar {
+        width: 14px;
+        height: 14px;
+    }
+    & ::-webkit-scrollbar-thumb {
+        border: 4px solid rgba(0, 0, 0, 0);
+        background-clip: padding-box;
+        background-color: @black;
+    }
+    & ::-webkit-scrollbar-button {
+        width: 0;
+        height: 0;
+        display: none;
+    }
+    & ::-webkit-scrollbar-corner {
+        background-color: transparent;
     }
 }
+
+// body {
+//     scrollbar-face-color: @black;
+//     scrollbar-track-color: #fff;
+// }
