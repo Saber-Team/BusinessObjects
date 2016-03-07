@@ -7,7 +7,7 @@
 2. 获取代码 
 
 	```js
-		git clone git@github.com:Saber-Team/BusinessObjects.git
+		git clone https://github.com/Saber-Team/BusinessObjects.git
 	```
 
 3. 更新代码
