@@ -10,6 +10,7 @@
 .zdh-tab-list input:checked + label {
     color: #fff;
     background-color: #4497ff;
+    border-color: #4497ff;
 }
 .zdh-tab-list label,
 .zdh-tab-list .tab-cell {
@@ -17,7 +18,9 @@
     height: 30px;
     line-height: 30px;
     padding: 0 10px;
-    border-radius: 2px;
+    border-radius: 2px 2px 0 0;
+    border: 1px solid #dfe2e3;
+    border-bottom: 0;
     cursor: pointer;
     -webkit-animation: all .2s ease;
             animation: all .2s ease;

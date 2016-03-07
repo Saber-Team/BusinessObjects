@@ -1,5 +1,7 @@
 @base-path: '../base';
 
+@border-color: #dfe2e3;
+
 @tab-active-color: #4497ff;
 @tab-normal-color: #333;
 
@@ -22,6 +24,7 @@
         &:checked + label {
             color: @white;
             background-color: @tab-active-color;
+            border-color: @tab-active-color;
         }
     }
 
@@ -31,7 +34,9 @@
         height: @tab-height;
         line-height: @tab-height;
         padding: @tab-padding;
-        border-radius: 2px;
+        border-radius: 2px 2px 0 0;
+        border: 1px solid @border-color;
+        border-bottom: 0;
         cursor: pointer;
         animation: all .2s ease;
     }

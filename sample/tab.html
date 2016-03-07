@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="../dist/base/base.css">
     <link rel="stylesheet" href="../dist/tab/tab-card.css">
     <link rel="stylesheet" href="../dist/tab/tab-pill.css">
+    <link rel="stylesheet" href="../dist/tab/tab-list.css">
     <style>
         body {
             margin: 50px;
@@ -49,6 +50,22 @@
     <label for="last-7" class="tab-cell">最近7天</label>
     <input type="radio" name="tab-word" id="last-30">
     <label for="last-30" class="tab-cell">最近30天</label>
+</div>
+
+<br>
+<br>
+<legend>列表Tab</legend>
+<div class="zdh-tab-list">
+    <input type="radio" name="tab-list" id="all-order" checked>
+    <label for="all-order" class="tab-cell">全部订单</label>
+    <input type="radio" name="tab-list" id="waiting">
+    <label for="waiting" class="tab-cell">待支付</label>
+    <input type="radio" name="tab-list" id="paid">
+    <label for="paid" class="tab-cell">已支付</label>
+    <input type="radio" name="tab-list" id="refund">
+    <label for="refund" class="tab-cell">已退款</label>
+    <input type="radio" name="tab-list" id="close">
+    <label for="close" class="tab-cell">订单关闭</label>
 </div>
 </body>
 </html>
