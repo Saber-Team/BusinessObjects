@@ -1,0 +1,86 @@
+@base-path: '../base';
+
+@import "@{base-path}/conf";
+@import "@{base-path}/color";
+
+@import "../../lib/pikaday/pikaday.css";
+
+
+/**
+ * This theme is an example to show how you can create your own.
+ */
+.pika-single.@{namespace}-datepicker {
+    color: @black;
+    background: @white;
+    border: 1px solid @blue;
+    border-bottom-color: @blue;
+}
+
+.@{namespace}-datepicker .pika-lendar {
+    width: 210px;
+    margin: 0;
+}
+
+.@{namespace}-datepicker .pika-label {
+    font-weight: normal;
+    background-color: @white;
+}
+
+// .@{namespace}-datepicker .pika-prev,
+// .@{namespace}-datepicker .is-rtl .pika-next {
+//     background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAeCAQAAACGG/bgAAAAQ0lEQVR4Ae3KIQ4AIBTD0N0/IeHGI3UIRA3ut/Zl+ltXc5++htVAmIAwAWECwgSEKbgthEoIlRAqIVRCqINQB9nDgQd7ktwFo6UpWQAAAABJRU5ErkJggg==');
+// }
+//
+// .@{namespace}-datepicker .pika-next,
+// .@{namespace}-datepicker .is-rtl .pika-prev {
+//     background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAeCAQAAACGG/bgAAAAP0lEQVQ4y+3TMQoAMAgEwfwfAvvjTZ1uGzuvHhBPPGczEG+FRqqRaqQaqUaqkX6QBmmjacvQ6qEVTjsh+xizebvlaWptGXZAAAAAAElFTkSuQmCC');
+// }
+
+.@{namespace}-datepicker .pika-table th {
+    color: @gray;
+    background-color: #f8f8f8;
+    border-top: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+    text-align: center;
+}
+
+.@{namespace}-datepicker .pika-table th abbr {
+    cursor: default;
+}
+
+.@{namespace}-datepicker .pika-button {
+    color: @black;
+    background: @white;
+    text-align: center;
+    border-radius: 2px;
+    line-height: 30px;
+    padding: 0px 6px;
+}
+
+.@{namespace}-datepicker .pika-week {
+    color: @gray;
+}
+
+.@{namespace}-datepicker .is-today .pika-button {
+    color: @black;
+    font-weight: normal;
+}
+
+.@{namespace}-datepicker .is-selected .pika-button {
+    color: @white;
+    font-weight: normal;
+    background: @blue;
+    box-shadow: inset 0 1px 3px #178fe5;
+}
+
+.@{namespace}-datepicker .is-disabled .pika-button {
+    color: #999;
+    opacity: .3;
+    text-align: center;
+}
+
+.@{namespace}-datepicker .pika-button:hover {
+    color: #fff !important;
+    background: @blue !important;
+    border-radius: 2px;
+}

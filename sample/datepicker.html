@@ -3,15 +3,17 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
-        <title>dropdown</title>
+        <title>datepicker</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
 
         <link rel="stylesheet" href="../dist/base/base.css">
         <link rel="stylesheet" href="../dist/input/input.css">
-        <link rel="stylesheet" href="../dist/dropdown/dropdown.css">
+        <link rel="stylesheet" href="../dist/datepicker/datepicker.css">
 
+        <script src="../lib/kernel.js"></script>
+        <script src="../lib/jquery.js"></script>
     </head>
     <body>
         <style>
@@ -31,18 +33,21 @@
             }
         </style>
         <div class="item">
-            <h3>dropdown</h3>
-            <div class="zdh-dropdown">
-                <label class="zdh-dropdown-label">dropdown</label>
-                <div class="zdh-dropdown-icon" tabindex="-1"></div>
-                <ul class="zdh-dropdown-list">
-                    <li class="zdh-dropdown-item">dropdown item 1</li>
-                    <li class="zdh-dropdown-item">dropdown item 2</li>
-                    <li class="zdh-dropdown-item">dropdown item 3</li>
-                    <li class="zdh-dropdown-item">dropdown item 4</li>
-                    <li class="zdh-dropdown-item">dropdown item 5</li>
-                </ul>
+            <div class="zdh-datepicker-group">
+                <input class="zdh-input" id="datepicker1">
             </div>
+            <script>
+            require(['../src/datepicker/datepicker'], function(Datepicker) {
+                var picker = new Datepicker({
+                    field: document.getElementById('datepicker1'),
+                    // bound: false
+                });
+                picker.toString('YYYY/MM/DD');
+            });
+            // document.getElementById('datepicker1').addEventListener('focus', function () {
+            //     picker.show();
+            // })
+            </script>
         </div>
 
     </body>
