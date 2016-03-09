@@ -48,6 +48,7 @@
 }
 .zdh-radio input[type=radio]:disabled + label {
     cursor: not-allowed;
+    color: #dfe2e3;
 }
 .zdh-radio input[type=radio]:disabled + label:after {
     background: #dfe2e3;
@@ -57,4 +58,5 @@
 }
 .zdh-radio-inline {
     display: inline-block;
+    margin-right: 10px;
 }

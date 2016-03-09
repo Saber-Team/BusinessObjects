@@ -69,6 +69,7 @@
     }
     input[type=checkbox]:disabled + label{
         cursor: not-allowed;
+        color: @checkbox-disabled-color;
         &:after {
             border-bottom: 2px solid @checkbox-disabled-color;
             border-left: 2px solid @checkbox-disabled-color;
@@ -84,5 +85,6 @@
 
     &-inline {
         display: inline-block;
+        margin-right: 10px;
     }
 }
