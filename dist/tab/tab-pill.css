@@ -7,10 +7,6 @@
 .zdh-tab-pill input {
     display: none;
 }
-.zdh-tab-pill input:checked + label {
-    color: #fff;
-    background-color: #4497ff;
-}
 .zdh-tab-pill label,
 .zdh-tab-pill .tab-cell {
     display: inline-block;
@@ -19,6 +15,18 @@
     padding: 0 10px;
     border-radius: 2px;
     cursor: pointer;
-    -webkit-animation: all .2s ease;
-            animation: all .2s ease;
+}
+.zdh-tab-pill .active {
+    color: #fff;
+    background-color: #4497ff;
+}
+.zdh-tab-pill .sliding {
+    position: absolute;
+    background-color: #4497ff;
+    border-color: #4497ff;
+    margin: 0;
+    top: 0;
+    z-index: -1;
+    width: 0;
+    left: -1000px;
 }
