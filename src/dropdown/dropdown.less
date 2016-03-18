@@ -15,6 +15,10 @@
 @active-icon-bg-color: #f3f3f3;
 @active-icon-color: #888;
 
+.setBorder (@color) {
+    box-shadow:  0 0 0 1px @color inset;
+}
+
 
 /**
  * dropdown
@@ -23,7 +27,9 @@
     position: relative;
     display: inline-block;
     height: @group-height;
-    box-shadow: 0 0 0 1px @default-border-color inset;
+    line-height: @group-height;
+    // box-shadow: 0 0 0 1px @default-border-color inset;
+    .setBorder(@default-border-color);
 
     &-label,
     &-icon {
@@ -35,43 +41,46 @@
         line-height: @group-height;
         height: @group-height;
         padding-left: @group-padding-hoziron;
-        padding-right: @group-padding-hoziron;
+    }
+    &.@{namespace}-active {
+        .setBorder(@blue);
     }
 
     &-icon {
         position: relative;
+        display: inline-block;
+        text-align: center;
+        vertical-align: top;
         width: 16px;
         height: @group-height - 2;
+        margin-left: @group-padding-hoziron;
         top: 1px;
         right: 1px;
         background-color: @active-icon-bg-color;
+        cursor: pointer;
 
-        &:focus {
-            outline: none;
-            +.@{namespace}-dropdown-list {
-                display: block;
-            }
-        }
         // active icon
-        &:before,
         &:after {
             position: absolute;
+            box-sizing: border-box;
+            content: "";
             left: 50%;
             top: 50%;
-            margin-left: -6px;
-            content: "";
-            width: 0px;
-            height: 0px;
-            border-style: solid;
-            border-width: 6px 6px 0 6px;
+            margin-top: -6px;
+            margin-left: -4px;
+            width: 8px;
+            height: 8px;
+            border: 1px solid @active-icon-color;
+            border-top: none;
+            border-right: none;
+
+            transform-origin: 50% 50%;
+            transform: rotate(-45deg);
+            transition: transform .2s ease;
         }
-        &:before {
-            margin-top: -3px;
-            border-color: @active-icon-color transparent transparent transparent;
-        }
-        &:after {
-            margin-top: -5px;
-            border-color: @active-icon-bg-color transparent transparent transparent;
+        .@{namespace}-active &:after {
+            margin-top: -2px;
+            transform: rotate(-225deg);
         }
     }
 
@@ -79,14 +88,28 @@
     &-list {
         display: none;
         position: absolute;
-        top: @group-height + 1;
-        right: -1px;
+        top: @group-height - 1;
+        left: 0;
         box-shadow: 0 0 0 1px @default-border-color inset;
+        background-color: @white;
+        z-index: 999;
 
+        .@{namespace}-active & {
+            .setBorder(@blue);
+            display: block;
+        }
+
+        .@{namespace}-dropdown-equalwidth & {
+            width: 100%;
+        }
     }
     // item
     &-item {
+        box-sizing: border-box;
+        width: 100%;
         white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
         vertical-align: middle;
         line-height: @group-height;
         padding-left: @group-padding-hoziron;
@@ -96,5 +119,6 @@
             color: @white;
             background-color: @blue;
         }
+
     }
 }

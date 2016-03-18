@@ -5,9 +5,13 @@
 /**
  * @file form validate styles
  */
-.zdh-error .error-msg {
+.error-msg {
+    display: none;
     color: #ed5565;
     margin: .83333333em 0;
+}
+.zdh-error .error-msg {
+    display: block;
 }
 /**
  * @file 字段说明（描述）
@@ -60,7 +64,7 @@
 .zdh-textarea-group ::-webkit-scrollbar-thumb {
     border: 4px solid rgba(0, 0, 0, 0);
     background-clip: padding-box;
-    background-color: #333;
+    background-color: #999;
 }
 .zdh-textarea-group ::-webkit-scrollbar-button {
     width: 0;
