@@ -1,7 +1,11 @@
 /**
  * @file form validate styles
  */
-.zdh-error .error-msg {
+.error-msg {
+    display: none;
     color: #ed5565;
     margin: .83333333em 0;
+}
+.zdh-error .error-msg {
+    display: block;
 }

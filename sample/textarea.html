@@ -11,11 +11,15 @@
         <link rel="stylesheet" href="../dist/base/base.css">
         <link rel="stylesheet" href="../dist/textarea/textarea.css">
 
+        <script src="../lib/kernel.js"></script>
+        <script src="../lib/jquery.js"></script>
+
     </head>
     <body>
         <style>
             body {
                 padding: 30px;
+                font-size: 12px;
             }
             .item {
                 margin: 20px 0
@@ -30,32 +34,55 @@
             <h3>textarea</h3>
 
             <div class="item">
-                <div class="zdh-textarea-group">
+                <div class="zdh-textarea-group" id="t1">
                     <textarea cols="40" rows="6" placeholder="你好啊输入框" class="zdh-textarea"></textarea>
                 </div>
             </div>
 
             <div class="item">
-                <div class="zdh-textarea-group">
+                <div class="zdh-textarea-group" id="t2">
                     <textarea cols="40" rows="6" placeholder="你好啊输入框">
 你好啊多行输入框你好啊多行输入框你好啊多行输入框你好啊多行输入框你好啊多行输入框你好啊多行输入框你好啊多行输入框你好啊多行输入框你好啊多行输入框你好啊多行输入框你好啊多行输入框你好啊多行输入框你好啊多行输入框你好啊多行输入框你好啊多行输入框你好啊多行输入框你好啊多行输入框你好啊多行输入框你好啊多行输入框你好啊多行输入框</textarea>
                     <p class="zdh-textarea-counter">您最多还可输入<em>500</em>字</p>
                 </div>
             </div>
-            <div class="item zdh-error">
-                <div class="zdh-textarea-group">
+            <div class="item">
+                <div class="zdh-textarea-group" id="t3">
                     <textarea cols="40" rows="6" placeholder="你好啊输入框"></textarea>
                     <p class="zdh-textarea-counter">您最多还可输入<em>500</em>字</p>
                 </div>
                 <p class="error-msg">请输入正确的内容啦啦啦啦</p>
             </div>
-            <div class="item zdh-error">
-                <div class="zdh-textarea-group">
+            <div class="item">
+                <div class="zdh-textarea-group" id="t4">
                     <textarea cols="40" rows="6" placeholder="你好啊输入框"></textarea>
                     <p class="zdh-textarea-counter">您最多还可输入<em>500</em>字</p>
                 </div>
                 <p class="error-msg">请输入正确的内容啦啦啦啦</p>
                 <p class="zdh-desc">输入提示啦啦啦啦啦啦</p>
             </div>
+
+            <script>
+                require(['../src/textarea/textarea'], function(Textarea) {
+                    // var d1 = new Textarea({
+                    //     el: $('#t1')
+                    //     maxlength: 500
+                    // });
+
+                    var d2 = new Textarea({
+                        el: $('#t2'),
+                        maxlength: 500
+                    });
+                    var d3 = new Textarea({
+                        el: $('#t3'),
+                        maxlength: 50
+                    });
+                    var d4 = new Textarea({
+                        el: $('#t4'),
+                        maxlength: 500
+                    });
+
+                });
+            </script>
     </body>
 </html>

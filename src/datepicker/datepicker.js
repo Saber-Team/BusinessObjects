@@ -27,7 +27,7 @@ define(['../../lib/pikaday/pikaday'], function (Pikaday) {
         init: function () {
             this.picker = new Pikaday(defaults)
         }
-    });
+    })
 
     return Datepicker
 })

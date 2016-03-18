@@ -11,9 +11,11 @@
  @error-color: @red;
  @error-padding-vertical: unit(10 / 12, em);
 
- .@{namespace}-error {
-     .error-msg {
-         color: @error-color;
-         margin: @error-padding-vertical 0;
+ .error-msg {
+     display: none;
+     color: @error-color;
+     margin: @error-padding-vertical 0;
+     .@{namespace}-error & {
+         display: block;
      }
  }
