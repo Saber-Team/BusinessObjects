@@ -13,8 +13,6 @@
         -ms-user-select: none;
             user-select: none;
     border-radius: 2px;
-    -webkit-transition: all .2s ease-in;
-            transition: all .2s ease-in;
     /**
      * button theme
      */

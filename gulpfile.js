@@ -6,8 +6,11 @@ var gulp         = require('gulp')
 var less         = require('gulp-less')
 var comb         = require('gulp-csscomb')
 var autoprefixer = require('gulp-autoprefixer')
+var image        = require('gulp-image')
 var plumber      = require('gulp-plumber')
 var notify       = require('gulp-notify')
+var reporter     = require('gulp-less-reporter')
+
 
 // autoprefixer conf
 var autoprefixerConf = {
@@ -25,14 +28,17 @@ var pattens = {
     ],
     'js': [
         srcDir + '**/*.js'
-    ]
+    ],
+    'img': ['png', 'gif', 'jpg', 'jpeg', 'webp', 'svg'].map(function (type) {
+        return srcDir + '**/*.' + type
+    })
 }
 
 // build css
 gulp.task('build-css', function () {
     return gulp.src(pattens.less)
         .pipe(plumber({errorHandler: notify.onError("Error: <%= error.message %>")}))
-        .pipe(less())
+        .pipe(less()).on('error', reporter)
         .pipe(autoprefixer(autoprefixerConf))
         .pipe(comb())
         .pipe(gulp.dest(distDir))
@@ -44,9 +50,16 @@ gulp.task('build-js', function () {
         .pipe(gulp.dest(distDir))
 })
 
+// build img
+gulp.task('build-img', function () {
+    return gulp.src(pattens.img)
+        .pipe(image())
+        .pipe(gulp.dest(distDir))
+})
+
 // watch css
-gulp.task('watch-css', ['build-css'], function () {
-    gulp.watch(pattens.less, ['build-css'])
+gulp.task('watch-css', ['build-css', 'build-img'], function () {
+    gulp.watch(pattens.less, ['build-css', 'build-img'])
 })
 
 // watch js
