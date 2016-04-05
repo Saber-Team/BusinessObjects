@@ -1,17 +1,19 @@
 # Getting Started
 
-1. 打开终端
-   1. 呼出spotlight（control + space 或 点击屏幕右上角『放大镜』图标）
-   2. 输入terminal, 按回车
+1. get
 
-2. 获取代码
+    ```
+       git clone git@github.com:Saber-Team/BusinessObjects.git
+    ```
 
-	​```js
-		git clone https://github.com/Saber-Team/BusinessObjects.git
-	​```
+2. install
 
-1. 更新代码
+    ```
+       [sudo]npm install
+    ```
 
-	​```js
-		git pull
-	​```
+3. develop
+
+    ```
+        npm run watch
+    ```
