@@ -1,19 +1,56 @@
 @base-path: '../base';
 
-@import "@{base-path}/conf";
-@import "@{base-path}/color";
+@import '@{base-path}/conf';
+@import '@{base-path}/color';
 
-@import "../../lib/pikaday/pikaday.css";
+@import (inline) 'pikaday.css';
 
 
 /**
  * This theme is an example to show how you can create your own.
  */
+ .@{namespace}-datepicker-group {
+        display: table;
+        box-shadow: 0 0 0 1px @silver inset;
+        > * {
+            display: table-cell;;
+        }
+        > input {
+            width: 7em;
+            border: none;
+        }
+        .@{namespace}-datepicker-icon {
+            text-align: center;
+            vertical-align: middle;
+            padding-right: 5px;
+            &:before {
+                content: '';
+                position: relative;
+                display: inline-block;
+                width: 16px;
+                height: 16px;
+                background: url(icon.png) 0 0 no-repeat;
+            }
+
+        }
+        // active
+        &.active {
+            box-shadow: 0 0 0 1px @blue inset;
+
+            .@{namespace}-datepicker-icon {
+                &:before {
+                    background-position: 0 -19px
+                }
+            }
+        }
+ }
+
 .pika-single.@{namespace}-datepicker {
     color: @black;
     background: @white;
     border: 1px solid @blue;
     border-bottom-color: @blue;
+    transform: translate(0, -1px);
 }
 
 .@{namespace}-datepicker .pika-lendar {
@@ -24,6 +61,7 @@
 .@{namespace}-datepicker .pika-label {
     font-weight: normal;
     background-color: @white;
+
 }
 
 // .@{namespace}-datepicker .pika-prev,
@@ -71,6 +109,14 @@
     font-weight: normal;
     background: @blue;
     box-shadow: inset 0 1px 3px #178fe5;
+}
+
+.@{namespace}-datepicker .is-inrange .pika-button {
+    // color: @white;
+    // font-weight: normal;
+    // background: lighten(@blue, .8);
+    // // box-shadow: inset 0 1px 3px #178fe5;
+    // border-radius: 0;
 }
 
 .@{namespace}-datepicker .is-disabled .pika-button {

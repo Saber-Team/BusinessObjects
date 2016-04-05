@@ -1,4 +1,4 @@
-@charset 'UTF-8';
+@charset "UTF-8";
 
 /*!
  * Pikaday
@@ -13,7 +13,7 @@
     background: #fff;
     border: 1px solid #ccc;
     border-bottom-color: #bbb;
-    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
 /*
@@ -22,15 +22,11 @@ http://nicolasgallagher.com/micro-clearfix-hack/
 */
 .pika-single:before,
 .pika-single:after {
-    content: ' ';
+    content: " ";
     display: table;
 }
-.pika-single:after {
-    clear: both
-}
-.pika-single {
-    *zoom: 1
-}
+.pika-single:after { clear: both }
+.pika-single { *zoom: 1 }
 
 .pika-single.is-hidden {
     display: none;
@@ -153,7 +149,7 @@ http://nicolasgallagher.com/micro-clearfix-hack/
 .pika-button {
     cursor: pointer;
     display: block;
-         box-sizing: border-box;
+    box-sizing: border-box;
     -moz-box-sizing: border-box;
     outline: none;
     border: 0;
@@ -173,32 +169,32 @@ http://nicolasgallagher.com/micro-clearfix-hack/
 }
 
 .is-today .pika-button {
-    color: #3af;
+    color: #33aaff;
     font-weight: bold;
 }
 
 .is-selected .pika-button {
     color: #fff;
     font-weight: bold;
-    background: #3af;
+    background: #33aaff;
     box-shadow: inset 0 1px 3px #178fe5;
     border-radius: 3px;
 }
 
 .is-inrange .pika-button {
-    background: #d5e9f7;
+    background: #D5E9F7;
 }
 
 .is-startrange .pika-button {
     color: #fff;
-    background: #6cb31d;
+    background: #6CB31D;
     box-shadow: none;
     border-radius: 3px;
 }
 
 .is-endrange .pika-button {
     color: #fff;
-    background: #3af;
+    background: #33aaff;
     box-shadow: none;
     border-radius: 3px;
 }
@@ -222,96 +218,4 @@ http://nicolasgallagher.com/micro-clearfix-hack/
 .pika-table abbr {
     border-bottom: none;
     cursor: help;
-}
-
-/**
- * This theme is an example to show how you can create your own.
- */
-.zdh-datepicker-group {
-    display: table;
-    box-shadow: 0 0 0 1px #ccc inset;
-}
-.zdh-datepicker-group > * {
-    display: table-cell;
-}
-.zdh-datepicker-group > input {
-    width: 7em;
-    border: none;
-}
-.zdh-datepicker-group .zdh-datepicker-icon {
-    text-align: center;
-    vertical-align: middle;
-    padding-right: 5px;
-}
-.zdh-datepicker-group .zdh-datepicker-icon:before {
-    content: '';
-    position: relative;
-    display: inline-block;
-    width: 16px;
-    height: 16px;
-    background: url(icon.png) 0 0 no-repeat;
-}
-.zdh-datepicker-group.active {
-    box-shadow: 0 0 0 1px #4497ff inset;
-}
-.zdh-datepicker-group.active .zdh-datepicker-icon:before {
-    background-position: 0 -19px;
-}
-.pika-single.zdh-datepicker {
-    color: #333;
-    background: #fff;
-    border: 1px solid #4497ff;
-    border-bottom-color: #4497ff;
-    -webkit-transform: translate(0, -1px);
-        -ms-transform: translate(0, -1px);
-            transform: translate(0, -1px);
-}
-.zdh-datepicker .pika-lendar {
-    width: 210px;
-    margin: 0;
-}
-.zdh-datepicker .pika-label {
-    font-weight: normal;
-    background-color: #fff;
-}
-.zdh-datepicker .pika-table th {
-    color: #999;
-    background-color: #f8f8f8;
-    border-top: 1px solid #ddd;
-    border-bottom: 1px solid #ddd;
-    text-align: center;
-}
-.zdh-datepicker .pika-table th abbr {
-    cursor: default;
-}
-.zdh-datepicker .pika-button {
-    color: #333;
-    background: #fff;
-    text-align: center;
-    border-radius: 2px;
-    line-height: 30px;
-    padding: 0 6px;
-}
-.zdh-datepicker .pika-week {
-    color: #999;
-}
-.zdh-datepicker .is-today .pika-button {
-    color: #333;
-    font-weight: normal;
-}
-.zdh-datepicker .is-selected .pika-button {
-    color: #fff;
-    font-weight: normal;
-    background: #4497ff;
-    box-shadow: inset 0 1px 3px #178fe5;
-}
-.zdh-datepicker .is-disabled .pika-button {
-    color: #999;
-    opacity: .3;
-    text-align: center;
-}
-.zdh-datepicker .pika-button:hover {
-    color: #fff !important;
-    background: #4497ff !important;
-    border-radius: 2px;
 }
