@@ -65,6 +65,7 @@
     }
     input[type=radio]:disabled + label{
         cursor: not-allowed;
+        color: @radio-disabled-color;
         &:after {
             background: @radio-disabled-color;
         }
@@ -78,5 +79,6 @@
 
     &-inline {
         display: inline-block;
+        margin-right: 10px;
     }
 }

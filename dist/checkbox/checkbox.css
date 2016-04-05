@@ -53,6 +53,7 @@
 }
 .zdh-checkbox input[type=checkbox]:disabled + label {
     cursor: not-allowed;
+    color: #dfe2e3;
 }
 .zdh-checkbox input[type=checkbox]:disabled + label:after {
     border-bottom: 2px solid #dfe2e3;
@@ -64,4 +65,5 @@
 }
 .zdh-checkbox-inline {
     display: inline-block;
+    margin-right: 10px;
 }

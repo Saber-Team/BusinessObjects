@@ -22,18 +22,30 @@
             min-height: 200px;
         }
     </style>
+    <script src="../lib/kernel.js"></script>
+    <script src="../lib/jquery.js"></script>
+    <script src="../lib/jquery.easing.js"></script>
 </head>
 <body>
 <legend>卡片Tab</legend>
 <div class="zdh-tab-card">
     <ul class="tab-header">
-        <input type="radio" name="tab" id="zdh" checked>
+        <input type="radio" name="tab" id="zdh" >
         <label for="zdh" class="tab-cell">直达号生成</label>
         <input type="radio" name="tab" id="sh">
         <label for="sh" class="tab-cell">商户导入</label>
+        <input type="radio" name="tab" id="sh1" checked>
+        <label for="sh1" class="tab-cell">自动生成</label>
+        <input type="radio" name="tab" id="sh2">
+        <label for="sh2" class="tab-cell">后台配置</label>
+
+        <p class="border"></p>
     </ul>
 
     <script>
+        require(['../src/tab/tab-card'], function(tabCard) {
+            tabCard.init();
+        });
 
     </script>
 </div>
@@ -50,17 +62,24 @@
     <label for="last-7" class="tab-cell">最近7天</label>
     <input type="radio" name="tab-word" id="last-30">
     <label for="last-30" class="tab-cell">最近30天</label>
+    <div class="tab-cell sliding"></div>
+    <script>
+        require(['../src/tab/tab-pill'], function(tabList) {
+            tabList.init();
+        });
+
+    </script>
 </div>
 
 <br>
 <br>
 <legend>列表Tab</legend>
 <div class="zdh-tab-list">
-    <input type="radio" name="tab-list" id="all-order" checked>
+    <input type="radio" name="tab-list" id="all-order">
     <label for="all-order" class="tab-cell">全部订单</label>
     <input type="radio" name="tab-list" id="waiting">
     <label for="waiting" class="tab-cell">待支付</label>
-    <input type="radio" name="tab-list" id="paid">
+    <input type="radio" name="tab-list" id="paid" checked>
     <label for="paid" class="tab-cell">已支付</label>
     <input type="radio" name="tab-list" id="refund">
     <label for="refund" class="tab-cell">已退款</label>

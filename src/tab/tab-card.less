@@ -23,6 +23,7 @@
         line-height: @tab-header-height;
         font-size: @tab-header-fontsize;
         color: @tab-normal-color;
+        position: relative;
         border-bottom: 1px solid @border-bottom;
 
         input {
@@ -30,7 +31,6 @@
 
             &:checked + label {
                 color: @tab-active-color;
-                border-color: @tab-active-color;
             }
         }
 
@@ -41,14 +41,17 @@
             box-sizing: border-box;
             cursor: pointer;
             animation: all .2s ease;
-            border-bottom: 2px solid;
-            border-color: transparent;
-            bottom: -1px;
 
             &.active {
                 color: @tab-active-color;
-                border-color: @tab-active-color;
             }
+        }
+
+        .border {
+            border-bottom: 2px solid @tab-active-color;
+            position: absolute;
+            bottom: -1px;
+            left: 0px;
         }
     }
 }

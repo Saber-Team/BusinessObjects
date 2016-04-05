@@ -20,8 +20,8 @@
         display: none;
 
         &:checked + label {
-            color: @white;
-            background-color: @tab-active-color;
+            //color: @white;
+            //background-color: @tab-active-color;
         }
     }
 
@@ -33,6 +33,19 @@
         padding: @tab-padding;
         border-radius: 2px;
         cursor: pointer;
-        animation: all .2s ease;
+    }
+    .active {
+        color: @white;
+        background-color: @tab-active-color;
+    }
+    .sliding {
+        position: absolute;
+        background-color: @tab-active-color;
+        border-color: @tab-active-color;
+        margin: 0;
+        top: 0;
+        z-index: -1;
+        width: 0;
+        left: -1000px;
     }
 }
