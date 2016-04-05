@@ -10,11 +10,9 @@
 
     ```
        [sudo]npm install
-
     ```
 
-
- 3. develop
+3. develop
 
     ```
         npm run watch
