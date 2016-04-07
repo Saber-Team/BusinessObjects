@@ -7,6 +7,7 @@
 
 @import "@{base-path}/conf";
 @import "@{base-path}/color";
+@import "@{base-path}/mixin";
 
 @group-height: 30px;
 @group-border-color: @default-border-color;
@@ -28,30 +29,35 @@
     display: inline-block;
     height: @group-height;
     line-height: @group-height;
-    // box-shadow: 0 0 0 1px @default-border-color inset;
     .setBorder(@default-border-color);
+    transition: color .3s ease-out;
+    user-select: none;
 
     &-label,
     &-icon {
         box-sizing: border-box;
-        display: inline-block;
     }
     &-label {
-        vertical-align: top;
+        display: block;
         line-height: @group-height;
         height: @group-height;
         padding-left: @group-padding-hoziron;
     }
-    &.@{namespace}-active {
+    &-text {
+        display: inline-block;
+        width: 6em;
+        .text-overflow();
+    }
+    &.active {
         .setBorder(@blue);
     }
 
     &-icon {
         position: relative;
-        display: inline-block;
+        float: right;
         text-align: center;
         vertical-align: top;
-        width: 16px;
+        width: 15px;
         height: @group-height - 2;
         margin-left: @group-padding-hoziron;
         top: 1px;
@@ -76,9 +82,9 @@
 
             transform-origin: 50% 50%;
             transform: rotate(-45deg);
-            transition: transform .2s ease;
+            transition: transform .3s ease;
         }
-        .@{namespace}-active &:after {
+        .active &:after {
             margin-top: -2px;
             transform: rotate(-225deg);
         }
@@ -87,34 +93,42 @@
     // list
     &-list {
         display: none;
+        box-sizing: border-box;
         position: absolute;
+        max-height: 240px;
+        overflow: auto;
         top: @group-height - 1;
         left: 0;
-        box-shadow: 0 0 0 1px @default-border-color inset;
+        border: 1px solid @default-border-color;
         background-color: @white;
         z-index: 999;
 
-        .@{namespace}-active & {
-            .setBorder(@blue);
+        .active & {
+            // .setBorder(@blue);
+            border: 1px solid @blue;
             display: block;
         }
 
-        .@{namespace}-dropdown-equalwidth & {
+        .equalwidth & {
             width: 100%;
+        }
+
+        // list empty
+        &:empty {
+            border: none;
         }
     }
     // item
     &-item {
         box-sizing: border-box;
         width: 100%;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
         vertical-align: middle;
         line-height: @group-height;
         padding-left: @group-padding-hoziron;
         padding-right: @group-padding-hoziron;
         cursor: pointer;
+        .text-overflow();
+        &.selected,
         &:hover {
             color: @white;
             background-color: @blue;

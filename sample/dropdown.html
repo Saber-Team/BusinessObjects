@@ -14,7 +14,8 @@
 
         <script src="../lib/kernel.js"></script>
         <script src="../lib/jquery.js"></script>
-
+        <script src="../lib/lodash.js"></script>
+        <script src="../src/dropdown/dropdown.js"></script>
     </head>
     <body>
         <style>
@@ -36,42 +37,122 @@
         <div class="item">
             <h3>dropdown</h3>
             <div class="zdh-dropdown" id="dropdown1">
-                <label class="zdh-dropdown-label">dropdown<span class="zdh-dropdown-icon"></span></label>
+                <label class="zdh-dropdown-label">
+                    <span class="zdh-dropdown-text">dropdown</span>
+                    <span class="zdh-dropdown-icon"></span>
+                </label>
 
                 <ul class="zdh-dropdown-list">
-                    <li class="zdh-dropdown-item">dropdown item 1</li>
-                    <li class="zdh-dropdown-item">dropdown item 2</li>
-                    <li class="zdh-dropdown-item">dropdown item 3</li>
-                    <li class="zdh-dropdown-item">dropdown item 4</li>
-                    <li class="zdh-dropdown-item">dropdown item 5</li>
+                    <li data-value="1" class="zdh-dropdown-item">dropdown item 1</li>
+                    <li data-value="2" class="zdh-dropdown-item">dropdown</li>
+                    <li data-value="3" class="zdh-dropdown-item">item 3</li>
+                    <li data-value="4" class="zdh-dropdown-item">dropdown item 4</li>
+                    <li data-value="5" class="zdh-dropdown-item">dropdown item 5</li>
                 </ul>
             </div>
         </div>
 
         <div class="item">
             <h3>dropdown</h3>
-            <div class="zdh-dropdown zdh-dropdown-equalwidth" id="dropdown2">
-                <label class="zdh-dropdown-label">dropdown<span class="zdh-dropdown-icon"></span></label>
+            <div class="zdh-dropdown" id="dropdown2">
+                <label class="zdh-dropdown-label">
+                    <span class="zdh-dropdown-text">dropdown</span>
+                    <span class="zdh-dropdown-icon"></span>
+                </label>
                 <ul class="zdh-dropdown-list">
-                    <li class="zdh-dropdown-item">dropdown item 1</li>
-                    <li class="zdh-dropdown-item">dropdown item 2</li>
-                    <li class="zdh-dropdown-item">dropdown item 3</li>
-                    <li class="zdh-dropdown-item">dropdown item 4</li>
-                    <li class="zdh-dropdown-item">dropdown item 5</li>
+                    <li data-value="1" class="zdh-dropdown-item">dropdown item 1</li>
+                    <li data-value="2" class="zdh-dropdown-item">dropdown item 2</li>
+                    <li data-value="3" class="zdh-dropdown-item">dropdown item 3</li>
+                    <li data-value="4" class="zdh-dropdown-item">dropdown item 4</li>
+                    <li data-value="5" class="zdh-dropdown-item">dropdown item 5</li>
+                    <li data-value="6" class="zdh-dropdown-item">dropdown item 1</li>
                 </ul>
             </div>
         </div>
+
+        <div class="item">
+            <h3>with scrollbar</h3>
+            <div class="zdh-dropdown" id="dropdown3">
+                <label class="zdh-dropdown-label">
+                    <span class="zdh-dropdown-text">dropdown</span>
+                    <span class="zdh-dropdown-icon"></span>
+                </label>
+                <ul class="zdh-dropdown-list">
+                    <li data-value="1" class="zdh-dropdown-item">dropdown item 1</li>
+                    <li data-value="1" class="zdh-dropdown-item">dropdown item 2</li>
+                    <li data-value="1" class="zdh-dropdown-item">dropdown item 3</li>
+                    <li data-value="1" class="zdh-dropdown-item">dropdown item 4</li>
+                    <li data-value="1" class="zdh-dropdown-item">dropdown item 5</li>
+                    <li data-value="1" class="zdh-dropdown-item">dropdown item 1</li>
+                    <li data-value="1" class="zdh-dropdown-item">dropdown item 2</li>
+                    <li data-value="1" class="zdh-dropdown-item">dropdown item 3</li>
+                    <li data-value="1" class="zdh-dropdown-item">dropdown item 4</li>
+                    <li data-value="1" class="zdh-dropdown-item">dropdown item 5</li>
+                    <li data-value="1" class="zdh-dropdown-item">dropdown item 1</li>
+                    <li data-value="1" class="zdh-dropdown-item">dropdown item 2</li>
+                    <li data-value="1" class="zdh-dropdown-item">dropdown item 3</li>
+                    <li data-value="1" class="zdh-dropdown-item">dropdown item 4</li>
+                    <li data-value="1" class="zdh-dropdown-item">dropdown item 5</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="item">
+            <h3>dropdown</h3>
+            <div class="zdh-dropdown" id="dropdown4">
+                <label class="zdh-dropdown-label">
+                    <span class="zdh-dropdown-text"></span>
+                    <span class="zdh-dropdown-icon"></span>
+                </label>
+                <ul class="zdh-dropdown-list">
+                    <li data-value="1" class="zdh-dropdown-item">dropdown item 1</li>
+                    <li data-value="2" class="zdh-dropdown-item">dropdown item 2</li>
+                    <li data-value="3" class="zdh-dropdown-item">dropdown item 3</li>
+                    <li data-value="4" class="zdh-dropdown-item">dropdown item 4</li>
+                    <li data-value="5" class="zdh-dropdown-item">dropdown item 5</li>
+                    <li data-value="6" class="zdh-dropdown-item">dropdown item 1</li>
+                </ul>
+            </div>
+        </div>
+
         <script>
-        require(['../src/dropdown/dropdown'], function(Dropdown) {
+            var Dropdown = businessUI.Dropdown
+
             var d1 = new Dropdown({
-                el: $('#dropdown1')
+                el        : $('#dropdown1'),
+                equalWidth: false
             });
 
             var d2 = new Dropdown({
-                el: $('#dropdown2')
+                el: $('#dropdown2'),
+                onSelect: function (val) {
+                    console.log(val)
+                },
+                onShow: function () {
+                    console.log('show')
+                },
+                onHide: function () {
+                    console.log('hide')
+                }
             });
 
-        });
+            var d3 = new Dropdown({
+                el: $('#dropdown3')
+            });
+
+            var d4 = Dropdown({
+                el: $('#dropdown4')
+            });
+            d4.empty()
+            d4.render(
+                [
+                    {text:'xxxx1', value: 1},
+                    {text:'xxxx2', value: 2},
+                    {text:'xxxx3', value: 3},
+                    {text:'xxxx4', value: 4}
+                ]
+            )
+            d4.focus(2)
         </script>
     </body>
 </html>
