@@ -4,11 +4,17 @@
  */
 ;(function(UI) {
 
+    var loop = function() {}
+
     var defaultConf = {
         // 自动收起
         autohide  : true,
         // label 和 list等宽
-        equalWidth: true
+        equalWidth: true,
+        // events
+        onShow  : loop,
+        onHide  : loop,
+        onSelect: loop
     }
 
     var activeClass   = 'active' // dropdown active state
@@ -17,10 +23,6 @@
     var listClass     = 'zdh-dropdown-list' // list
     var itemClass     = 'zdh-dropdown-item' // list item
     var selectedClass = 'selected' // item selected
-
-    var events = ['show', 'hide', 'select']
-
-    var loop = function() {}
 
     function Dropdown(opt) {
 
@@ -32,14 +34,9 @@
 
         $.extend(this, defaultConf, opt)
 
-        this.el  = opt.el
-        this.uid = _.uniqueId()
-
-        // events: onShow onHide onSelect
-        events.forEach($.proxy(function(event) {
-            var event   = 'on' + _.capitalize(event)
-            this[event] = opt[event] || loop
-        }, this))
+        this.uid  = _.uniqueId()
+        this.el   = opt.el
+        this.list = $('.' + listClass, this.el)
 
         // auto init
         this.init()
@@ -47,12 +44,10 @@
 
     $.extend(Dropdown.prototype, {
         init: function() {
-
-            this.list = $('.' + listClass, this.el)
             this.equalWidth && this.el.addClass('equalwidth')
-
+            // items count
             this.len   = $('.' + itemClass, this.el).length
-
+            // bind events
             this.bind()
         },
 
@@ -68,7 +63,7 @@
 
         focus: function(index) {
             index = Math.max(index, 0)
-            index = Math.min(index, this.len)
+            index = Math.min(index, this.len - 1)
             $('.' + itemClass, this.el).eq(index).trigger('click.dropdown.select')
             this.hide()
         },
@@ -86,13 +81,12 @@
         },
 
         render: function(items) {
+            this.empty()
             this.list.html(
                 items.map(function(item) {
                     return '<li data-value="' + (item.value || '') + '" class="zdh-dropdown-item">' + (item.text || '') + '</li>'
                 }).join('')
             )
-
-            this.len = $('.' + itemClass, this.el).length
         },
 
         empty: function() {
