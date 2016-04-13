@@ -8,6 +8,7 @@
     vertical-align: middle;
     height: 30px;
     border: 1px solid #dfe2e3;
+    line-height: 28px;
     padding-left: .83333333em;
     padding-right: .83333333em;
     border-radius: 2px;
@@ -37,6 +38,7 @@
     border: 1px solid #dfe2e3;
     border-left: none;
     background-color: #fff;
+    color: #999;
     padding-right: .83333333em;
     border-top-right-radius: 2px;
     border-bottom-right-radius: 2px;

@@ -13,6 +13,8 @@
         -ms-user-select: none;
             user-select: none;
     border-radius: 2px;
+    overflow: hidden;
+    vertical-align: middle;
     /**
      * button theme
      */
@@ -110,8 +112,8 @@ button.zdh-button {
 }
 .zdh-button-medium {
     height: 30px;
-    padding: 8px 20px;
-    font-size: 14px;
+    padding: 9px 20px;
+    font-size: 12px;
 }
 .zdh-button-small {
     height: 24px;

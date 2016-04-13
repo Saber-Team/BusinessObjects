@@ -16,6 +16,8 @@
 @active-icon-bg-color: #f3f3f3;
 @active-icon-color: #888;
 
+@item-active-color: #cae2fe;
+
 .setBorder (@color) {
     box-shadow:  0 0 0 1px @color inset;
 }
@@ -30,7 +32,7 @@
     height: @group-height;
     line-height: @group-height;
     .setBorder(@default-border-color);
-    transition: color .3s ease-out;
+    transition: color .2s ease-out;
     user-select: none;
 
     &-label,
@@ -38,13 +40,13 @@
         box-sizing: border-box;
     }
     &-label {
-        display: block;
+        display: inline-block; // trigger bfc
         line-height: @group-height;
         height: @group-height;
         padding-left: @group-padding-hoziron;
     }
     &-text {
-        display: inline-block;
+        float: left;
         width: 6em;
         .text-overflow();
     }
@@ -55,8 +57,6 @@
     &-icon {
         position: relative;
         float: right;
-        text-align: center;
-        vertical-align: top;
         width: 15px;
         height: @group-height - 2;
         margin-left: @group-padding-hoziron;
@@ -65,28 +65,42 @@
         background-color: @active-icon-bg-color;
         cursor: pointer;
 
-        // active icon
-        &:after {
+        >i {
             position: absolute;
-            box-sizing: border-box;
-            content: "";
+            width: 8px;
+            height: 5px;
             left: 50%;
             top: 50%;
-            margin-top: -6px;
-            margin-left: -4px;
-            width: 8px;
-            height: 8px;
-            border: 1px solid @active-icon-color;
-            border-top: none;
-            border-right: none;
-
             transform-origin: 50% 50%;
-            transform: rotate(-45deg);
-            transition: transform .3s ease;
-        }
-        .active &:after {
             margin-top: -2px;
-            transform: rotate(-225deg);
+            margin-left: -4px;
+            transition: transform .3s ease;
+
+            // active icon
+            &:before,
+            &:after {
+                position: absolute;
+                box-sizing: border-box;
+                left: 0;
+                top: 0;
+                content: "";
+                width: 0;
+                height: 0;
+                border-style: solid;
+                border-width: 0 4px 4px 4px;
+            }
+            &:before {
+                border-color: transparent transparent @active-icon-color transparent;
+            }
+            &:after {
+                top: 1px;
+                border-color: transparent transparent @active-icon-bg-color transparent;
+            }
+        }
+
+
+        .active & i {
+            transform: rotate(-180deg);
         }
     }
 
@@ -102,6 +116,7 @@
         border: 1px solid @default-border-color;
         background-color: @white;
         z-index: 999;
+        min-width: 100%;
 
         .active & {
             // .setBorder(@blue);
@@ -131,7 +146,7 @@
         &.selected,
         &:hover {
             color: @white;
-            background-color: @blue;
+            background-color: @item-active-color;
         }
 
     }
