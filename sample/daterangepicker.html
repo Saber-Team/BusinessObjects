@@ -1,0 +1,71 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>datepicker</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+        <link rel="stylesheet" href="../dist/base/base.css">
+        <link rel="stylesheet" href="../dist/input/input.css">
+        <link rel="stylesheet" href="../dist/datepicker/datepicker.css">
+
+        <script src="../lib/kernel.js"></script>
+        <script src="../lib/jquery.js"></script>
+    </head>
+    <body>
+        <style>
+            body {
+                padding: 30px;
+                font-size: 12px;
+            }
+            .item {
+                margin: 20px 0
+            }
+            h3 {
+                line-height: 2;
+            }
+        </style>
+        <div class="item">
+            <h3>date range</h3>
+            <div class="zdh-datepicker-group">
+                <input class="zdh-input" id="datepicker3">
+                <i class="zdh-datepicker-icon"></i>
+            </div>
+            <span style="margin: 0 6px">–</span>
+            <div class="zdh-datepicker-group">
+                <input class="zdh-input" id="datepicker4">
+                <i class="zdh-datepicker-icon"></i>
+            </div>
+        </div>
+        <script>
+        require(['../src/datepicker/datepicker'], function(Datepicker) {
+
+            var picker1 = new Datepicker({
+                field     : document.getElementById('datepicker3'),
+                onSelect  : function () {
+                    var date = picker1.getDate()
+                    if (date > picker2.getDate()) {
+                        picker2.setDate(date)
+                    }
+                    picker2.setMinDate(picker1.getDate())
+                }
+            });
+
+            var picker2 = new Datepicker({
+                field     : document.getElementById('datepicker4')
+            });
+
+            window.p1 = picker1
+            window.p2 = picker2
+
+
+        });
+
+        </script>
+
+
+    </body>
+</html>

@@ -11,8 +11,8 @@
     height: 30px;
     line-height: 30px;
     box-shadow: 0 0 0 1px #dfe2e3 inset;
-    -webkit-transition: color .3s ease-out;
-            transition: color .3s ease-out;
+    -webkit-transition: color .2s ease-out;
+            transition: color .2s ease-out;
     -webkit-user-select: none;
        -moz-user-select: none;
         -ms-user-select: none;
@@ -23,13 +23,13 @@
     box-sizing: border-box;
 }
 .zdh-dropdown-label {
-    display: block;
+    display: inline-block;
     line-height: 30px;
     height: 30px;
     padding-left: 10px;
 }
 .zdh-dropdown-text {
-    display: inline-block;
+    float: left;
     width: 6em;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -41,8 +41,6 @@
 .zdh-dropdown-icon {
     position: relative;
     float: right;
-    text-align: center;
-    vertical-align: top;
     width: 15px;
     height: 28px;
     margin-left: 10px;
@@ -51,35 +49,45 @@
     background-color: #f3f3f3;
     cursor: pointer;
 }
-.zdh-dropdown-icon:after {
+.zdh-dropdown-icon > i {
     position: absolute;
-    box-sizing: border-box;
-    content: '';
+    width: 8px;
+    height: 5px;
     left: 50%;
     top: 50%;
-    margin-top: -6px;
-    margin-left: -4px;
-    width: 8px;
-    height: 8px;
-    border: 1px solid #888;
-    border-top: none;
-    border-right: none;
     -webkit-transform-origin: 50% 50%;
         -ms-transform-origin: 50% 50%;
             transform-origin: 50% 50%;
-    -webkit-transform: rotate(-45deg);
-        -ms-transform: rotate(-45deg);
-            transform: rotate(-45deg);
+    margin-top: -2px;
+    margin-left: -4px;
     -webkit-transition: -webkit-transform .3s ease;
             transition: -webkit-transform .3s ease;
             transition:         transform .3s ease;
             transition:         transform .3s ease, -webkit-transform .3s ease;
 }
-.active .zdh-dropdown-icon:after {
-    margin-top: -2px;
-    -webkit-transform: rotate(-225deg);
-        -ms-transform: rotate(-225deg);
-            transform: rotate(-225deg);
+.zdh-dropdown-icon > i:before,
+.zdh-dropdown-icon > i:after {
+    position: absolute;
+    box-sizing: border-box;
+    left: 0;
+    top: 0;
+    content: '';
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 0 4px 4px 4px;
+}
+.zdh-dropdown-icon > i:before {
+    border-color: transparent transparent #888 transparent;
+}
+.zdh-dropdown-icon > i:after {
+    top: 1px;
+    border-color: transparent transparent #f3f3f3 transparent;
+}
+.active .zdh-dropdown-icon i {
+    -webkit-transform: rotate(-180deg);
+        -ms-transform: rotate(-180deg);
+            transform: rotate(-180deg);
 }
 .zdh-dropdown-list {
     display: none;
@@ -92,6 +100,7 @@
     border: 1px solid #dfe2e3;
     background-color: #fff;
     z-index: 999;
+    min-width: 100%;
 }
 .active .zdh-dropdown-list {
     border: 1px solid #4497ff;
@@ -118,5 +127,5 @@
 .zdh-dropdown-item.selected,
 .zdh-dropdown-item:hover {
     color: #fff;
-    background-color: #4497ff;
+    background-color: #cae2fe;
 }

@@ -5,12 +5,14 @@
 
 @import (inline) 'pikaday.css';
 
+@cell-selected-color: #cae2fe;
+
 
 /**
  * This theme is an example to show how you can create your own.
  */
  .@{namespace}-datepicker-group {
-        display: table;
+        display: inline-table;
         box-shadow: 0 0 0 1px @silver inset;
         > * {
             display: table-cell;;
@@ -93,6 +95,7 @@
     border-radius: 2px;
     line-height: 30px;
     padding: 0px 6px;
+    box-shadow: none;
 }
 
 .@{namespace}-datepicker .pika-week {
@@ -105,10 +108,10 @@
 }
 
 .@{namespace}-datepicker .is-selected .pika-button {
-    color: @white;
+    // color: @white;
     font-weight: normal;
-    background: @blue;
-    box-shadow: inset 0 1px 3px #178fe5;
+    background: @cell-selected-color;
+    // box-shadow: inset 0 1px 3px #178fe5;
 }
 
 .@{namespace}-datepicker .is-inrange .pika-button {
@@ -117,6 +120,8 @@
     // background: lighten(@blue, .8);
     // // box-shadow: inset 0 1px 3px #178fe5;
     // border-radius: 0;
+    background-color: @cell-selected-color;
+    border-radius: 0;
 }
 
 .@{namespace}-datepicker .is-disabled .pika-button {
@@ -127,6 +132,6 @@
 
 .@{namespace}-datepicker .pika-button:hover {
     color: #fff !important;
-    background: @blue !important;
+    background: @cell-selected-color !important;
     border-radius: 2px;
 }

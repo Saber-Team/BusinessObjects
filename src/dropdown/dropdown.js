@@ -7,6 +7,8 @@
     var loop = function() {}
 
     var defaultConf = {
+        // 自定义class
+        // theme:    : undefined,
         // 自动收起
         autohide  : true,
         // label 和 list等宽
@@ -44,7 +46,10 @@
 
     $.extend(Dropdown.prototype, {
         init: function() {
+            // equal width label
             this.equalWidth && this.el.addClass('equalwidth')
+            // customer class
+            this.theme && this.el.addClass(this.theme)
             // items count
             this.len   = $('.' + itemClass, this.el).length
             // bind events

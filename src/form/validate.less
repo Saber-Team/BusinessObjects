@@ -10,11 +10,13 @@
  // 错误提示
  @error-color: @red;
  @error-padding-vertical: unit(10 / 12, em);
+ @error-line-height: 1.4;
 
  .error-msg {
      display: none;
      color: @error-color;
      margin: @error-padding-vertical 0;
+     line-height: @error-line-height;
      .@{namespace}-error & {
          display: block;
      }

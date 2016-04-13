@@ -9,6 +9,7 @@
     display: none;
     color: #ed5565;
     margin: .83333333em 0;
+    line-height: 1.4;
 }
 .zdh-error .error-msg {
     display: block;
@@ -19,6 +20,7 @@
 .zdh-desc {
     color: #999;
     margin: .83333333em 0;
+    line-height: 1.4;
 }
 /**
  * @file input core
@@ -30,6 +32,7 @@
     vertical-align: middle;
     height: 30px;
     border: 1px solid #dfe2e3;
+    line-height: 28px;
     padding-left: .83333333em;
     padding-right: .83333333em;
     border-radius: 2px;
@@ -59,6 +62,7 @@
     border: 1px solid #dfe2e3;
     border-left: none;
     background-color: #fff;
+    color: #999;
     padding-right: .83333333em;
     border-top-right-radius: 2px;
     border-bottom-right-radius: 2px;
@@ -89,6 +93,9 @@
  * @file search input
  * @author jinwei01
  */
+.zdh-input-search > input[type=search] {
+    box-sizing: border-box;
+}
 .zdh-input-search > .zdh-button {
     vertical-align: middle;
     margin-left: -1px;

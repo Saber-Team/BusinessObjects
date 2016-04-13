@@ -228,7 +228,7 @@ http://nicolasgallagher.com/micro-clearfix-hack/
  * This theme is an example to show how you can create your own.
  */
 .zdh-datepicker-group {
-    display: table;
+    display: inline-table;
     box-shadow: 0 0 0 1px #ccc inset;
 }
 .zdh-datepicker-group > * {
@@ -291,6 +291,7 @@ http://nicolasgallagher.com/micro-clearfix-hack/
     border-radius: 2px;
     line-height: 30px;
     padding: 0 6px;
+    box-shadow: none;
 }
 .zdh-datepicker .pika-week {
     color: #999;
@@ -300,10 +301,12 @@ http://nicolasgallagher.com/micro-clearfix-hack/
     font-weight: normal;
 }
 .zdh-datepicker .is-selected .pika-button {
-    color: #fff;
     font-weight: normal;
-    background: #4497ff;
-    box-shadow: inset 0 1px 3px #178fe5;
+    background: #cae2fe;
+}
+.zdh-datepicker .is-inrange .pika-button {
+    background-color: #cae2fe;
+    border-radius: 0;
 }
 .zdh-datepicker .is-disabled .pika-button {
     color: #999;
@@ -312,6 +315,6 @@ http://nicolasgallagher.com/micro-clearfix-hack/
 }
 .zdh-datepicker .pika-button:hover {
     color: #fff !important;
-    background: #4497ff !important;
+    background: #cae2fe !important;
     border-radius: 2px;
 }

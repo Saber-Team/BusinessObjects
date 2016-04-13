@@ -48,6 +48,11 @@
                 <input class="zdh-input" id="datepicker3">
                 <i class="zdh-datepicker-icon"></i>
             </div>
+            <!-- -
+            <div class="zdh-datepicker-group">
+                <input class="zdh-input" id="datepicker4">
+                <i class="zdh-datepicker-icon"></i>
+            </div> -->
         </div>
         <script>
         require(['../src/datepicker/datepicker'], function(Datepicker) {
@@ -68,13 +73,21 @@
                 // bound: false
             });
 
-            var picker2 = new Datepicker({
+            var picker3 = new Datepicker({
                 field     : document.getElementById('datepicker3'),
                 minDate   : new Date('2016/06/08'),
                 maxDate   : new Date('2016/04/12'),
                 startRange: new Date('2016/04/01'),
                 endRange  : new Date('2016/04/16')
             });
+
+            // var picker4 = new Datepicker({
+            //     field     : document.getElementById('datepicker4'),
+            //     minDate   : new Date('2016/06/08'),
+            //     maxDate   : new Date('2016/04/12'),
+            //     startRange: new Date('2016/04/01'),
+            //     endRange  : new Date('2016/04/16')
+            // });
 
         });
 

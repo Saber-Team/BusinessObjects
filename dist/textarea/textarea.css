@@ -9,6 +9,7 @@
     display: none;
     color: #ed5565;
     margin: .83333333em 0;
+    line-height: 1.4;
 }
 .zdh-error .error-msg {
     display: block;
@@ -19,6 +20,7 @@
 .zdh-desc {
     color: #999;
     margin: .83333333em 0;
+    line-height: 1.4;
 }
 .zdh-textarea-group .zdh-textarea,
 .zdh-textarea-group textarea {
