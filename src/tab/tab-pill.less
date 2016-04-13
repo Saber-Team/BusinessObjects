@@ -16,16 +16,6 @@
     font-size: @tab-fontsize;
     color: @tab-normal-color;
 
-    input {
-        display: none;
-
-        &:checked + label {
-            //color: @white;
-            //background-color: @tab-active-color;
-        }
-    }
-
-    label,
     .tab-cell {
         display: inline-block;
         height: @tab-height;
@@ -33,6 +23,7 @@
         padding: @tab-padding;
         border-radius: 2px;
         cursor: pointer;
+        animation: color .2s ease;
     }
     .active {
         color: @white;
@@ -42,8 +33,10 @@
         position: absolute;
         background-color: @tab-active-color;
         border-color: @tab-active-color;
+        border-radius: 2px;
         margin: 0;
         top: 0;
+        bottom: 0;
         z-index: -1;
         width: 0;
         left: -1000px;

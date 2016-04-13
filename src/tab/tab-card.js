@@ -1,22 +1,74 @@
-define(['../../lib/jquery'], function ($) {
-  var tabCard = {
-    init: function(options) {
-      this.$border = $('.border', '.tab-header');
-      this.options = options ? options : {};
-      this.options.parentOffsetLeft = this.options.parentOffsetLeft || $('.tab-header').offset().left;
-      var $activeLabel = $('input:checked+label', '.tab-header');
-      var offsetLeft = this.options.offsetLeft || $activeLabel.offset().left - this.options.parentOffsetLeft;
-      this.$border.css({'width': $activeLabel.width(), 'left': offsetLeft});
-      this.bindEvents();
-    },
-    bindEvents: function() {
-      var self = this;
-      $('.tab-header').on('click', '.tab-cell', function(e){
-        var $tar = $(e.target);
-        var left = $tar.offset().left - self.options.parentOffsetLeft + 'px';
-        self.$border.stop(false, true).animate({'left' : left, 'width': $tar.width()}, 300, 'easeInOutQuart');
-      })
+/**
+ * @file tab-pill
+ * @author xiongchengbin
+ */
+;(function (UI) {
+    var loop = function () {
+    };
+
+    var defaultConf = {
+        onActive: loop
+    };
+
+    function TabCard(opts) {
+        this.opts = $.extend({}, defaultConf, opts);
+        this.init();
     }
-  };
-  return tabCard;
-});
+
+    $.extend(TabCard.prototype, {
+        init: function () {
+            this.opts.container = this.opts.container || '.zdh-tab-card';
+            this.$container = $(this.opts.container);
+            this.$sliding = $('.sliding', this.opts.container);
+            this.opts.parentOffsetLeft = this.opts.parentOffsetLeft || this.$container.offset().left;
+
+            var $active = $('.active', this.opts.container);
+            var offsetLeft = this.opts.offsetLeft || $active.offset().left - this.opts.parentOffsetLeft;
+
+            this.$sliding.css({'left': offsetLeft, 'width': $active.width()});
+
+            this.$actived = $active;
+
+            this.bindEvents();
+        },
+        bindEvents: function () {
+            var self = this;
+            self.$container.on('click', '.tab-cell', function (e) {
+                var $tar = $(e.target);
+                var previousTab = self.$actived;
+
+                if (self.$actived === $tar) {
+                    return ;
+                }
+
+                self.$actived.removeClass('active');
+
+                var left = $tar.offset().left - self.opts.parentOffsetLeft + 'px';
+                self.$sliding.stop(false, true).animate({'left' : left, 'width': $tar.width()}, 300, 'easeInOutQuart');
+                $tar.addClass('active');
+                self.$actived = $tar;
+
+                self.$container.trigger({
+                    type: 'ui.tab.card',
+                    previousTab: previousTab,
+                    currentTab: $tar
+                });
+            });
+        },
+        getContainer: function () {
+            return this.$container;
+        },
+        setCallback: function (cb) {
+            this.opts.onActive = cb || loop;
+            return this;
+        },
+        getInstance: function (opts) {
+            if (!this.instance) {
+                this.instance  = new TabPill(opts)
+            }
+            return this.instance;
+        }
+    });
+
+    UI.TabCard = TabCard;
+})(window.businessUI || (window.businessUI = {}));

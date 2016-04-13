@@ -10,24 +10,16 @@
         onActive: loop
     };
 
-    function TabCard(opts) {
+    function TabList(opts) {
         this.opts = $.extend({}, defaultConf, opts);
         this.init();
     }
 
-    $.extend(TabCard.prototype, {
+    $.extend(TabList.prototype, {
         init: function () {
-            this.opts.container = this.opts.container || '.zdh-tab-card';
+            this.opts.container = this.opts.container || '.zdh-tab-list';
             this.$container = $(this.opts.container);
-            this.$sliding = $('.sliding', this.opts.container);
-            this.opts.parentOffsetLeft = this.opts.parentOffsetLeft || this.$container.offset().left;
-
-            var $active = $('.active', this.opts.container);
-            var offsetLeft = this.opts.offsetLeft || $active.offset().left - this.opts.parentOffsetLeft;
-
-            this.$sliding.css({'left': offsetLeft, 'width': $active.width()});
-
-            this.$actived = $active;
+            this.$actived = $('.active', this.opts.container);
 
             this.bindEvents();
         },
@@ -43,13 +35,11 @@
 
                 self.$actived.removeClass('active');
 
-                var left = $tar.offset().left - self.opts.parentOffsetLeft + 'px';
-                self.$sliding.stop(false, true).animate({'left' : left, 'width': $tar.width()}, 300, 'easeInOutQuart');
                 $tar.addClass('active');
                 self.$actived = $tar;
 
                 self.$container.trigger({
-                    type: 'ui.tab.card',
+                    type: 'ui.tab.list',
                     previousTab: previousTab,
                     currentTab: $tar
                 });
@@ -70,5 +60,5 @@
         }
     });
 
-    UI.TabCard = TabCard;
+    UI.TabList = TabList;
 })(window.businessUI || (window.businessUI = {}));

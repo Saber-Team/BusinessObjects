@@ -12,46 +12,43 @@
 @import "@{base-path}/conf";
 @import "@{base-path}/color";
 
-.@{namespace}-tab-card {
+.@{namespace}-tab-card-wrapper {
     position: relative;
     width: 100%;
     border-radius: 2px;
     border: 1px solid @border-color;
+}
 
-    .tab-header {
-        height: @tab-header-height;
-        line-height: @tab-header-height;
-        font-size: @tab-header-fontsize;
-        color: @tab-normal-color;
-        position: relative;
-        border-bottom: 1px solid @border-bottom;
+.@{namespace}-tab-card {
+    height: @tab-header-height;
+    line-height: @tab-header-height;
+    font-size: @tab-header-fontsize;
+    color: @tab-normal-color;
+    list-style: none;
+    position: relative;
+    border-bottom: 1px solid @border-bottom;
 
-        input {
-            display: none;
+    .tab-cell {
+        display: inline-block;
+        border: 0;
+        outline: none;
+        height: 100%;
+        padding: 0;
+        margin: 0 0 0 20px;
+        box-sizing: border-box;
+        cursor: pointer;
+        animation: all .2s ease;
 
-            &:checked + label {
-                color: @tab-active-color;
-            }
-        }
-
-        .tab-cell {
-            display: inline-block;
-            height: 100%;
-            margin-left: 20px;
-            box-sizing: border-box;
-            cursor: pointer;
-            animation: all .2s ease;
-
-            &.active {
-                color: @tab-active-color;
-            }
-        }
-
-        .border {
-            border-bottom: 2px solid @tab-active-color;
-            position: absolute;
-            bottom: -1px;
-            left: 0px;
+        &.active {
+            color: @tab-active-color;
         }
     }
+
+    .sliding {
+        border-bottom: 2px solid @tab-active-color;
+        position: absolute;
+        bottom: -1px;
+        left: 0;
+    }
+
 }

@@ -1,36 +1,34 @@
-.zdh-tab-card {
+.zdh-tab-card-wrapper {
     position: relative;
     width: 100%;
     border-radius: 2px;
     border: 1px solid #dfe2e3;
 }
-.zdh-tab-card .tab-header {
+.zdh-tab-card {
     height: 50px;
     line-height: 50px;
     font-size: 16px;
     color: #333;
+    list-style: none;
     position: relative;
     border-bottom: 1px solid #f2f2f5;
 }
-.zdh-tab-card .tab-header input {
-    display: none;
-}
-.zdh-tab-card .tab-header input:checked + label {
-    color: #4497ff;
-}
-.zdh-tab-card .tab-header .tab-cell {
+.zdh-tab-card .tab-cell {
     display: inline-block;
+    border: 0;
+    outline: none;
     height: 100%;
-    margin-left: 20px;
+    padding: 0;
+    margin: 0 0 0 20px;
     box-sizing: border-box;
     cursor: pointer;
     -webkit-animation: all .2s ease;
             animation: all .2s ease;
 }
-.zdh-tab-card .tab-header .tab-cell.active {
+.zdh-tab-card .tab-cell.active {
     color: #4497ff;
 }
-.zdh-tab-card .tab-header .border {
+.zdh-tab-card .sliding {
     border-bottom: 2px solid #4497ff;
     position: absolute;
     bottom: -1px;
