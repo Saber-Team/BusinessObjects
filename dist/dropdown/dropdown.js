@@ -14,9 +14,9 @@
         // label 和 list等宽
         equalWidth: true,
         // events
-        onShow  : loop,
-        onHide  : loop,
-        onSelect: loop
+        onShow    : loop,
+        onClose   : loop,
+        onSelect  : loop
     }
 
     var activeClass   = 'active' // dropdown active state
@@ -63,7 +63,7 @@
 
         hide: function() {
             this.toggle(false)
-            this.onHide()
+            this.onClose()
         },
 
         focus: function(index) {

@@ -1,137 +1,199 @@
+/**
+ * @file button
+ * @author jinwei01
+ */
+
 @base-path: '../base';
 
-@import '@{base-path}/conf';
-@import '@{base-path}/color';
-
-@import (inline) 'pikaday.css';
-
-@cell-selected-color: #cae2fe;
+@import "@{base-path}/conf";
+@import "@{base-path}/color";
 
 
-/**
- * This theme is an example to show how you can create your own.
- */
- .@{namespace}-datepicker-group {
-        display: inline-table;
-        box-shadow: 0 0 0 1px @silver inset;
-        > * {
-            display: table-cell;;
-        }
-        > input {
-            width: 7em;
-            border: none;
-        }
-        .@{namespace}-datepicker-icon {
-            text-align: center;
-            vertical-align: middle;
-            padding-right: 5px;
-            &:before {
-                content: '';
-                position: relative;
-                display: inline-block;
-                width: 16px;
-                height: 16px;
-                background: url(icon.png) 0 0 no-repeat;
-            }
+@root-classname: datepicker;
 
-        }
-        // active
-        &.active {
-            box-shadow: 0 0 0 1px @blue inset;
+// cell size
+@cell-width: 28px;
+@cell-height: 28px;
 
-            .@{namespace}-datepicker-icon {
-                &:before {
-                    background-position: 0 -19px
-                }
-            }
-        }
- }
+// color
+@normal-color        : @black;
+@secondary-color     : @gray;
+@disabled-color      : @silver;
+@active-color        : @blue;
+@cell-hover-color    : @white;
+@cell-hover-bgcolor  : #cae2fe;
+@default-border-color: #dfe2e3;
 
-.pika-single.@{namespace}-datepicker {
-    color: @black;
-    background: @white;
-    border: 1px solid @blue;
-    border-bottom-color: @blue;
-    transform: translate(0, -1px);
-}
-
-.@{namespace}-datepicker .pika-lendar {
-    width: 210px;
-    margin: 0;
-}
-
-.@{namespace}-datepicker .pika-label {
-    font-weight: normal;
+.@{namespace}-@{root-classname} {
+    position: absolute;
+    font-size: 12px;
+    line-height: 1;
+    color: @normal-color;
+    border: 1px solid @active-color;
     background-color: @white;
-
+    user-select: none;
 }
-
-// .@{namespace}-datepicker .pika-prev,
-// .@{namespace}-datepicker .is-rtl .pika-next {
-//     background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAeCAQAAACGG/bgAAAAQ0lEQVR4Ae3KIQ4AIBTD0N0/IeHGI3UIRA3ut/Zl+ltXc5++htVAmIAwAWECwgSEKbgthEoIlRAqIVRCqINQB9nDgQd7ktwFo6UpWQAAAABJRU5ErkJggg==');
-// }
-//
-// .@{namespace}-datepicker .pika-next,
-// .@{namespace}-datepicker .is-rtl .pika-prev {
-//     background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAeCAQAAACGG/bgAAAAP0lEQVQ4y+3TMQoAMAgEwfwfAvvjTZ1uGzuvHhBPPGczEG+FRqqRaqQaqUaqkX6QBmmjacvQ6qEVTjsh+xizebvlaWptGXZAAAAAAElFTkSuQmCC');
-// }
-
-.@{namespace}-datepicker .pika-table th {
-    color: @gray;
-    background-color: #f8f8f8;
-    border-top: 1px solid #ddd;
-    border-bottom: 1px solid #ddd;
+// header
+.@{root-classname}-header {
+    position: relative;
+    padding: 10px 0;
     text-align: center;
 }
-
-.@{namespace}-datepicker .pika-table th abbr {
-    cursor: default;
+// calendar
+.@{root-classname}-calendar {
+    td,
+    th {
+        width: @cell-width;
+        height: @cell-height;
+        text-align: center;
+        vertical-align: middle;
+    }
+    // day of week
+    .@{root-classname}-dayofweek th {
+        font-weight: normal;
+        color: @secondary-color;
+        border-top: 1px solid @default-border-color;
+        border-bottom: 1px solid @default-border-color;
+    }
+    td {
+        cursor: pointer;
+        &.hidden,
+        &:empty {
+            visibility: hidden;
+        }
+        &.disabled {
+            color: @disabled-color;
+            cursor: default;
+        }
+        &.selected,
+        &:not(.disabled):hover {
+            background-color: @cell-hover-bgcolor;
+            border-radius: 2px;
+        }
+        &:not(.disabled):hover{
+            color: @cell-hover-color;
+        }
+        &.inrange {
+            background-color: @cell-hover-bgcolor;
+            border-radius: none;
+        }
+    }
+}
+// style select
+.@{root-classname}-select {
+    position: relative;
+    display: inline-block;
+    padding: 3px 24px 3px 8px;
+    border: 1px solid @default-border-color;
+    &.@{root-classname}-year {
+        margin-right: 7px;
+        label {
+            width: 40px;
+        }
+    }
+    &.@{root-classname}-month {
+        label {
+            width: 26px;
+        }
+    }
+    // label
+    label {
+        display: block;
+        text-align: center;
+    }
+    // opacity select
+    select {
+        position: absolute;
+        top: 0;
+        left: 0;
+        opacity: 0;
+        cursor: pointer;
+        width: 100%;
+    }
+    // triangle
+    &:after {
+        content: '';
+        position: absolute;
+        // z-index: -1;
+        right: 8px;
+        top: 50%;
+        width: 0;
+        height: 0;
+        border-style: solid;
+        border-width: 4px 4px 0 4px;
+        border-color: #666666 transparent transparent transparent;
+        transform: translate(0, -50%);
+    }
+}
+// prev & next
+.@{root-classname}-prev,
+.@{root-classname}-next {
+    position: absolute;
+    width: 16px;
+    height: 20px;
+    cursor: pointer;
+    &:after {
+        position: absolute;
+        content: '';
+        display: inline-block;
+        top: 6px;
+        border-style: solid;
+    }
+}
+.@{root-classname}-prev {
+    left: 4px;
+    &:after {
+        left: 6px;
+        border-width: 4px 4px 4px 0;
+        border-color: transparent @normal-color transparent transparent;
+    }
+    &.disabled:after {
+        border-color: transparent @disabled-color transparent transparent;
+    }
+}
+.@{root-classname}-next {
+    right: 4px;
+    &:after {
+        right: 6px;
+        border-width: 4px 0 4px 4px;
+        border-color: transparent transparent transparent @normal-color;
+    }
+    &.disabled:after {
+        border-color: transparent transparent transparent @disabled-color;
+    }
 }
 
-.@{namespace}-datepicker .pika-button {
-    color: @black;
-    background: @white;
-    text-align: center;
-    border-radius: 2px;
-    line-height: 30px;
-    padding: 0px 6px;
-    box-shadow: none;
-}
-
-.@{namespace}-datepicker .pika-week {
-    color: @gray;
-}
-
-.@{namespace}-datepicker .is-today .pika-button {
-    color: @black;
-    font-weight: normal;
-}
-
-.@{namespace}-datepicker .is-selected .pika-button {
-    // color: @white;
-    font-weight: normal;
-    background: @cell-selected-color;
-    // box-shadow: inset 0 1px 3px #178fe5;
-}
-
-.@{namespace}-datepicker .is-inrange .pika-button {
-    // color: @white;
-    // font-weight: normal;
-    // background: lighten(@blue, .8);
-    // // box-shadow: inset 0 1px 3px #178fe5;
-    // border-radius: 0;
-    background-color: @cell-selected-color;
-    border-radius: 0;
-}
-
-.@{namespace}-datepicker .is-disabled .pika-button {
-    color: #999;
-    opacity: .3;
-    text-align: center;
-}
-
-.@{namespace}-datepicker .pika-button:hover {
-    color: #fff !important;
-    background: @cell-selected-color !important;
-    border-radius: 2px;
+// datepicker group
+.@{namespace}-@{root-classname}-group {
+       display: inline-table;
+       box-shadow: 0 0 0 1px @silver inset;
+       > * {
+           display: table-cell;;
+       }
+       > input {
+           width: 7em;
+           border: none;
+       }
+       .@{root-classname}-icon {
+           text-align: center;
+           vertical-align: middle;
+           padding-right: 5px;
+           &:before {
+               content: '';
+               position: relative;
+               display: inline-block;
+               width: 16px;
+               height: 16px;
+               background: url(icon.png) 0 0 no-repeat;
+           }
+       }
+       // active
+       &.active {
+           box-shadow: 0 0 0 1px @blue inset;
+           .@{root-classname}-icon {
+               &:before {
+                   background-position: 0 -19px
+               }
+           }
+       }
 }
