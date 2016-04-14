@@ -57,26 +57,34 @@
     }
     td {
         cursor: pointer;
+
         &.hidden,
         &:empty {
             visibility: hidden;
         }
+
         &.disabled {
             color: @disabled-color;
             cursor: default;
         }
+
         &.selected,
-        &:not(.disabled):hover {
-            background-color: @cell-hover-bgcolor;
-            border-radius: 2px;
+        &.selected:hover {
+            color: @white;
+            background-color: @blue;
         }
-        &:not(.disabled):hover{
-            color: @cell-hover-color;
-        }
-        &.inrange {
+
+        &.inrange,
+        &.inrange:hover {
             background-color: @cell-hover-bgcolor;
             border-radius: none;
         }
+
+        &:not(.disabled):not(.selected):not(.inrange):hover {
+            background-color: @cell-hover-bgcolor;
+            border-radius: 2px;
+        }
+
     }
 }
 // style select

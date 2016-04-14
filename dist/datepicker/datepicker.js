@@ -333,7 +333,10 @@
             var clz      = []
 
             while (index <= 6 * 7) {
-                clz = []
+                clz      = []
+                inrange  = false
+                disabled = false
+
                 if (index >= start && dateIndex <= dateSize) {
                     date = toDate([this.year, this.month + 1, dateIndex].join('/'))
 
