@@ -3,7 +3,7 @@
  * @author jinwei01
  */
 .zdh-input,
-.zdh-input-grup .zdh-input {
+.zdh-input-group .zdh-input {
     box-sizing: border-box;
     vertical-align: middle;
     height: 30px;
@@ -14,21 +14,21 @@
     border-radius: 2px;
 }
 .zdh-input:focus,
-.zdh-input-grup .zdh-input:focus {
+.zdh-input-group .zdh-input:focus {
     outline: none;
 }
 .zdh-input[disabled],
-.zdh-input-grup .zdh-input[disabled] {
+.zdh-input-group .zdh-input[disabled] {
     color: #ccc !important;
     background-color: #f6f8f9 !important;
     border-color: #dfe2e3 !important;
     cursor: default !important;
 }
 .zdh-input-group .zdh-error .zdh-input,
-.zdh-input-group .zdh-error .zdh-input-counter {
+.zdh-input-group .zdh-error .input-counter {
     border-color: #ed5565;
 }
-.zdh-input-group .zdh-input-counter {
+.zdh-input-group .input-counter {
     box-sizing: border-box;
     display: inline-block;
     vertical-align: top;
@@ -43,10 +43,10 @@
     border-top-right-radius: 2px;
     border-bottom-right-radius: 2px;
 }
-.zdh-input-group .zdh-input-counter > em {
+.zdh-input-group .input-counter > em {
     font-style: normal;
 }
-.zdh-input-group.zdh-counter-error .zdh-input-counter > em {
+.zdh-input-group.counter-error .input-counter > em {
     color: #ed5565;
 }
 .zdh-input-group::-webkit-input-placeholder {
