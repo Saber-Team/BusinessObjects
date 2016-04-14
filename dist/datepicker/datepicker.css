@@ -44,16 +44,18 @@
     cursor: default;
 }
 .datepicker-calendar td.selected,
-.datepicker-calendar td:not(.disabled):hover {
-    background-color: #cae2fe;
-    border-radius: 2px;
-}
-.datepicker-calendar td:not(.disabled):hover {
+.datepicker-calendar td.selected:hover {
     color: #fff;
+    background-color: #4497ff;
 }
-.datepicker-calendar td.inrange {
+.datepicker-calendar td.inrange,
+.datepicker-calendar td.inrange:hover {
     background-color: #cae2fe;
     border-radius: none;
+}
+.datepicker-calendar td:not(.disabled):not(.selected):not(.inrange):hover {
+    background-color: #cae2fe;
+    border-radius: 2px;
 }
 .datepicker-select {
     position: relative;

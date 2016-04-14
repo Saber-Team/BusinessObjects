@@ -31,25 +31,20 @@
 .@{namespace}-@{root-classname} {
     position: relative;
     display: inline-block;
+    width: 8em;
     height: @group-height;
     line-height: @group-height;
     .setBorder(@default-border-color);
     transition: color .2s ease-out;
     user-select: none;
 
-    .@{root-classname}-label,
-    .@{root-classname}-icon {
-        box-sizing: border-box;
-    }
     .@{root-classname}-label {
-        display: inline-block; // trigger bfc
+        box-sizing: border-box;
+        display: block;
         line-height: @group-height;
         height: @group-height;
         padding-left: @group-padding-hoziron;
-    }
-    .@{root-classname}-text {
-        float: left;
-        width: 6em;
+        padding-right: unit(@group-padding-hoziron + 15, px);
         .text-overflow();
     }
     &.active {
@@ -57,15 +52,14 @@
     }
 
     .@{root-classname}-icon {
-        position: relative;
-        float: right;
+        position: absolute;
+        z-index: -1;
         width: 15px;
         height: @group-height - 2;
         margin-left: @group-padding-hoziron;
         top: 1px;
         right: 1px;
         background-color: @active-icon-bg-color;
-        cursor: pointer;
 
         >i {
             position: absolute;
@@ -97,13 +91,11 @@
                 border-color: @active-icon-color transparent transparent transparent;
             }
             &:after {
-
                 border-color: @active-icon-bg-color transparent transparent transparent;
             }
         }
 
-
-        .active& i {
+        &.active i {
             transform: rotate(-180deg);
         }
     }
@@ -123,7 +115,6 @@
         min-width: 100%;
 
         .active& {
-            // .setBorder(@blue);
             border: 1px solid @blue;
             display: block;
         }
@@ -137,7 +128,6 @@
             border: none;
         }
 
-
         // item
         .@{root-classname}-item {
             box-sizing: border-box;
@@ -148,12 +138,13 @@
             padding-right: @group-padding-hoziron;
             cursor: pointer;
             .text-overflow();
-            &.selected,
-            &:hover {
+            &.selected {
                 color: @white;
+                background-color: @blue;
+            }
+            &:not(.selected):hover {
                 background-color: @item-active-color;
             }
-
         }
     }
 

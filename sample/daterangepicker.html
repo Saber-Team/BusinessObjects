@@ -56,8 +56,8 @@
                     this.field.parent().removeClass('active')
                 },
                 onSelect: function (date) {
-                    picker2.clearRange()
                     picker2.setMinDate(date)
+                    picker2.clearRange()
                     startRange = date
                 }
             });

@@ -23,7 +23,6 @@
 
     var activeClass   = 'active' // dropdown active state
     var labelClass    = 'dropdown-label' // label
-    var textClass     = 'dropdown-text' // label text
     var listClass     = 'dropdown-list' // list
     var itemClass     = 'dropdown-item' // list item
     var selectedClass = 'selected' // item selected
@@ -103,8 +102,8 @@
         },
 
         setLabel: function(text) {
-            this.text || (this.text = $('.' + textClass, this.el))
-            this.text.html(text)
+            this.label || (this.label = $('.' + labelClass, this.el))
+            this.label.html(text)
         },
 
         bind: function() {
