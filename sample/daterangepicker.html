@@ -12,9 +12,9 @@
         <link rel="stylesheet" href="../dist/input/input.css">
         <link rel="stylesheet" href="../dist/datepicker/datepicker.css">
 
-        <script src="../lib/kernel.js"></script>
         <script src="../lib/jquery.js"></script>
         <script src="../src/datepicker/datepicker.js"></script>
+        <script src="../src/daterangepicker/daterangepicker.js"></script>
     </head>
     <body>
         <style>
@@ -41,45 +41,42 @@
                 <i class="datepicker-icon"></i>
             </label>
         </div>
+
+        <div class="item">
+            <h3>间隔3天（间隔天数可设置）</h3>
+            <label class="zdh-datepicker-group">
+                <input class="zdh-input zdh-input-mid" id="datepicker3" readonly="readonly">
+                <i class="datepicker-icon"></i>
+            </label>
+            <span style="margin: 0 10px">–</span>
+            <label class="zdh-datepicker-group">
+                <input class="zdh-input" id="datepicker4" readonly="readonly">
+                <i class= "datepicker-icon"></i>
+            </label>
+        </div>
         <script>
 
-            var Datepicker = businessUI.Datepicker
+            var Daterangepicker = businessUI.Daterangepicker
 
-            var startRange
-            var endRange
-
-            var picker = new Datepicker({
-                field   : $('#datepicker1'),
-                onShow  : function () {
-                    this.field.parent().addClass('active')
+            var picker = new Daterangepicker({
+                startField    : $('#datepicker1'),
+                endField      : $('#datepicker2'),
+                startPickerOpt: {
+                    yearRange: [2016, 2020]
                 },
-                onClose: function () {
-                    this.field.parent().removeClass('active')
-                },
-                onSelect: function (date) {
-                    picker2.setMinDate(date)
-                    startRange = date
-                    picker2.setRange(date)
+                endPickerOpt: {
+                    onSelect: function (date) {
+                        console.log(date)
+                    }
                 }
-            });
+            })
 
-
-            var picker2 = new Datepicker({
-                field: $('#datepicker2'),
-                autohide: false,
-                onShow: function () {
-                    this.field.parent().addClass('active')
-                    startRange && endRange && picker2.setRange(startRange, endRange)
-                },
-                onClose: function () {
-                    this.field.parent().removeClass('active')
-                },
-                onSelect: function (date) {
-                    endRange = date
-                    startRange && this.setRange(startRange, date)
-                }
-            });
-
+            var picker2 = new Daterangepicker({
+                startField    : $('#datepicker3'),
+                endField      : $('#datepicker4'),
+                dayInterval   : 3,
+                endPickerOpt: {}
+            })
 
         </script>
 
