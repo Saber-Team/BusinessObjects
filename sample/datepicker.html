@@ -12,7 +12,6 @@
         <link rel="stylesheet" href="../dist/input/input.css">
         <link rel="stylesheet" href="../dist/datepicker/datepicker.css">
 
-        <script src="../lib/kernel.js"></script>
         <script src="../lib/jquery.js"></script>
         <script src="../src/datepicker/datepicker.js"></script>
     </head>
@@ -50,23 +49,17 @@
             var picker = new Datepicker({
                 field: $('#datepicker1'),
                 onShow: function () {
-                    picker.field.parent().addClass('active')
+
                 },
                 onClose: function () {
-                    picker.field.parent().removeClass('active')
+
                 }
             });
 
 
             var picker2 = new Datepicker({
                 field: $('#datepicker2'),
-                minDate: new Date,
-                onShow: function () {
-                    picker2.field.parent().addClass('active')
-                },
-                onClose: function () {
-                    picker2.field.parent().removeClass('active')
-                }
+                minDate: new Date
             });
 
 

@@ -11,9 +11,8 @@
         <link rel="stylesheet" href="../dist/base/base.css">
         <link rel="stylesheet" href="../dist/textarea/textarea.css">
 
-        <script src="../lib/kernel.js"></script>
         <script src="../lib/jquery.js"></script>
-
+        <script src="../src/textarea/textarea.js"></script>
     </head>
     <body>
         <style>
@@ -63,23 +62,18 @@
             </div>
 
             <script>
-                require(['../src/textarea/textarea'], function(Textarea) {
-                    // var d1 = new Textarea({
-                    //     el: $('#t1')
-                    //     maxlength: 500
-                    // });
+                var Textarea = businessUI.Textarea
 
-                    var d2 = new Textarea({
-                        el: $('#t2')
-                    });
-                    var d3 = new Textarea({
-                        el: $('#t3')
-                    });
-                    var d4 = new Textarea({
-                        el: $('#t4')
-                    });
+                var d2 = new Textarea({
+                    el: $('#t2')
+                })
+                var d3 = new Textarea({
+                    el: $('#t3')
+                })
+                var d4 = new Textarea({
+                    el: $('#t4')
+                })
 
-                });
             </script>
     </body>
 </html>

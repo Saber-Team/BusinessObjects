@@ -7,6 +7,7 @@
     var idCounter = 0
 
     // class conf
+    var activeClass   = 'active'
     var selectedClass = 'selected'
     var disabledClass = 'disabled'
     var hiddenClass   = 'hidden'
@@ -163,7 +164,7 @@
                 // add picker to page
                 $('body').append(this.picker)
 
-                //custom
+                // custom
                 this.theme && this.picker.addClass(this.theme)
 
                 // flag for first time show
@@ -187,6 +188,8 @@
             this.setDate(this.field && this.field.val() ? toDate(this.field.val()) : undefined)
             // show
             this.picker.css('display', 'block')
+            // add active class
+            this.field.closest('.zdh-datepicker-group').addClass('active')
             // position
             this.setPosition()
             // call show callback
@@ -196,12 +199,14 @@
         close: function () {
             this.actived = false
             this.picker.css('display', 'none')
+            this.field.closest('.zdh-datepicker-group').removeClass('active')
             // call close callback
             this.onClose()
         },
 
         setDate: function (date) {
-            var d = date
+            var d           = date
+            var dayDisabled = false
 
             if (this.firstShow) { // first time show
                 date = date || getToday()
@@ -211,8 +216,11 @@
                 return
             }
 
+            date = toDate(date)
+
             if (this.minDate) {
-                date = toDate(Math.max(date, this.minDate))
+                dayDisabled = date <= this.minDate
+                date        = toDate(Math.max(date, this.minDate))
             }
 
             this.pickYear(date.getFullYear())
@@ -222,7 +230,9 @@
             this.fillDate()
 
             // auto pick the date (if has)
-            d && this.pickDate(date.getDate(), true)
+            if (d || dayDisabled) {
+                this.pickDate(date.getDate(), true)
+            }
 
             this.firstShow = false
         },
@@ -236,7 +246,7 @@
         },
 
         setMinDate: function (date) {
-            this.minDate = toDate(date)
+            this.minDate = date
             this.fillDate()
         },
 
