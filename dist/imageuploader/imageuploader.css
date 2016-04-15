@@ -1,0 +1,316 @@
+.o-webuploader {
+    overflow: hidden;
+    width: 100%;
+    position: relative;
+}
+.o-webuploader .webuploader-container {
+    position: relative;
+    background: #fff;
+}
+.o-webuploader .webuploader-element-invisible {
+    position: absolute !important;
+    clip: rect(1px 1px 1px 1px);
+    clip: rect(1px, 1px, 1px, 1px);
+}
+.o-webuploader .o-filepicker {
+    display: inline-block;
+    vertical-align: top;
+    margin: 10px 50px 20px 0;
+}
+.o-webuploader .o-filepicker .webuploader-pick {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+    border: 1px dashed #e2e2e2;
+    width: 120px;
+    height: 90px;
+    color: #333;
+    font-size: 12px;
+    text-align: center;
+    box-sizing: border-box;
+}
+.o-webuploader .o-filepicker .webuploader-pick:before {
+    content: '';
+    display: block;
+    width: 25px;
+    height: 25px;
+    background: url('uploader.png') no-repeat -10px -12px;
+    margin: 20px auto 10px;
+}
+.o-webuploader .o-filepicker .webuploader-pick:after {
+    content: '\4e0a\4f20\56fe\7247';
+    display: block;
+}
+.o-webuploader .o-filepicker:hover .webuploader-pick:before {
+    background-position: -46px -12px;
+}
+.o-webuploader .o-filepicker:hover .webuploader-pick:after {
+    color: #4497ff;
+}
+.o-webuploader .o-thumb {
+    display: inline-block;
+    position: relative;
+    border: 1px solid #e2e2e2;
+    width: 120px;
+    height: 90px;
+    margin: 10px 50px 20px 0;
+    vertical-align: top;
+    box-sizing: border-box;
+    -webkit-transition: all ease .2s;
+            transition: all ease .2s;
+}
+.o-webuploader .o-thumb-reset {
+    margin: 0;
+    padding: 0;
+}
+.o-webuploader .o-thumb-90 {
+    width: 90px;
+    height: 90px;
+}
+.o-webuploader .o-thumb-120 {
+    width: 120px;
+    height: 120px;
+}
+.o-webuploader .o-thumb-viewer .o-mask,
+.o-webuploader .o-thumb-viewer .o-rm-thumb {
+    display: none;
+}
+.o-webuploader .o-thumb-viewer .o-edit-thumb .view {
+    border-right: 0;
+}
+.o-webuploader .o-thumb-viewer .o-edit-thumb .re-upload {
+    display: none;
+}
+.o-webuploader .o-thumb-viewer:hover:before {
+    visibility: visible;
+}
+.o-webuploader .o-thumb-viewer:hover .o-edit-thumb {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display:         flex;
+}
+.o-webuploader .o-thumb:before {
+    content: '';
+    display: block;
+    visibility: hidden;
+    z-index: 10;
+    position: absolute;
+    left: -1px;
+    right: -1px;
+    top: -1px;
+    bottom: -1px;
+    border: 2px solid #7ebf33;
+}
+.o-webuploader .o-thumb img {
+    width: 100%;
+    height: 100%;
+}
+.o-webuploader .o-thumb .no-preview {
+    text-align: center;
+    margin-top: 30px;
+    font-size: 12px;
+    color: #ef5362;
+}
+.o-webuploader .o-thumb .o-mask {
+    position: absolute;
+    z-index: 99;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, .5);
+}
+.o-webuploader .o-thumb .o-mask .progress-text {
+    position: absolute;
+    z-index: 100;
+    top: 40px;
+    width: 100%;
+    text-align: center;
+    color: #fff;
+    font-size: 14px;
+}
+.o-webuploader .o-thumb .o-mask .progress-bar {
+    z-index: 100;
+    height: 10px;
+    width: 0;
+    position: absolute;
+    bottom: 0;
+    margin: 0;
+    background-color: #7ebf33;
+}
+.o-webuploader .o-rm-thumb {
+    display: none;
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    top: -10px;
+    right: -10px;
+    z-index: 20;
+    background: url('uploader.png') no-repeat -184px -16px;
+    cursor: pointer;
+}
+.o-webuploader .o-edit-thumb {
+    display: none;
+    position: absolute;
+    bottom: 1px;
+    left: 1px;
+    right: 1px;
+    z-index: 20;
+    height: 30px;
+    border-top: 1px solid #7ebf33;
+    text-align: center;
+    background-color: rgba(0, 0, 0, .5);
+}
+.o-webuploader .o-edit-thumb .view {
+    -webkit-box-flex: 1;
+    -webkit-flex: 1;
+        -ms-flex: 1;
+            flex: 1;
+    border-right: 1px solid #7ebf33;
+    box-sizing: border-box;
+    cursor: pointer;
+}
+.o-webuploader .o-edit-thumb .view:before {
+    content: '';
+    width: 20px;
+    height: 20px;
+    background: url(uploader.png) no-repeat -155px -16px;
+    margin: 5px auto;
+    cursor: pointer;
+    display: block;
+}
+.o-webuploader .o-edit-thumb .webuploader-container {
+    background: transparent;
+}
+.o-webuploader .re-upload {
+    -webkit-box-flex: 1;
+    -webkit-flex: 1;
+        -ms-flex: 1;
+            flex: 1;
+    cursor: pointer;
+    height: 30px;
+    line-height: 30px;
+}
+.o-webuploader .re-upload .webuploader-pick {
+    height: 30px;
+    position: relative;
+    width: 60px;
+}
+.o-webuploader .re-upload .webuploader-pick:before {
+    content: '';
+    width: 20px;
+    height: 20px;
+    background: url(uploader.png) no-repeat -212px -16px;
+    margin: 5px auto;
+    cursor: pointer;
+    display: block;
+}
+.o-webuploader .o-upload-done .o-mask .progress-text {
+    background: url(uploader.png) no-repeat -76px -12px;
+    width: 35px;
+    height: 25px;
+    top: 50%;
+    left: 50%;
+    margin-top: -15px;
+    margin-left: -18px;
+}
+.o-webuploader .o-upload-done .o-mask .progress-bar {
+    display: none;
+}
+.o-webuploader .o-upload-success .o-mask {
+    display: none;
+}
+.o-webuploader .o-upload-success:hover:before {
+    visibility: visible;
+}
+.o-webuploader .o-upload-success:hover .o-rm-thumb {
+    display: block;
+}
+.o-webuploader .o-upload-success:hover .o-edit-thumb {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display:         flex;
+}
+.o-webuploader .o-upload-fail .o-mask {
+    display: none;
+}
+.o-webuploader .o-upload-fail .o-edit-thumb .view {
+    display: none;
+}
+.o-webuploader .o-upload-fail .re-upload .webuploader-pick {
+    width: 120px;
+    height: 30px;
+}
+.o-webuploader .o-upload-fail .re-upload .webuploader-pick:before {
+    display: inline-block;
+    margin-right: 10px;
+    margin-left: auto;
+}
+.o-webuploader .o-upload-fail .re-upload .webuploader-pick:after {
+    content: '\91cd\65b0\4e0a\4f20';
+    display: inline-block;
+    vertical-align: top;
+    font-size: 12px;
+    color: #fff;
+}
+.o-webuploader .o-upload-fail:hover:before {
+    visibility: visible;
+}
+.o-webuploader .o-upload-fail:hover .o-edit-thumb {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display:         flex;
+}
+.o-webuploader-logo .o-thumb {
+    width: 90px;
+}
+.o-webuploader-logo .o-filepicker .webuploader-pick {
+    width: 90px;
+}
+.o-webuploader-logo .o-edit-thumb .re-upload .webuploader-pick {
+    width: 45px;
+}
+.o-webuploader-logo .o-upload-fail .re-upload .webuploader-pick {
+    width: 90px;
+    height: 30px;
+}
+.o-webuploader-logo .o-upload-fail .re-upload .webuploader-pick:before {
+    margin-right: 5px;
+    margin-left: -5px;
+}
+.o-error {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    font-size: 14px;
+    padding: 12px 16px 12px 40px;
+    background-color: #555;
+    color: #fff;
+    border-radius: 3px;
+    -webkit-transform: translate(-50%, -50%);
+        -ms-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
+    line-height: 1.5;
+}
+.o-error:before {
+    content: '!';
+    position: absolute;
+    border-radius: 8px;
+    height: 16px;
+    width: 16px;
+    left: 16px;
+    background-color: #fff;
+    color: #333;
+    text-align: center;
+    display: block;
+    font-size: 14px;
+    line-height: 16px;
+    top: 50%;
+    -webkit-transform: translateY(-55%);
+        -ms-transform: translateY(-55%);
+            transform: translateY(-55%);
+}

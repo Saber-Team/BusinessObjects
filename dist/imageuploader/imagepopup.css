@@ -1,0 +1,88 @@
+.o-imagepopup {
+    display: none;
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 99;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, .5);
+}
+.o-imagepopup .popup-container {
+    position: fixed;
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, .5), -2px -2px 4px rgba(0, 0, 0, .5), -2px 2px 4px rgba(0, 0, 0, .5), 2px -2px 4px rgba(0, 0, 0, .5);
+    background-color: #fff;
+    padding: 18px 30px 20px;
+    top: 50%;
+    left: 50%;
+    max-width: 90%;
+    min-width: 60%;
+    -webkit-transform: translate(-50%, -50%);
+        -ms-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
+}
+.o-imagepopup .popup-title {
+    font-size: 18px;
+    color: #333;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #dfe2e3;
+    position: relative;
+}
+.o-imagepopup .popup-title .popup-close {
+    position: absolute;
+    right: -15px;
+    color: #999;
+    cursor: pointer;
+}
+.o-imagepopup .popup-title .popup-close:hover {
+    color: #ed5565;
+}
+.o-imagepopup .popup-body {
+    margin: 20px 0;
+    position: relative;
+}
+.o-imagepopup .popup-footer {
+    text-align: center;
+}
+.o-imagepopup .popup-footer .btn-upload {
+    margin-right: 20px;
+}
+/* 功能button样式 */
+/* 行高38px */
+.btn-38 {
+    display: inline-block;
+    padding: 0 20px;
+    font-size: 14px;
+    line-height: 36px;
+    height: 38px;
+    border-radius: 2px;
+    cursor: pointer;
+    outline: none;
+}
+/* 灰白主题 */
+.btn-gray {
+    background: #f7f8fa;
+    color: #333;
+    border: 1px solid #dfe2e3;
+}
+.btn-gray:hover {
+    background: #f3f5f6;
+}
+.btn-gray:active {
+    background: #eff3f5;
+}
+/* 蓝色主题 */
+.btn-blue {
+    background: #4497ff;
+    color: #fff;
+    border: 1px solid #4497ff;
+}
+.btn-blue:hover {
+    background: #3f8ef1;
+    border: 1px solid #3f8ef1;
+}
+.btn-blue:active {
+    background: #3b88e8;
+    border: 1px solid #3b88e8;
+}
