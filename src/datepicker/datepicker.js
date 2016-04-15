@@ -241,7 +241,7 @@
         },
 
         getDate: function () {
-            return toDate([this.year, this.month + 1, this.date].join('/'))
+            return this.date ? toDate([this.year, this.month + 1, this.date].join('/')) : null
         },
 
         getDateString: function () {
@@ -249,8 +249,13 @@
         },
 
         setMinDate: function (date) {
-            this.minDate = date
-            this.fillDate()
+            var current = this.getDate()
+            this.minDate = toDate(date)
+            if (current && current < this.minDate) {
+                this.setDate(date)
+            } else {
+                this.fillDate()
+            }
         },
 
         setMaxDate: function () {
@@ -308,8 +313,8 @@
 
             cell.addClass(selectedClass)
 
-            // if silent, not call select method
-            !silent && this.select()
+            // if silent, do not close
+            this.select(silent)
         },
 
         draw: function (date) {
@@ -450,10 +455,10 @@
             })
         },
 
-        select: function () {
+        select: function (silent) {
             this.field.val(this.getDateString())
             this.onSelect && this.onSelect.call(this, this.getDate())
-            this.close()
+            !silent && this.close()
         },
 
         // bind events
