@@ -145,7 +145,7 @@
         removeItemByValue: function(val) {
             var ele;
             for (var i = 0; i < this.$checkbox.length; ++i) {
-                if (this.$checkbox.val() === val) {
+                if (this.$checkbox[i].value === val) {
                     ele = this.$checkbox[i];
                     break;
                 }

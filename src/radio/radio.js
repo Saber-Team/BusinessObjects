@@ -1,9 +1,9 @@
 /**
- * @file checkbox.js 提供一组数据, 生成相关的html片段以绑定相关事件
+ * @file radio.js 提供一组数据, 生成相关的html片段以绑定相关事件
  *      opts = {
  *          container: "", // 元素selector, 生成的checkbox html将插入到里面
- *          keyName: "", // checkbox 的 name
- *          data: [ // checkbox 内容
+ *          keyName: "", // radio 的 name
+ *          data: [ // radio 内容
  *              {
  *                  label: "checkbox1", // 必须提供
  *                  value: "xxx", // 必须提供
@@ -19,32 +19,35 @@
     };
 
     var defaultConf = {
-        onChange: loop
+        default: false,
+        container: 'body',
+        keyName: 'radio',
+        onChange: loop,
+        data: []
     };
 
-    var ITEM_CLASS_NAME = 'zdh-checkbox';
+    var ITEM_CLASS_NAME = 'zdh-radio';
 
-    function Checkbox(opts) {
+    function Radio(opts) {
         this.opts = $.extend({}, defaultConf, opts);
         this.init();
     }
 
-    $.extend(Checkbox.prototype, {
+    $.extend(Radio.prototype, {
         init: function () {
-            this.onChange = this.opts.onChange || loop;
-            this.opts.container = this.opts.container || 'body';
+            this.onChange = this.opts.onChange;
             this.$container = $(this.opts.container);
             this.updateSelector();
-            this.isNew = !this.$checkbox.length;
+            this.isNew = !this.$radio.length;
             if (this.isNew) {
                 this.keyName = this.opts.keyName;
-                this.keyValues = [];
+                this.keyValue = this.getValue(true);
                 this.render();
                 this.updateSelector();
             }
             else {
-                this.keyName = this.$checkbox.attr('name');
-                this.keyValues = this.getValues();
+                this.keyName = this.$radio.attr('name');
+                this.keyValue = this.getValue();
                 this.bindEvents();
             }
         },
@@ -64,7 +67,7 @@
                 throw 'The data format error, property label or value not found';
                 return this;
             }
-            this.$container.append(this.getTemplate(data, this.$checkbox.length));
+            this.$container.append(this.getTemplate(data, this.$radio.length));
             this.updateSelector();
             return this;
         },
@@ -75,58 +78,57 @@
             }
             return [
                 '<div class="' + ITEM_CLASS_NAME + '">',
-                    '<input type="checkbox" id="' + data.id + '" value='+ data.value + ' name="' + self.keyName + '">',
+                    '<input type="radio" id="' + data.id + '" value='+ data.value + ' name="' + self.keyName + '">',
                     '<label for="' + data.id + '">' + data.label + '</label>',
                 '</div>'
             ].join('');
         },
         bindEvents: function () {
             var self = this;
-            self.$container.off('change').on('change', 'input[type=checkbox]', function (e) {
+            self.$container.off('change').on('change', 'input[type=radio]', function (e) {
                 var $tar = $(e.target);
                 var state = e.target.checked;
-                var previousValues = self.keyValues;
-                var currentValues = self.getValues();
+                var previousValue = self.keyValue;
+                var currentValue = $tar.val();
 
                 e.preventDefault();
 
-                self.keyValues = currentValues;
+                self.keyValue = currentValue;
                 self.$container.trigger({
-                    type: 'ui.checkbox.change',
+                    type: 'ui.radio.change',
                     target: $tar,
                     checked: state,
-                    previousValues: previousValues,
-                    currentValues: currentValues,
-                    index: self.$checkbox.index(e.target)
+                    previousValues: previousValue,
+                    currentValues: currentValue,
+                    index: self.$radio.index(e.target)
                 });
-                self.onChange(previousValues, currentValues);
+                self.onChange(previousValue, currentValue, e);
 
             });
         },
         updateSelector: function () {
-            this.$checkbox = this.$container.find('.' + ITEM_CLASS_NAME + ' input[type=checkbox]');
+            this.$radio = this.$container.find('.' + ITEM_CLASS_NAME + ' input[type=radio]');
         },
-        getValues: function (fromOptions) {
+        getValue: function (fromOptions) {
             var self = this;
-            var values = [];
+            var value;
             if (fromOptions) {
-                $.each(self.opts.data, function (idx, item) {
-                    values.push(item.value);
-                });
+                self.opts.default && (value = self.opts.data[0].value);
             }
             else {
-                self.$checkbox.each(function (idx, checkbox) {
-                    if (checkbox.checked) {
-                        values.push(checkbox.getAttribute('value') || checkbox.value);
+                self.$radio.each(function (idx, radio) {
+                    if (radio.checked) {
+                        value = radio.getAttribute('value') || radio.value;
+                        return false;
                     }
                 });
             }
-            return values;
+            return value;
         },
         getKeyValue: function () {
             return {
                 key: this.keyName,
-                value: this.keyValues
+                value: this.keyValue
             }
         },
         getContainer: function () {
@@ -144,9 +146,9 @@
         },
         removeItemByValue: function(val) {
             var ele;
-            for (var i = 0; i < this.$checkbox.length; ++i) {
-                if (this.$checkbox[i].value === val) {
-                    ele = this.$checkbox[i];
+            for (var i = 0; i < this.$radio.length; ++i) {
+                if (this.$radio[i].value === val) {
+                    ele = this.$radio[i];
                     break;
                 }
             }
@@ -157,7 +159,7 @@
             return false;
         },
         removeItemByIndex: function(idx) {
-            var ele = this.$checkbox[idx];
+            var ele = this.$radio[idx];
             if (ele) {
                 $(ele).parent().remove();
                 return true;
@@ -165,5 +167,5 @@
             return false;
         }
     });
-    UI.Checkbox = Checkbox;
+    UI.Radio = Radio;
 })(window.businessUI || (window.businessUI = {}));
