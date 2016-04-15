@@ -3,6 +3,7 @@
  *      opts = {
  *          container: "", // 元素selector, 生成的checkbox html将插入到里面
  *          keyName: "", // radio 的 name
+ *          default: false, // 动态生成时,是否默认第一个选择
  *          data: [ // radio 内容
  *              {
  *                  label: "checkbox1", // 必须提供
@@ -44,6 +45,7 @@
                 this.keyValue = this.getValue(true);
                 this.render();
                 this.updateSelector();
+                this.opts.default && (this.$radio[0].checked = true);
             }
             else {
                 this.keyName = this.$radio.attr('name');
@@ -154,6 +156,7 @@
             }
             if (ele) {
                 $(ele).parent().remove();
+                this.updateSelector();
                 return true;
             }
             return false;
@@ -162,6 +165,7 @@
             var ele = this.$radio[idx];
             if (ele) {
                 $(ele).parent().remove();
+                this.updateSelector();
                 return true;
             }
             return false;

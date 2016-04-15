@@ -152,6 +152,7 @@
             }
             if (ele) {
                 $(ele).parent().remove();
+                this.updateSelector();
                 return true;
             }
             return false;
@@ -160,6 +161,7 @@
             var ele = this.$checkbox[idx];
             if (ele) {
                 $(ele).parent().remove();
+                this.updateSelector();
                 return true;
             }
             return false;
