@@ -12,8 +12,8 @@
 @root-classname: datepicker;
 
 // cell size
-@cell-width: 28px;
-@cell-height: 28px;
+@cell-width: 30px;
+@cell-height: 30px;
 
 // color
 @normal-color        : @black;
@@ -23,6 +23,7 @@
 @cell-hover-color    : @white;
 @cell-hover-bgcolor  : #cae2fe;
 @default-border-color: #dfe2e3;
+@week-bg-color       : #f8f8f8;
 
 .@{namespace}-@{root-classname} {
     position: absolute;
@@ -43,49 +44,79 @@
 .@{root-classname}-calendar {
     td,
     th {
-        width: @cell-width;
-        height: @cell-height;
         text-align: center;
         vertical-align: middle;
     }
     // day of week
     .@{root-classname}-dayofweek th {
+        height: 20px;
         font-weight: normal;
         color: @secondary-color;
         border-top: 1px solid @default-border-color;
         border-bottom: 1px solid @default-border-color;
+        background-color: @week-bg-color;
     }
-    td {
-        cursor: pointer;
-
-        &.hidden,
-        &:empty {
-            visibility: hidden;
+    tr th,
+    tr td {
+        &:first-child {
+            padding-left: 10px;
         }
-
-        &.disabled {
-            color: @disabled-color;
-            cursor: default;
+        &:last-child {
+            padding-right: 10px;
         }
-
-        &.selected,
-        &.selected:hover {
-            color: @white;
-            background-color: @blue;
-        }
-
-        &.inrange,
-        &.inrange:hover {
-            background-color: @cell-hover-bgcolor;
-            border-radius: none;
-        }
-
-        &:not(.disabled):not(.selected):not(.inrange):hover {
-            background-color: @cell-hover-bgcolor;
-            border-radius: 2px;
-        }
-
     }
+    tbody {
+        td {
+            width: @cell-width;
+            height: @cell-height;
+            line-height: @cell-height;
+            cursor: pointer;
+            background-clip: content-box;
+
+            &.hidden,
+            &:empty {
+                visibility: hidden;
+            }
+
+            &.disabled {
+                color: @disabled-color;
+                cursor: default;
+            }
+
+            &.selected,
+            &.selected:hover {
+                color: @white;
+                background-color: @blue !important;
+            }
+
+            &.inrange,
+            &.inrange:hover {
+                background-color: @cell-hover-bgcolor;
+            }
+
+            &.istoday {
+                box-shadow: 0 0 0 1px @blue inset;
+            }
+
+            &:not(.disabled):not(.selected):not(.inrange):hover {
+                background-color: @cell-hover-bgcolor;
+            }
+        }
+    }
+    tfoot {
+        border-top: 1px solid @default-border-color;
+        td {
+            height: @cell-height;
+            vertical-align: middle;
+        }
+        .@{root-classname}-today {
+            display: inline-block;
+            padding: 0 15px;
+            color: @blue;
+            cursor: pointer;
+        }
+    }
+
 }
 // style select
 .@{root-classname}-select {
@@ -133,13 +164,20 @@
         transform: translate(0, -50%);
     }
 }
-// prev & next
-.@{root-classname}-prev,
-.@{root-classname}-next {
+
+// nav
+.@{root-classname}-prev-month,
+.@{root-classname}-next-month,
+.@{root-classname}-prev-year,
+.@{root-classname}-next-year {
     position: absolute;
     width: 16px;
     height: 20px;
     cursor: pointer;
+}
+// prev & next month
+.@{root-classname}-prev-month,
+.@{root-classname}-next-month {
     &:after {
         position: absolute;
         content: '';
@@ -148,8 +186,8 @@
         border-style: solid;
     }
 }
-.@{root-classname}-prev {
-    left: 4px;
+.@{root-classname}-prev-month {
+    left: 20px;
     &:after {
         left: 6px;
         border-width: 4px 4px 4px 0;
@@ -159,13 +197,58 @@
         border-color: transparent @disabled-color transparent transparent;
     }
 }
-.@{root-classname}-next {
-    right: 4px;
+.@{root-classname}-next-month {
+    right: 20px;
     &:after {
         right: 6px;
         border-width: 4px 0 4px 4px;
         border-color: transparent transparent transparent @normal-color;
     }
+    &.disabled:after {
+        border-color: transparent transparent transparent @disabled-color;
+    }
+}
+// prev & next month
+.@{root-classname}-prev-year,
+.@{root-classname}-next-year {
+    &:before,
+    &:after {
+        position: absolute;
+        content: '';
+        display: inline-block;
+        top: 6px;
+        border-style: solid;
+    }
+
+}
+.@{root-classname}-prev-year {
+    left: 4px;
+    &:before,
+    &:after {
+        left: 4px;
+        border-width: 4px 4px 4px 0;
+        border-color: transparent @normal-color transparent transparent;
+    }
+    &:after {
+        left: 9px;
+    }
+    &.disabled:before,
+    &.disabled:after {
+        border-color: transparent @disabled-color transparent transparent;
+    }
+}
+.@{root-classname}-next-year {
+    right: 4px;
+    &:before,
+    &:after {
+        right: 4px;
+        border-width: 4px 0 4px 4px;
+        border-color: transparent transparent transparent @normal-color;
+    }
+    &:after {
+        right: 9px
+    }
+    &.disabled:before,
     &.disabled:after {
         border-color: transparent transparent transparent @disabled-color;
     }
