@@ -40,7 +40,7 @@
 .zdh-textarea-group {
     display: inline-block;
 }
-.zdh-textarea-group .zdh-textarea-counter {
+.zdh-textarea-group .textarea-counter {
     text-align: right;
     margin-top: -1px;
     padding: .5em ;
@@ -52,11 +52,11 @@
         -ms-transform: translate(0, 0);
             transform: translate(0, 0);
 }
-.zdh-textarea-group .zdh-textarea-counter > em {
+.zdh-textarea-group .textarea-counter > em {
     color: #f90;
     font-style: normal;
 }
-.zdh-error .zdh-textarea-group .zdh-textarea-counter {
+.zdh-error .zdh-textarea-group .textarea-counter {
     border-color: #ed5565;
 }
 .zdh-textarea-group ::-webkit-scrollbar {

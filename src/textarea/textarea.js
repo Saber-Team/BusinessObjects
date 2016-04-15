@@ -1,19 +1,18 @@
 define(function () {
 
     function Textarea (opt) {
-        this.el       = opt.el;
-        this.textarea = opt.textarea || $('textarea', this.el)
-        this.counter  = opt.counter || $('.zdh-textarea-counter', this.el)
-        this.maxlength      = opt.maxlength || textarea.maxlength
+        this.el        = opt.el;
+        this.textarea  = opt.textarea || $('textarea', this.el)
+        this.counter   = opt.counter || $('.textarea-counter', this.el)
+        this.maxlength = opt.maxlength || this.textarea.attr('maxlength') * 1
         this.init()
     }
 
     $.extend(Textarea.prototype, {
         init: function () {
-
             this.bind()
 
-            this.setCounter();
+            this.setCounter()
         },
 
         bind: function () {
@@ -26,7 +25,7 @@ define(function () {
         setCounter: function () {
             var sum = this.textarea.val().length;
             this.el.parent().toggleClass('zdh-error', sum > this.maxlength)
-            $('em', this.counter).html(this.maxlength - sum)
+            $('em', this.counter).html(Math.max(this.maxlength - sum, 0))
         }
     })
 

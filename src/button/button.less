@@ -60,9 +60,9 @@
      */
 
     // blue(default, primary)
-    &:not(&-disabled),
-    &-blue:not(&-disabled),
-    &-primary:not(&-disabled) {
+    &:not(.disabled),
+    &.blue:not(.disabled),
+    &.primary:not(.disabled) {
         &,
         &:visited {
             .setButtonColor(#4497ff);
@@ -76,8 +76,8 @@
     }
 
     // green(secondary)
-    &-green:not(&-disabled),
-    &-secondary:not(&-disabled) {
+    &.green:not(.disabled),
+    &.secondary:not(.disabled) {
         &,
         &:visited {
             .setButtonColor(#7cc123);
@@ -91,8 +91,8 @@
     }
 
     // gray(default)
-    &-gray:not(&-disabled),
-    &-default:not(&-disabled) {
+    &.gray:not(.disabled),
+    &.default:not(.disabled) {
         .setGrayBorder;
         &,
         &:visited {
@@ -107,7 +107,7 @@
     }
 
     // disabled
-    &-disabled,
+    &.disabled,
     &[disabled] {
         .setGrayBorder;
         &,
@@ -125,17 +125,17 @@
 
     // large size(default)
     &,
-    &-large {
+    &.large {
         .setButtonSize(38px, 20px, 14px);
     }
 
     // medium size
-    &-medium {
+    &.medium {
         .setButtonSize(30px, 20px, 12px);
     }
 
     // small size
-    &-small {
+    &.small {
         .setButtonSize(24px, 10px, 12px);
     }
 }

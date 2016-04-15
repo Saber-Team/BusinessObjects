@@ -14,6 +14,7 @@
 
         <script src="../lib/kernel.js"></script>
         <script src="../lib/jquery.js"></script>
+        <script src="../src/datepicker/datepicker.js"></script>
     </head>
     <body>
         <style>
@@ -31,38 +32,51 @@
         <div class="item">
             <h3>date range</h3>
             <div class="zdh-datepicker-group">
-                <input class="zdh-input" id="datepicker3">
-                <i class="zdh-datepicker-icon"></i>
+                <input class="zdh-input zdh-input-mid" id="datepicker1" readonly="readonly">
+                <i class="datepicker-icon"></i>
             </div>
-            <span style="margin: 0 6px">–</span>
+            <span style="margin: 0 10px">–</span>
             <div class="zdh-datepicker-group">
-                <input class="zdh-input" id="datepicker4">
-                <i class="zdh-datepicker-icon"></i>
+                <input class="zdh-input" id="datepicker2" readonly="readonly">
+                <i class="datepicker-icon"></i>
             </div>
         </div>
         <script>
-        require(['../src/datepicker/datepicker'], function(Datepicker) {
 
-            var picker1 = new Datepicker({
-                field     : document.getElementById('datepicker3'),
-                onSelect  : function () {
-                    var date = picker1.getDate()
-                    if (date > picker2.getDate()) {
-                        picker2.setDate(date)
-                    }
-                    picker2.setMinDate(picker1.getDate())
+            var Datepicker = businessUI.Datepicker
+
+            var startRange
+
+            var picker = new Datepicker({
+                field   : $('#datepicker1'),
+                onShow  : function () {
+                    this.field.parent().addClass('active')
+                },
+                onClose: function () {
+                    this.field.parent().removeClass('active')
+                },
+                onSelect: function (date) {
+                    picker2.setMinDate(date)
+                    picker2.clearRange()
+                    startRange = date
                 }
             });
 
+
             var picker2 = new Datepicker({
-                field     : document.getElementById('datepicker4')
+                field: $('#datepicker2'),
+                autohide: false,
+                onShow: function () {
+                    this.field.parent().addClass('active')
+                },
+                onClose: function () {
+                    this.field.parent().removeClass('active')
+                },
+                onSelect: function (date) {
+                    startRange && this.setRange(startRange, date)
+                }
             });
 
-            window.p1 = picker1
-            window.p2 = picker2
-
-
-        });
 
         </script>
 

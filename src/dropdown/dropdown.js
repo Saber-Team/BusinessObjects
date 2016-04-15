@@ -4,6 +4,8 @@
  */
 ;(function(UI) {
 
+    var idCounter = 0
+
     var loop = function() {}
 
     var defaultConf = {
@@ -14,16 +16,15 @@
         // label 和 list等宽
         equalWidth: true,
         // events
-        onShow  : loop,
-        onHide  : loop,
-        onSelect: loop
+        onShow    : loop,
+        onClose   : loop,
+        onSelect  : loop
     }
 
     var activeClass   = 'active' // dropdown active state
-    var labelClass    = 'zdh-dropdown-label' // label
-    var textClass     = 'zdh-dropdown-text' // label text
-    var listClass     = 'zdh-dropdown-list' // list
-    var itemClass     = 'zdh-dropdown-item' // list item
+    var labelClass    = 'dropdown-label' // label
+    var listClass     = 'dropdown-list' // list
+    var itemClass     = 'dropdown-item' // list item
     var selectedClass = 'selected' // item selected
 
     function Dropdown(opt) {
@@ -36,7 +37,7 @@
 
         $.extend(this, defaultConf, opt)
 
-        this.uid  = _.uniqueId()
+        this.uid  = idCounter++
         this.el   = opt.el
         this.list = $('.' + listClass, this.el)
 
@@ -63,7 +64,7 @@
 
         hide: function() {
             this.toggle(false)
-            this.onHide()
+            this.onClose()
         },
 
         focus: function(index) {
@@ -89,7 +90,7 @@
             this.empty()
             this.list.html(
                 items.map(function(item) {
-                    return '<li data-value="' + (item.value || '') + '" class="zdh-dropdown-item">' + (item.text || '') + '</li>'
+                    return '<li data-value="' + (item.value || '') + '" class="' + itemClass + '">' + (item.text || '') + '</li>'
                 }).join('')
             )
         },
@@ -101,8 +102,8 @@
         },
 
         setLabel: function(text) {
-            this.text || (this.text = $('.' + textClass, this.el))
-            this.text.html(text)
+            this.label || (this.label = $('.' + labelClass, this.el))
+            this.label.html(text)
         },
 
         bind: function() {

@@ -35,28 +35,28 @@
 
             <div class="item">
                 <div class="zdh-textarea-group" id="t1">
-                    <textarea cols="40" rows="6" placeholder="你好啊输入框" class="zdh-textarea"></textarea>
+                    <textarea cols="40" rows="6" placeholder="你好啊输入框" class="zdh-textarea" maxlength="40"></textarea>
                 </div>
             </div>
 
             <div class="item">
                 <div class="zdh-textarea-group" id="t2">
-                    <textarea cols="40" rows="6" placeholder="你好啊输入框">
+                    <textarea cols="40" rows="6" placeholder="你好啊输入框" maxlength="500">
 你好啊多行输入框你好啊多行输入框你好啊多行输入框你好啊多行输入框你好啊多行输入框你好啊多行输入框你好啊多行输入框你好啊多行输入框你好啊多行输入框你好啊多行输入框你好啊多行输入框你好啊多行输入框你好啊多行输入框你好啊多行输入框你好啊多行输入框你好啊多行输入框你好啊多行输入框你好啊多行输入框你好啊多行输入框你好啊多行输入框</textarea>
-                    <p class="zdh-textarea-counter">您最多还可输入<em>500</em>字</p>
+                    <p class="textarea-counter">您最多还可输入<em>500</em>字</p>
                 </div>
             </div>
             <div class="item">
                 <div class="zdh-textarea-group" id="t3">
-                    <textarea cols="40" rows="6" placeholder="你好啊输入框"></textarea>
-                    <p class="zdh-textarea-counter">您最多还可输入<em>500</em>字</p>
+                    <textarea cols="40" rows="6" placeholder="你好啊输入框" maxlength="50"></textarea>
+                    <p class="textarea-counter">您最多还可输入<em>500</em>字</p>
                 </div>
                 <p class="error-msg">请输入正确的内容啦啦啦啦</p>
             </div>
             <div class="item">
                 <div class="zdh-textarea-group" id="t4">
-                    <textarea cols="40" rows="6" placeholder="你好啊输入框"></textarea>
-                    <p class="zdh-textarea-counter">您最多还可输入<em>500</em>字</p>
+                    <textarea cols="40" rows="6" placeholder="你好啊输入框" maxlength="500"></textarea>
+                    <p class="textarea-counter">您最多还可输入<em>500</em>字</p>
                 </div>
                 <p class="error-msg">请输入正确的内容啦啦啦啦</p>
                 <p class="zdh-desc">输入提示啦啦啦啦啦啦</p>
@@ -70,16 +70,13 @@
                     // });
 
                     var d2 = new Textarea({
-                        el: $('#t2'),
-                        maxlength: 500
+                        el: $('#t2')
                     });
                     var d3 = new Textarea({
-                        el: $('#t3'),
-                        maxlength: 50
+                        el: $('#t3')
                     });
                     var d4 = new Textarea({
-                        el: $('#t4'),
-                        maxlength: 500
+                        el: $('#t4')
                     });
 
                 });

@@ -57,7 +57,7 @@
 
 .@{namespace}-input {
     &,
-    .@{namespace}-input-grup & {
+    .@{namespace}-input-group & {
         box-sizing: border-box;
         vertical-align: middle;
         height: @group-height;
@@ -82,13 +82,13 @@
     // 填写错误
     .@{namespace}-error {
         .@{namespace}-input,
-        .@{namespace}-input-counter {
+        .input-counter {
             border-color: @error-color;
         }
     }
 
     // 字数提示
-    .@{namespace}-input-counter {
+    .input-counter {
         box-sizing: border-box;
 
         display: inline-block;
@@ -110,8 +110,8 @@
             font-style: normal;
         }
     }
-    &.@{namespace}-counter-error {
-        .@{namespace}-input-counter > em {
+    &.counter-error {
+        .input-counter > em {
             color: @error-color;
         }
     }
