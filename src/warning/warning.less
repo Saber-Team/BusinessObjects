@@ -1,0 +1,66 @@
+@base-path: '../base';
+@import "@{base-path}/conf";
+@warning-link-color : #4497ff;
+@warning-font-size : 12px;
+@warning-height : 34px;
+
+// set warning color
+.setWarningColor(@bg-color, @border-color) {
+    background-color : @bg-color;
+    border : 1px solid @border-color;
+}
+
+.setIconBg(@position-x,@position-y){
+    background-position: @position-x  @position-y;
+}
+.@{namespace}-warning{
+    line-height : @warning-height;
+    height : @warning-height;
+    text-align : center;
+    font-size : @warning-font-size;
+    color : #999;
+    .importance {
+        font-weight: bold;
+    }
+
+    &-icon{
+        display: inline-block;
+        vertical-align: middle;
+        background: url("icon.png") no-repeat;
+        width: 20px;
+        height: 20px;
+    }
+
+    &-red{
+        .setWarningColor(#faf0f1,#f7d0d4);
+        .importance {
+            color : #ed5565;
+        }
+        i{
+            .setIconBg(0,0);
+        }
+        
+    }
+
+    &-orange{
+        .setWarningColor(#fdefd4,#f7d0d4);
+        .importance {
+            color : #ff9900;
+        }
+        i{
+            .setIconBg(0,-58px);
+        }
+    }
+
+    &-gray{
+        .setWarningColor(#faf0f1,#f7d0d4);
+        i{
+            .setIconBg(0,-28px);
+        }
+    }
+
+    &-link {
+        color : @warning-link-color ;
+        margin-left : 6px;
+    }
+}
