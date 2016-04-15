@@ -1,63 +1,340 @@
 <!doctype html>
 <html>
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="x-ua-compatible" content="ie=edge">
-        <title></title>
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <link rel="stylesheet" href="../dist/base/base.css">
-        <link rel="stylesheet" href="../dist/checkbox/checkbox.css">
-        <style>
-            body {
-                margin: 50px;
-            }
-            div {
-                margin: 10px 0;
-            }
-        </style>
-    </head>
-    <body>
+    <link rel="stylesheet" href="../dist/base/base.css">
+    <link rel="stylesheet" href="../dist/checkbox/checkbox.css">
+
+    <script src="../lib/jquery.js"></script>
+    <script src="../dist/checkbox/checkbox.js"></script>
+    <style>
+        body {
+            margin: 50px;
+        }
+
+        button {
+            border: 1px solid #e4e5df;
+            border-radius: 3px;
+            padding: 5px 10px;
+            margin-right: 20px;
+            outline: none;
+        }
+        button:hover {
+            background: #e4e5df;
+            color: #494949;
+        }
+        button:disabled {
+            cursor: not-allowed;
+            background: #fff;
+        }
+
+        div {
+            margin: 10px 0;
+        }
+        h1 {
+            padding-bottom: 10px;
+            margin-bottom: 10px;
+            border-bottom: 1px solid #f1f1f1;
+        }
+        .ui {
+            border: 1px solid #f2f2f5;
+            border-radius: 5px;
+            padding: 10px 20px 30px;
+            margin-bottom: 30px;
+        }
+        .ui h2 {
+            margin: 20px 0 10px;
+        }
+
+        .init-container,
+        .dynamic-container {
+            border: 1px solid #f2f2f5;
+            border-radius: 5px;
+            padding: 20px 30px;
+            margin-bottom: 30px;
+        }
+        .event-log {
+            color: darkred;
+            margin-top: 15px;
+            line-height: 1.5;
+        }
+
+        .dynamic-container pre {
+            background: #2f2f2f;
+            color: #3f8ef1;
+            height: 200px;
+            padding: 20px 0;
+            overflow-y: auto;
+            margin-bottom: 20px;
+        }
+
+        .dynamic-add {
+            display: none;
+            width: 100%;
+            border: 1px solid #b4b4b6;
+            padding: 10px 0;
+            margin: 10px 0;
+            outline: none;
+            line-height: 1.5;
+            height: 100px;
+        }
+    </style>
+</head>
+<body>
+<div class="ui">
+    <h1>checkbox的基本样式</h1>
+    <h2>block  checkbox</h2>
+    <div class="zdh-checkbox">
+        <input type="checkbox" id="normal">
+        <label for="normal">正常checkbox</label>
+    </div>
+
+    <div class="zdh-checkbox ">
+        <input type="checkbox" id="enable" checked>
+        <label for="enable">正常checkbox</label>
+    </div>
+
+    <div class="zdh-checkbox">
+        <input type="checkbox" id="disabled-checked" checked disabled>
+        <label for="disabled-checked">禁用状态checkbox（选中）</label>
+    </div>
+
+    <div class="zdh-checkbox">
+        <input type="checkbox" id="disabled" disabled>
+        <label for="disabled">禁用状态checkbox（未选中）</label>
+    </div>
+
+    <h2>inline  checkbox</h2>
+    <div class="zdh-checkbox zdh-checkbox-inline">
+        <input type="checkbox" id="normal-inline">
+        <label for="normal-inline">正常checkbox</label>
+    </div>
+
+    <div class="zdh-checkbox zdh-checkbox-inline">
+        <input type="checkbox" id="enable-inline" checked>
+        <label for="enable-inline">正常checkbox</label>
+    </div>
+
+    <div class="zdh-checkbox zdh-checkbox-inline">
+        <input type="checkbox" id="disabled-checked-inline" checked disabled>
+        <label for="disabled-checked-inline">禁用状态checkbox（选中）</label>
+    </div>
+
+    <div class="zdh-checkbox zdh-checkbox-inline">
+        <input type="checkbox" id="disabled-inline" disabled>
+        <label for="disabled-inline">禁用状态checkbox（未选中）</label>
+    </div>
+</div>
+
+
+<div class="init-container">
+    <h1>页面已经存在checkbox, 初始化其事件</h1>
+    <div class="init-button">
+        <button class="init-checkbox-btn">初始化checkbox</button>
+        <button class="get-checkbox-btn" disabled>获取选中checkbox的值</button>
+    </div>
+    <div class="init-checkbox">
         <div class="zdh-checkbox">
-            <input type="checkbox" id="normal">
-            <label for="normal">正常checkbox</label>
+            <input type="checkbox" id="normal_1" value="1" name="normal">
+            <label for="normal_1">测试checkbox1</label>
         </div>
 
         <div class="zdh-checkbox ">
-            <input type="checkbox" id="enable" checked>
-            <label for="enable">正常checkbox</label>
+            <input type="checkbox" id="normal_2" value="2" name="normal">
+            <label for="normal_2">测试checkbox2</label>
         </div>
+        <div class="zdh-checkbox ">
+            <input type="checkbox" id="normal_3" value="3" name="normal">
+            <label for="normal_3">测试checkbox2</label>
+        </div>
+        <div class="zdh-checkbox ">
+            <input type="checkbox" id="normal_4" value="4" name="normal">
+            <label for="normal_4">测试checkbox2</label>
+        </div>
+        <div class="zdh-checkbox ">
+            <input type="checkbox" id="normal_5" value="5" name="normal">
+            <label for="normal_5">测试checkbox2</label>
+        </div>
+    </div>
+    <div class="event-log">初始化checkbox后, 可以查看获取事件变化</div>
 
-        <div class="zdh-checkbox">
-            <input type="checkbox" id="disabled-checked" checked disabled>
-            <label for="disabled-checked">禁用状态checkbox（选中）</label>
-        </div>
+    <script>
+        $(function () {
+            var checkbox;
+            var selected = [];
+            var $log = $('.event-log', '.init-container');
+            var $btnInit = $('.init-checkbox-btn', '.init-button');
+            var $btnGet = $('.get-checkbox-btn', '.init-button');
 
-        <div class="zdh-checkbox">
-            <input type="checkbox" id="disabled" disabled>
-            <label for="disabled">禁用状态checkbox（未选中）</label>
-        </div>
+            $btnInit.on('click', function (e) {
+                checkbox = new businessUI.Checkbox({
+                    container: '.init-checkbox'
+                });
 
-        <hr>
-        <div class="zdh-checkbox zdh-checkbox-inline">
-            <input type="checkbox" id="normal-inline">
-            <label for="normal-inline">正常checkbox</label>
-        </div>
+                checkbox.getContainer().on('ui.checkbox.change', function (e) {
+                    console.dir(e);
+                    $log.html('第 ' + e.index + ' 个checkbox 状态发生变化;'
+                            + '<br>当前选中 ' + checkbox.keyValues.length + '个, 他们的值分别是: ' + checkbox.keyValues.join(','));
+                });
 
-        <div class="zdh-checkbox zdh-checkbox-inline">
-            <input type="checkbox" id="enable-inline" checked>
-            <label for="enable-inline">正常checkbox</label>
-        </div>
+                $btnGet.attr('disabled', false);
+                $btnInit.attr('disabled', true);
+            });
 
-        <div class="zdh-checkbox zdh-checkbox-inline">
-            <input type="checkbox" id="disabled-checked-inline" checked disabled>
-            <label for="disabled-checked-inline">禁用状态checkbox（选中）</label>
-        </div>
+            $btnGet.on('click', function (e) {
+                var keyValue = checkbox.getKeyValue();
+                alert('name: ' + keyValue.key + ' && values: ' + keyValue.value.join(','));
+            });
+        })
+    </script>
+</div>
 
-        <div class="zdh-checkbox zdh-checkbox-inline">
-            <input type="checkbox" id="disabled-inline" disabled>
-            <label for="disabled-inline">禁用状态checkbox（未选中）</label>
-        </div>
-    </body>
+<div class="dynamic-container">
+    <h1>动态生成checkbox,包括动态添加数据</h1>
+    <div class="dynamic-btn">
+        <pre>
+        {
+            "container":".dynamic-checkbox",
+            "keyName":"dynamic",
+            "data":[
+                {
+                    "label":"动态生成的checkbox1",
+                    "value":"1",
+                    "id":"dy_1"
+                },
+                {
+                    "label":"动态生成的checkbox2",
+                    "value":"2",
+                    "id":"dy_2"
+                },
+                {
+                    "label":"动态生成的checkbox3",
+                    "value":"3",
+                    "id":"dy_3"
+                },
+                {
+                    "label":"动态生成的checkbox4",
+                    "value":"4",
+                    "id":"dy_4"
+                },
+                {
+                    "label":"动态生成的checkbox5",
+                    "value":"5",
+                    "id":"dy_5"
+                },
+                {
+                    "label":"动态生成的checkbox6",
+                    "value":"6",
+                    "id":"dy_6"
+                },
+                {
+                    "label":"动态生成的checkbox7",
+                    "value":"7",
+                    "id":"dy_7"
+                }
+            ]
+        }
+        </pre>
+        <button type="button" class="create">生成checkbox</button>
+        <button type="button" class="add-item" disabled>动态添加一个checkbox</button>
+        <textarea name="" class="dynamic-add" id="addItem" cols="30" rows="10">
+        {
+            "label":"动态生成的checkbox8",
+            "value":"8",
+            "id":"dy_8"
+        }
+        </textarea>
+    </div>
+    <div class="dynamic-checkbox"></div>
+    <div class="event-log">点击生成checkbox, 会根据展示的josn数据生成checkbox</div>
+    <script>
+        $(function () {
+            var checkbox;
+            var opts = {
+                "container":".dynamic-checkbox",
+                "keyName":"dynamic",
+                "data":[
+                    {
+                        "label":"动态生成的checkbox1",
+                        "value":"1",
+                        "id":"dy_1"
+                    },
+                    {
+                        "label":"动态生成的checkbox2",
+                        "value":"2",
+                        "id":"dy_2"
+                    },
+                    {
+                        "label":"动态生成的checkbox3",
+                        "value":"3",
+                        "id":"dy_3"
+                    },
+                    {
+                        "label":"动态生成的checkbox4",
+                        "value":"4",
+                        "id":"dy_4"
+                    },
+                    {
+                        "label":"动态生成的checkbox5",
+                        "value":"5",
+                        "id":"dy_5"
+                    },
+                    {
+                        "label":"动态生成的checkbox6",
+                        "value":"6",
+                        "id":"dy_6"
+                    },
+                    {
+                        "label":"动态生成的checkbox7",
+                        "value":"7",
+                        "id":"dy_7"
+                    }
+                ]
+            };
+            var $log = $('.event-log', '.dynamic-container');
+            var $btnCreate = $('.create', '.dynamic-container');
+            var $addItem = $('.add-item', '.dynamic-container');
+            var $dynamicAdd = $('#addItem');
+
+            $btnCreate.on('click', function (e) {
+                checkbox = new businessUI.Checkbox(opts);
+
+                checkbox.getContainer().on('ui.checkbox.change', function (e) {
+                    console.dir(e);
+                    $log.html('第 ' + e.index + ' 个checkbox 状态发生变化;'
+                            + '<br>当前选中 ' + checkbox.keyValues.length + '个, 他们的值分别是: ' + checkbox.keyValues.join(','));
+                });
+                $btnCreate.attr('disabled', true);
+                $addItem.attr('disabled', false);
+                $dynamicAdd.css('display', 'block');
+            });
+
+            $addItem.on('click', function (e) {
+                checkbox.addItem(JSON.parse($dynamicAdd.val()));
+            });
+
+            $('pre', '.dynamic-container').on('mousewheel', function(event) {
+                // 一些数据
+                var scrollTop = this.scrollTop,
+                        scrollHeight = this.scrollHeight,
+                        height = this.clientHeight;
+
+                var delta = (event.originalEvent.wheelDelta) ? event.originalEvent.wheelDelta : -(event.originalEvent.detail || 0);
+
+                if ((delta > 0 && scrollTop <= delta) || (delta < 0 && scrollHeight - height - scrollTop <= -1 * delta)) {
+                    // IE浏览器下滚动会跨越边界直接影响父级滚动，因此，临界时候手动边界滚动定位
+                    this.scrollTop = delta > 0? 0: scrollHeight;
+                    // 向上滚 || 向下滚
+                    event.preventDefault();
+                }
+            });
+        })
+    </script>
+</div>
+</body>
 </html>
