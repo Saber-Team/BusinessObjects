@@ -31,21 +31,22 @@
         </style>
         <div class="item">
             <h3>date range</h3>
-            <div class="zdh-datepicker-group">
+            <label class="zdh-datepicker-group">
                 <input class="zdh-input zdh-input-mid" id="datepicker1" readonly="readonly">
                 <i class="datepicker-icon"></i>
-            </div>
+            </label>
             <span style="margin: 0 10px">–</span>
-            <div class="zdh-datepicker-group">
+            <label class="zdh-datepicker-group">
                 <input class="zdh-input" id="datepicker2" readonly="readonly">
                 <i class="datepicker-icon"></i>
-            </div>
+            </label>
         </div>
         <script>
 
             var Datepicker = businessUI.Datepicker
 
             var startRange
+            var endRange
 
             var picker = new Datepicker({
                 field   : $('#datepicker1'),
@@ -57,8 +58,8 @@
                 },
                 onSelect: function (date) {
                     picker2.setMinDate(date)
-                    picker2.clearRange()
                     startRange = date
+                    picker2.setRange(date)
                 }
             });
 
@@ -68,11 +69,13 @@
                 autohide: false,
                 onShow: function () {
                     this.field.parent().addClass('active')
+                    startRange && endRange && picker2.setRange(startRange, endRange)
                 },
                 onClose: function () {
                     this.field.parent().removeClass('active')
                 },
                 onSelect: function (date) {
+                    endRange = date
                     startRange && this.setRange(startRange, date)
                 }
             });

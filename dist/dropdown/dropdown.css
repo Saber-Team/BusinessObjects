@@ -78,7 +78,7 @@
 .zdh-dropdown .dropdown-icon > i:after {
     border-color: #f3f3f3 transparent transparent transparent;
 }
-.zdh-dropdown .dropdown-icon.active i {
+.active.zdh-dropdown .dropdown-icon i {
     -webkit-transform: rotate(-180deg);
         -ms-transform: rotate(-180deg);
             transform: rotate(-180deg);

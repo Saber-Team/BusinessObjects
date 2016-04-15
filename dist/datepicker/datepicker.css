@@ -21,41 +21,67 @@
 }
 .datepicker-calendar td,
 .datepicker-calendar th {
-    width: 28px;
-    height: 28px;
     text-align: center;
     vertical-align: middle;
 }
 .datepicker-calendar .datepicker-dayofweek th {
+    height: 20px;
     font-weight: normal;
     color: #999;
     border-top: 1px solid #dfe2e3;
     border-bottom: 1px solid #dfe2e3;
+    background-color: #f8f8f8;
 }
-.datepicker-calendar td {
+.datepicker-calendar tr th:first-child,
+.datepicker-calendar tr td:first-child {
+    padding-left: 10px;
+}
+.datepicker-calendar tr th:last-child,
+.datepicker-calendar tr td:last-child {
+    padding-right: 10px;
+}
+.datepicker-calendar tbody td {
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
     cursor: pointer;
+    background-clip: content-box;
 }
-.datepicker-calendar td.hidden,
-.datepicker-calendar td:empty {
+.datepicker-calendar tbody td.hidden,
+.datepicker-calendar tbody td:empty {
     visibility: hidden;
 }
-.datepicker-calendar td.disabled {
+.datepicker-calendar tbody td.disabled {
     color: #ccc;
     cursor: default;
 }
-.datepicker-calendar td.selected,
-.datepicker-calendar td.selected:hover {
+.datepicker-calendar tbody td.selected,
+.datepicker-calendar tbody td.selected:hover {
     color: #fff;
-    background-color: #4497ff;
+    background-color: #4497ff !important;
 }
-.datepicker-calendar td.inrange,
-.datepicker-calendar td.inrange:hover {
+.datepicker-calendar tbody td.inrange,
+.datepicker-calendar tbody td.inrange:hover {
     background-color: #cae2fe;
-    border-radius: none;
 }
-.datepicker-calendar td:not(.disabled):not(.selected):not(.inrange):hover {
+.datepicker-calendar tbody td.istoday {
+    box-shadow: 0 0 0 1px #4497ff inset;
+}
+.datepicker-calendar tbody td:not(.disabled):not(.selected):not(.inrange):hover {
     background-color: #cae2fe;
-    border-radius: 2px;
+}
+.datepicker-calendar tfoot {
+    border-top: 1px solid #dfe2e3;
+}
+.datepicker-calendar tfoot td {
+    height: 30px;
+    vertical-align: middle;
+}
+.datepicker-calendar tfoot .datepicker-today {
+    display: inline-block;
+    padding: 0 15px;
+    color: #4497ff;
+    cursor: pointer;
 }
 .datepicker-select {
     position: relative;
@@ -98,41 +124,85 @@
         -ms-transform: translate(0, -50%);
             transform: translate(0, -50%);
 }
-.datepicker-prev,
-.datepicker-next {
+.datepicker-prev-month,
+.datepicker-next-month,
+.datepicker-prev-year,
+.datepicker-next-year {
     position: absolute;
     width: 16px;
     height: 20px;
     cursor: pointer;
 }
-.datepicker-prev:after,
-.datepicker-next:after {
+.datepicker-prev-month:after,
+.datepicker-next-month:after {
     position: absolute;
     content: '';
     display: inline-block;
     top: 6px;
     border-style: solid;
 }
-.datepicker-prev {
-    left: 4px;
+.datepicker-prev-month {
+    left: 20px;
 }
-.datepicker-prev:after {
+.datepicker-prev-month:after {
     left: 6px;
     border-width: 4px 4px 4px 0;
     border-color: transparent #333 transparent transparent;
 }
-.datepicker-prev.disabled:after {
+.datepicker-prev-month.disabled:after {
     border-color: transparent #ccc transparent transparent;
 }
-.datepicker-next {
-    right: 4px;
+.datepicker-next-month {
+    right: 20px;
 }
-.datepicker-next:after {
+.datepicker-next-month:after {
     right: 6px;
     border-width: 4px 0 4px 4px;
     border-color: transparent transparent transparent #333;
 }
-.datepicker-next.disabled:after {
+.datepicker-next-month.disabled:after {
+    border-color: transparent transparent transparent #ccc;
+}
+.datepicker-prev-year:before,
+.datepicker-next-year:before,
+.datepicker-prev-year:after,
+.datepicker-next-year:after {
+    position: absolute;
+    content: '';
+    display: inline-block;
+    top: 6px;
+    border-style: solid;
+}
+.datepicker-prev-year {
+    left: 4px;
+}
+.datepicker-prev-year:before,
+.datepicker-prev-year:after {
+    left: 4px;
+    border-width: 4px 4px 4px 0;
+    border-color: transparent #333 transparent transparent;
+}
+.datepicker-prev-year:after {
+    left: 9px;
+}
+.datepicker-prev-year.disabled:before,
+.datepicker-prev-year.disabled:after {
+    border-color: transparent #ccc transparent transparent;
+}
+.datepicker-next-year {
+    right: 4px;
+}
+.datepicker-next-year:before,
+.datepicker-next-year:after {
+    right: 4px;
+    border-width: 4px 0 4px 4px;
+    border-color: transparent transparent transparent #333;
+}
+.datepicker-next-year:after {
+    right: 9px;
+}
+.datepicker-next-year.disabled:before,
+.datepicker-next-year.disabled:after {
     border-color: transparent transparent transparent #ccc;
 }
 .zdh-datepicker-group {
