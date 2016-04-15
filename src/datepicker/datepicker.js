@@ -12,6 +12,9 @@
     var disabledClass = 'disabled'
     var hiddenClass   = 'hidden'
 
+    // field parent class
+    var groupClass = 'zdh-datepicker-group'
+
     // conf
     var defaultConf = {
         field       : null,
@@ -189,7 +192,7 @@
             // show
             this.picker.css('display', 'block')
             // add active class
-            this.field.closest('.zdh-datepicker-group').addClass('active')
+            this.field.closest('.' + groupClass).addClass('active')
             // position
             this.setPosition()
             // call show callback
@@ -199,7 +202,7 @@
         close: function () {
             this.actived = false
             this.picker.css('display', 'none')
-            this.field.closest('.zdh-datepicker-group').removeClass('active')
+            this.field.closest('.' + groupClass).removeClass('active')
             // call close callback
             this.onClose()
         },
