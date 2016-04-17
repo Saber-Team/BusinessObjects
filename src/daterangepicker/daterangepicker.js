@@ -137,9 +137,8 @@
                 }
             })
             endPicker.dateGrid.on('mouseleave', function () {
-                setTimeout(function () {
-                    me.clearHighlight()
-                }, minInterval)
+                clearTimeout(hoverTimer)
+                me.clearHighlight()
             })
         },
 
