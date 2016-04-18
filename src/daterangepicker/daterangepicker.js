@@ -84,23 +84,26 @@
             var picker  = this.endPicker
             var curDate = toDate([picker.year, picker.month + 1, date].join('/'))
             var start   = this.startRange
-            var size    = getSizeOfMonth(curDate.getMonth())
             var index   = 1
             var total   = 0
 
+            var formerDate
+
             if (curDate > start) {
                 this.clearHighlight()
-                index =  curDate.getFullYear() === picker.year && start.getMonth() === picker.month ? start.getDate() : 1
+                index = curDate.getFullYear() === picker.year && start.getMonth() === picker.month ? start.getDate() : 1
                 while (index <= date) {
                     $('td[date=' + index + ']', picker.dateGrid).addClass(highlightClass)
                     index++
                     total++
                 }
+
                 if (total) {
                     picker.dateGrid.addClass(highlightModeClass)
-                    this.highlighted = true
+                    this.highlighted  = true
                 }
 
+                formerDate = date
             }
         },
 
@@ -108,7 +111,7 @@
             if (this.highlighted) {
                 this.endPicker.dateGrid.removeClass(highlightModeClass)
                 $('.' + highlightClass, this.endPicker.dateGrid).removeClass(highlightClass)
-                this.highlighted = false
+                this.highlighted  = false
             }
 
         },
@@ -119,7 +122,7 @@
             var endPicker   = this.endPicker
 
             // hover
-            var minInterval = 250
+            var minInterval = 120
             var hoverTimer  = null
             endPicker.dateGrid.on('mouseenter', 'td[date]:not(.disable)', function (e) {
                 var date
