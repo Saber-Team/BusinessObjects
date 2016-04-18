@@ -2,7 +2,7 @@
  * @file datepicker
  * @author jinwei01
  */
-;(function (UI) {
+;(function (UI, undefined) {
 
     var idCounter = 0
 
@@ -11,6 +11,8 @@
     var selectedClass = 'selected'
     var disabledClass = 'disabled'
     var hiddenClass   = 'hidden'
+    var inrangeClass  = 'inrange'
+    var istodayClass  = 'istoday'
 
     // field parent class
     var groupClass = 'zdh-datepicker-group'
@@ -120,20 +122,6 @@
         })
     }
 
-    function compareDate (d1, d2) {
-        var t
-        d1 = d1.valueOf()
-        d2 = d2.valueOf()
-        if (d1 > d2) {
-            t = 1
-        } else if (d1 < d2) {
-            t = -1
-        } else {
-            t = 0
-        }
-        return t
-    }
-
     function Datepicker (opt) {
         if (!(this instanceof Datepicker)) {
             return new Datepicker(opt)
@@ -143,6 +131,12 @@
         this.uniqueId = idCounter++
         this.init()
     }
+
+    // static methods
+    Datepicker.toDate         = toDate
+    Datepicker.toDateString   = toDateString
+    Datepicker.getSizeOfMonth = getSizeOfMonth
+
 
     Datepicker.prototype = {
         constructor: Datepicker,
@@ -241,7 +235,7 @@
         },
 
         getDate: function () {
-            return this.date ? toDate([this.year, this.month + 1, this.date].join('/')) : null
+            return this.date ? toDate([this.year, this.month + 1, this.date].join('/')) : undefined
         },
 
         getDateString: function () {
@@ -403,10 +397,10 @@
 
                     istoday = getToday().valueOf() === date.valueOf()
 
-                    disabled   && clz.push('disabled')
-                    inrange    && clz.push('inrange')
-                    istoday    && clz.push('istoday')
-                    isRangeEnd && clz.push('selected')
+                    disabled   && clz.push(disabledClass)
+                    inrange    && clz.push(inrangeClass)
+                    istoday    && clz.push(istodayClass)
+                    isRangeEnd && clz.push(selectedClass)
 
                     rowHtml.push(
                         '<td date="' + dateIndex + (clz.length ? ('" class="' + clz.join(' ') + '"'): '"') + '>' + dateIndex + '</td>'
