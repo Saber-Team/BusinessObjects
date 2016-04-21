@@ -87,8 +87,6 @@
             var index   = 1
             var total   = 0
 
-            var formerDate
-
             if (curDate > start) {
                 this.clearHighlight()
                 index = curDate.getFullYear() === picker.year && start.getMonth() === picker.month ? start.getDate() : 1
@@ -102,8 +100,6 @@
                     picker.dateGrid.addClass(highlightModeClass)
                     this.highlighted  = true
                 }
-
-                formerDate = date
             }
         },
 
@@ -113,7 +109,6 @@
                 $('.' + highlightClass, this.endPicker.dateGrid).removeClass(highlightClass)
                 this.highlighted  = false
             }
-
         },
 
         bind: function () {
