@@ -227,6 +227,13 @@
 .zdh-datepicker-group > input {
     width: 7em;
     border: none;
+    background: transparent !important;
+}
+.disabled.zdh-datepicker-group > input ~ .datepicker-icon:before {
+    background-position: 0 -38px;
+}
+.zdh-datepicker-group.disabled {
+    box-shadow: 0 0 0 1px #f1f1f1 inset;
 }
 .zdh-datepicker-group .datepicker-icon {
     text-align: center;

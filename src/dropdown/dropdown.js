@@ -21,6 +21,14 @@
         onSelect  : loop
     }
 
+    var tmpl = [
+        '<label class="dropdown-label">dropdown</label>',
+        '<span class="dropdown-icon"><i></i></span>',
+        '<ul class="dropdown-list">',
+            // '<li data-value="1" class="dropdown-item">dropdown item 1</li>',
+        '</ul>'
+    ].join('')
+
     var activeClass   = 'active' // dropdown active state
     var labelClass    = 'dropdown-label' // label
     var listClass     = 'dropdown-list' // list
@@ -37,9 +45,9 @@
 
         $.extend(this, defaultConf, opt)
 
-        this.uid  = idCounter++
-        this.el   = opt.el
-        this.list = $('.' + listClass, this.el)
+        this.uid   = idCounter++
+        this.el    = opt.el
+        this.value = null
 
         // auto init
         this.init()
@@ -47,14 +55,29 @@
 
     $.extend(Dropdown.prototype, {
         init: function() {
+            this.el.html(tmpl)
+            if ($('meta', this.el).length) {
+
+            }
+            this.list = $('.' + listClass, this.el)
+            // render
+            this.items && this.render(this.items)
             // equal width label
             this.equalWidth && this.el.addClass('equalwidth')
             // customer class
             this.theme && this.el.addClass(this.theme)
             // items count
             this.len   = $('.' + itemClass, this.el).length
+            //disabled?
+            this.disabled(this.len)
+
             // bind events
             this.bind()
+        },
+
+        getValue: function () {
+            // {text:'xxx', value: 'xxx'}
+            return this.value
         },
 
         show: function() {
@@ -75,6 +98,8 @@
         },
 
         select: function(val) {
+            // val: {text:'xxx', value: 'xxx'}
+            this.value = val
             this.setLabel(val.text)
             this.onSelect(val)
         },
@@ -88,17 +113,25 @@
 
         render: function(items) {
             this.empty()
-            this.list.html(
-                items.map(function(item) {
-                    return '<li data-value="' + (item.value || '') + '" class="' + itemClass + '">' + (item.text || '') + '</li>'
-                }).join('')
-            )
+            if (items.length > 0) {
+                this.list.html(
+                    items.map(function(item) {
+                        return '<li data-value="' + (item.value || '') + '" class="' + itemClass + '">' + (item.text || '') + '</li>'
+                    }).join('')
+                )
+            }
+            // disabled?
+            this.disabled(items.length)
         },
 
         empty: function() {
             this.list.html('')
             this.len = 0
             this.selectIndex = undefined
+        },
+
+        disabled: function (disabled) {
+            this.el.toggleClass('disabled', disabled)
         },
 
         setLabel: function(text) {

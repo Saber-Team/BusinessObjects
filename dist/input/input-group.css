@@ -19,10 +19,10 @@
 }
 .zdh-input[disabled],
 .zdh-input-group .zdh-input[disabled] {
-    color: #ccc !important;
-    background-color: #f6f8f9 !important;
-    border-color: #dfe2e3 !important;
-    cursor: default !important;
+    color: #ccc;
+    background-color: #f6f8f9;
+    border-color: #dfe2e3;
+    cursor: default;
 }
 .zdh-input-group .zdh-error .zdh-input,
 .zdh-input-group .zdh-error .input-counter {

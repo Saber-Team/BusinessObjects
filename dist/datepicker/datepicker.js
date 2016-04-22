@@ -180,17 +180,19 @@
         },
 
         show: function () {
-            this.actived = true
-            // set Date
-            this.setDate(this.field && this.field.val() ? toDate(this.field.val()) : undefined)
-            // show
-            this.picker.css('display', 'block')
-            // add active class
-            this.field.closest('.' + groupClass).addClass('active')
-            // position
-            this.setPosition()
-            // call show callback
-            this.onShow();
+            if (!this.disabled) {
+                this.actived = true
+                // set Date
+                this.setDate(this.field && this.field.val() ? toDate(this.field.val()) : undefined)
+                // show
+                this.picker.css('display', 'block')
+                // add active class
+                this.field.closest('.' + groupClass).addClass('active')
+                // position
+                this.setPosition()
+                // call show callback
+                this.onShow()
+            }
         },
 
         close: function () {
@@ -527,6 +529,11 @@
             $(document).on('click.datepicker.close.' + this.uniqueId, function () {
                 me.actived && !eventFromFiled && !eventFromPicker && me.close()
             })
+        },
+
+        disable: function () {
+            this.disabled = true
+            this.field.closest('.' + groupClass).addClass('disabled')
         },
 
         destroy: function () {

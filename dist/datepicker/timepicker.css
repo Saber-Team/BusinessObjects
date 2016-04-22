@@ -1,0 +1,30 @@
+/**
+ * @file timepicker
+ * @author jinwei01
+ */
+.zdh-timepicker-hour,
+.zdh-timepicker-minite {
+    display: inline-block;
+    position: relative;
+    z-index: 0;
+    border: 1px solid #dfe2e3;
+}
+.zdh-timepicker-hour label,
+.zdh-timepicker-minite label {
+    position: relative;
+    z-index: -1;
+    width: 6em;
+    height: 28px;
+    display: block;
+}
+.zdh-timepicker-hour select,
+.zdh-timepicker-minite select {
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    height: 28px;
+    opacity: 0;
+    background-color: #fff;
+}

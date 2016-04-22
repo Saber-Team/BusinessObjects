@@ -35,74 +35,27 @@
         </style>
         <div class="dropdown-item">
             <h3>dropdown</h3>
-            <div class="zdh-dropdown" id="dropdown1">
-                <label class="dropdown-label">dropdowndowndown</label>
-                <span class="dropdown-icon"><i></i></span>
-                <ul class="dropdown-list">
-                    <li data-value="1" class="dropdown-item">dropdown item 1</li>
-                    <li data-value="2" class="dropdown-item">dropdown</li>
-                    <li data-value="3" class="dropdown-item">item 3</li>
-                    <li data-value="4" class="dropdown-item">dropdown item 4</li>
-                    <li data-value="5" class="dropdown-item">dropdown item 5</li>
-                </ul>
-            </div>
+            <div class="zdh-dropdown" id="dropdown1"></div>
         </div>
 
         <div class="dropdown-item">
-            <h3>dropdown</h3>
-            <div class="zdh-dropdown" id="dropdown2">
-                <label class="dropdown-label">dropdown</label>
-                <span class="dropdown-icon"><i></i></span>
-                <ul class="dropdown-list">
-                    <li data-value="1" class="dropdown-item">dropdown item 1</li>
-                    <li data-value="2" class="dropdown-item">dropdown item 2</li>
-                    <li data-value="3" class="dropdown-item">dropdown item 3</li>
-                    <li data-value="4" class="dropdown-item">dropdown item 4</li>
-                    <li data-value="5" class="dropdown-item">dropdown item 5</li>
-                    <li data-value="6" class="dropdown-item">dropdown item 1</li>
-                </ul>
-            </div>
+            <h3>dropdown 默认等宽</h3>
+            <div class="zdh-dropdown" id="dropdown2"></div>
         </div>
 
         <div class="dropdown-item">
             <h3>with scrollbar</h3>
-            <div class="zdh-dropdown" id="dropdown3">
-                <label class="dropdown-label">dropdown</label>
-                <span class="dropdown-icon"><i></i></span>
-                <ul class="dropdown-list">
-                    <li data-value="1" class="dropdown-item">dropdown item 1</li>
-                    <li data-value="1" class="dropdown-item">dropdown item 2</li>
-                    <li data-value="1" class="dropdown-item">dropdown item 3</li>
-                    <li data-value="1" class="dropdown-item">dropdown item 4</li>
-                    <li data-value="1" class="dropdown-item">dropdown item 5</li>
-                    <li data-value="1" class="dropdown-item">dropdown item 1</li>
-                    <li data-value="1" class="dropdown-item">dropdown item 2</li>
-                    <li data-value="1" class="dropdown-item">dropdown item 3</li>
-                    <li data-value="1" class="dropdown-item">dropdown item 4</li>
-                    <li data-value="1" class="dropdown-item">dropdown item 5</li>
-                    <li data-value="1" class="dropdown-item">dropdown item 1</li>
-                    <li data-value="1" class="dropdown-item">dropdown item 2</li>
-                    <li data-value="1" class="dropdown-item">dropdown item 3</li>
-                    <li data-value="1" class="dropdown-item">dropdown item 4</li>
-                    <li data-value="1" class="dropdown-item">dropdown item 5</li>
-                </ul>
-            </div>
+            <div class="zdh-dropdown" id="dropdown3"></div>
         </div>
 
         <div class="dropdown-item">
             <h3>dropdown</h3>
-            <div class="zdh-dropdown" id="dropdown4">
-                <label class="dropdown-label">dropdown</span></label>
-                <span class="dropdown-icon"><i></i></span>
-                <ul class="dropdown-list">
-                    <li data-value="1" class="dropdown-item">dropdown item 1</li>
-                    <li data-value="1" class="dropdown-item">dropdown item 2</li>
-                    <li data-value="1" class="dropdown-item">dropdown item 3</li>
-                    <li data-value="1" class="dropdown-item">dropdown item 4</li>
-                    <li data-value="1" class="dropdown-item">dropdown item 5</li>
-                    <li data-value="1" class="dropdown-item">dropdown item 1</li>
-                </ul>
-            </div>
+            <div class="zdh-dropdown" id="dropdown4"></div>
+        </div>
+
+        <div class="dropdown-item">
+            <h3>disabled dropdown</h3>
+            <div class="zdh-dropdown" id="dropdown5"></div>
         </div>
 
         <script>
@@ -110,6 +63,13 @@
 
             var d1 = new Dropdown({
                 el        : $('#dropdown1'),
+                items     : [
+                    {value: 1, text: 'x1'},
+                    {value: 2, text: 'x2'},
+                    {value: 3, text: 'x3'},
+                    {value: 4, text: 'x4'},
+                    {value: 5, text: 'x5'}
+                ],
                 equalWidth: false,
                 theme     : 'xxjinwei'
             });
@@ -127,8 +87,40 @@
                 }
             });
 
+            d2.render(
+                [
+                    {value: 1, text: 'x1'},
+                    {value: 2, text: 'x2'},
+                    {value: 3, text: 'x3'},
+                    {value: 4, text: 'x4'},
+                    {value: 5, text: 'x5'}
+                ]
+            )
+
             var d3 = new Dropdown({
-                el: $('#dropdown3')
+                el: $('#dropdown3'),
+                items: [
+                    {value: 1, text: 'x1'},
+                    {value: 2, text: 'x2'},
+                    {value: 3, text: 'x3'},
+                    {value: 4, text: 'x4'},
+                    {value: 5, text: 'x5'},
+                    {value: 1, text: 'x1'},
+                    {value: 2, text: 'x2'},
+                    {value: 3, text: 'x3'},
+                    {value: 4, text: 'x4'},
+                    {value: 5, text: 'x5'},
+                    {value: 1, text: 'x1'},
+                    {value: 2, text: 'x2'},
+                    {value: 3, text: 'x3'},
+                    {value: 4, text: 'x4'},
+                    {value: 5, text: 'x5'},
+                    {value: 1, text: 'x1'},
+                    {value: 2, text: 'x2'},
+                    {value: 3, text: 'x3'},
+                    {value: 4, text: 'x4'},
+                    {value: 5, text: 'x5'}
+                ]
             });
 
             var d4 = Dropdown({
@@ -144,6 +136,11 @@
                 ]
             )
             d4.focus(2)
+
+
+            var d5 = new Dropdown({
+                el: $('#dropdown5')
+            })
         </script>
     </body>
 </html>

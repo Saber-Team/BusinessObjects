@@ -276,11 +276,19 @@
        display: inline-table;
        box-shadow: 0 0 0 1px @silver inset;
        > * {
-           display: table-cell;;
+           display: table-cell;
        }
        > input {
            width: 7em;
            border: none;
+           background: transparent !important;
+           // disabled
+           .disabled& ~ .@{root-classname}-icon:before {
+               background-position: 0 -38px;
+           }
+       }
+       &.disabled {
+           box-shadow: 0 0 0 1px #f1f1f1 inset;
        }
        .@{root-classname}-icon {
            text-align: center;

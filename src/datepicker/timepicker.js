@@ -18,15 +18,13 @@
         triggerEvent: 'click',
         autohide    : true,
 
-        yearRange: [2000, 2020],
-        minDate  : undefined,
-
         // custom class
         theme: undefined,
 
-        // date range
-        startRange: undefined,
-        endRange  : undefined,
+        // time
+        hourStep  : 1,
+        miniteStep: 1,
+
 
         // events
         onShow  : loop,
@@ -58,7 +56,18 @@
 
         // create picker
         init: function () {
-            
+            if (!this.inited) {
+                this.el           = this.el
+                this.hourPicker   = $('.zdh-timepicker-hour select', this.el)
+                this.minitePicker = $('.zdh-timepicker-minite select', this.el)
+
+                // fill
+                this.fillHour()
+                this.fillMinite()
+
+                this.inited = true
+            }
+
         },
 
         setTime: function () {
@@ -72,6 +81,32 @@
         // bind events
         bind: function () {
 
+        },
+
+        fillHour: function () {
+            var h    = 0
+            var step = this.hourStep
+            var html = []
+
+            while (h <= 24) {
+                html.push('<option value="'+ h +'">'+ h +'</option>')
+                h += step
+            }
+
+            this.hourPicker.html(html.join(''))
+        },
+
+        fillMinite: function () {
+            var m    = 0
+            var step = this.miniteStep
+            var html = []
+
+            while (m < 60) {
+                html.push('<option value="'+ m +'">'+ m +'</option>')
+                m += step
+            }
+
+            this.minitePicker.html(html.join(''))
         },
 
         destroy: function () {
