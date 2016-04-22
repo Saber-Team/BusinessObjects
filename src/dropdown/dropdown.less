@@ -15,8 +15,10 @@
 @group-border-color: @default-border-color;
 @group-padding-hoziron: 10px;
 
-@active-icon-bg-color: #f3f3f3;
-@active-icon-color: #888;
+@icon-bg-color: #f3f3f3;
+@icon-color: #666;
+@active-icon-bg-color: #ecf4ff;
+@active-icon-color: @blue;
 
 @item-active-color: #cae2fe;
 
@@ -47,8 +49,11 @@
         padding-right: unit(@group-padding-hoziron + 15, px);
         .text-overflow();
     }
-    &.active {
+    &.active:not(.disabled) {
         .setBorder(@blue);
+    }
+    &.disabled {
+        .setBorder(#f1f1f1)
     }
 
     .@{root-classname}-icon {
@@ -59,7 +64,7 @@
         margin-left: @group-padding-hoziron;
         top: 1px;
         right: 1px;
-        background-color: @active-icon-bg-color;
+        background-color: @icon-bg-color;
 
         >i {
             position: absolute;
@@ -88,15 +93,26 @@
             }
             &:before {
                 bottom: 0px;
-                border-color: @active-icon-color transparent transparent transparent;
+                border-color: @icon-color transparent transparent transparent;
             }
             &:after {
-                border-color: @active-icon-bg-color transparent transparent transparent;
+                border-color: @icon-bg-color transparent transparent transparent;
             }
+
         }
 
-        .active& i {
-            transform: rotate(-180deg);
+        .active:not(.disabled)& {
+            background-color: @active-icon-bg-color;
+            i {
+                &:before {
+                    bottom: 0px;
+                    border-color: @active-icon-color transparent transparent transparent;
+                }
+                &:after {
+                    border-color: @active-icon-bg-color transparent transparent transparent;
+                }
+                transform: rotate(-180deg);
+            }
         }
     }
 

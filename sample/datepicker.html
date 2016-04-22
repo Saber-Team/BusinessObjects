@@ -11,9 +11,11 @@
         <link rel="stylesheet" href="../dist/base/base.css">
         <link rel="stylesheet" href="../dist/input/input.css">
         <link rel="stylesheet" href="../dist/datepicker/datepicker.css">
-
+        <link rel="stylesheet" href="../dist/datepicker/timepicker.css">
         <script src="../lib/jquery.js"></script>
         <script src="../src/datepicker/datepicker.js"></script>
+        <script src="../src/dropdown/dropdown.js"></script>
+        <script src="../src/datepicker/timepicker.js"></script>
     </head>
     <body>
         <style>
@@ -43,19 +45,17 @@
             </label>
         </div>
         <div class="item">
-            <h3>Timepicker</h3>
-            <div class="zdh-timepicker-group">
-                <label class="zdh-timepicker">
-                    <input class="zdh-input"/>
-                </label>
-                <label class="zdh-timepicker">
-                    <input class="zdh-input"/>
-                </label>
-            </div>
+            <h3>disabled</h3>
+            <label class="zdh-datepicker-group">
+                <input class="zdh-input" id="datepicker3" readonly="readonly">
+                <i class="datepicker-icon"></i>
+            </label>
         </div>
+
         <script>
 
             var Datepicker = businessUI.Datepicker
+            var Timepicker = businessUI.Timepicker
 
             var picker = new Datepicker({
                 field: $('#datepicker1'),
@@ -72,6 +72,17 @@
                 field: $('#datepicker2'),
                 minDate: new Date
             });
+
+            var picker3 = new Datepicker({
+                field: $('#datepicker3')
+            });
+
+            picker3.disable()
+
+
+            // var t1 = new Timepicker({
+            //     el: $('#timepicker1')
+            // })
 
 
         </script>

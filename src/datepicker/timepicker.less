@@ -1,0 +1,47 @@
+/**
+ * @file timepicker
+ * @author jinwei01
+ */
+
+@base-path: '../base';
+
+@import "@{base-path}/conf";
+@import "@{base-path}/color";
+
+
+@root-classname: timepicker;
+
+//size
+@height: 30px;
+
+// color
+@normal-color        : @black;
+@secondary-color     : @gray;
+@disabled-color      : @silver;
+@active-color        : @blue;
+@default-border-color: #dfe2e3;
+
+.@{namespace}-@{root-classname}-hour,
+.@{namespace}-@{root-classname}-minite {
+    display: inline-block;
+    position: relative;
+    z-index: 0;
+    border: 1px solid @default-border-color;
+    label {
+        position: relative;
+        z-index: -1;
+        width: 6em;
+        height: unit(@height - 2*1, px);
+        display: block;
+    }
+    select {
+        position: absolute;
+        left: 0;
+        top: 0;
+        height: 100%;
+        width: 100%;
+        height: 28px;
+        opacity: 0;
+        background-color: @white;
+    }
+}
