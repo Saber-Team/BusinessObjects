@@ -120,6 +120,7 @@
     border: none;
 }
 .zdh-dropdown .dropdown-list .dropdown-item {
+    display: block;
     box-sizing: border-box;
     width: 100%;
     vertical-align: middle;

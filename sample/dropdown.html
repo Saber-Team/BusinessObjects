@@ -35,28 +35,42 @@
         </style>
         <div class="dropdown-item">
             <h3>dropdown</h3>
-            <div class="zdh-dropdown" id="dropdown1"></div>
+            <div id="dropdown1"></div>
         </div>
 
         <div class="dropdown-item">
             <h3>dropdown 默认等宽</h3>
-            <div class="zdh-dropdown" id="dropdown2"></div>
+            <div id="dropdown2"></div>
         </div>
 
         <div class="dropdown-item">
             <h3>with scrollbar</h3>
-            <div class="zdh-dropdown" id="dropdown3"></div>
+            <div id="dropdown3"></div>
         </div>
 
         <div class="dropdown-item">
             <h3>dropdown</h3>
-            <div class="zdh-dropdown" id="dropdown4"></div>
+            <div id="dropdown4"></div>
         </div>
 
         <div class="dropdown-item">
             <h3>disabled dropdown</h3>
-            <div class="zdh-dropdown" id="dropdown5"></div>
+            <div id="dropdown5"></div>
         </div>
+
+        <div class="dropdown-item">
+            <h3>dropdownify</h3>
+            <ul id="dropdown6">
+                <li data-value="1">xxxxxxxx111111</li>
+                <li data-value="2">xxxxxxxx222222</li>
+                <li data-value="3" selected>xxxxxxxx333333</li>
+                <li data-value="4">xxxxxxxx444444</li>
+                <li data-value="5">xxxxxxxx555555</li>
+                <li data-value="6">xxxxxxxx666666</li>
+            </ul>
+        </div>
+
+
 
         <script>
             var Dropdown = businessUI.Dropdown
@@ -141,6 +155,10 @@
             var d5 = new Dropdown({
                 el: $('#dropdown5')
             })
+            d5.disable()
+
+            var d6 = new Dropdown()
+            d6.dropdownify($('#dropdown6'))
         </script>
     </body>
 </html>

@@ -6,7 +6,7 @@
 
     var idCounter = 0
 
-    // class conf
+    // states class
     var activeClass   = 'active'
     var selectedClass = 'selected'
     var disabledClass = 'disabled'
@@ -14,8 +14,10 @@
     var inrangeClass  = 'inrange'
     var istodayClass  = 'istoday'
 
-    // field parent class
-    var groupClass = 'zdh-datepicker-group'
+    // structure class
+    var rootClass  = 'zdh-datepicker-group'
+    var fieldClass = 'zdh-input'
+    var iconClass  = 'datepicker-con'
 
     // conf
     var defaultConf = {
@@ -47,6 +49,7 @@
         }
     }
 
+    var pickerIconTpl = '<i class="datepicker-icon"></i>'
     // datepicker structure
     var pickerTpl = [
         '<div class="zdh-datepicker" style="display: none">',
@@ -144,6 +147,11 @@
         // create picker
         init: function () {
             if (!this.inited) {
+                this.field.wrap('<div class="' + rootClass + '"></div>')
+                this.field.attr('readonly', 'readonly').addClass(fieldClass)
+                this.group = this.field.parent()
+                this.group.append(pickerIconTpl)
+
                 this.picker       = $(pickerTpl)
                 this.header       = $('.datepicker-header', this.picker)
                 this.calendar     = $('.datepicker-calendar', this.picker)
@@ -187,7 +195,7 @@
                 // show
                 this.picker.css('display', 'block')
                 // add active class
-                this.field.closest('.' + groupClass).addClass('active')
+                this.group.addClass('active')
                 // position
                 this.setPosition()
                 // call show callback
@@ -198,7 +206,7 @@
         close: function () {
             this.actived = false
             this.picker.css('display', 'none')
-            this.field.closest('.' + groupClass).removeClass('active')
+            this.group.removeClass('active')
             // call close callback
             this.onClose()
         },
@@ -533,7 +541,7 @@
 
         disable: function () {
             this.disabled = true
-            this.field.closest('.' + groupClass).addClass('disabled')
+            this.group.addClass('disabled')
         },
 
         destroy: function () {

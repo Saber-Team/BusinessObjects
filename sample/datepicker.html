@@ -10,6 +10,7 @@
 
         <link rel="stylesheet" href="../dist/base/base.css">
         <link rel="stylesheet" href="../dist/input/input.css">
+        <link rel="stylesheet" href="../dist/dropdown/dropdown.css">
         <link rel="stylesheet" href="../dist/datepicker/datepicker.css">
         <link rel="stylesheet" href="../dist/datepicker/timepicker.css">
         <script src="../lib/jquery.js"></script>
@@ -32,24 +33,19 @@
         </style>
         <div class="item">
             <h3>simple</h3>
-            <label class="zdh-datepicker-group">
-                <input class="zdh-input zdh-input-mid" id="datepicker1" readonly="readonly">
-                <i class="datepicker-icon"></i>
-            </label>
+            <input id="datepicker1" >
         </div>
         <div class="item">
             <h3>min date</h3>
-            <label class="zdh-datepicker-group">
-                <input class="zdh-input" id="datepicker2" readonly="readonly">
-                <i class="datepicker-icon"></i>
-            </label>
+            <input id="datepicker2" value="2016/04/28">
         </div>
         <div class="item">
             <h3>disabled</h3>
-            <label class="zdh-datepicker-group">
-                <input class="zdh-input" id="datepicker3" readonly="readonly">
-                <i class="datepicker-icon"></i>
-            </label>
+            <input id="datepicker3">
+        </div>
+        <div class="item">
+            <h3>timepicker</h3>
+            <input id="timepicker1">
         </div>
 
         <script>
@@ -79,10 +75,16 @@
 
             picker3.disable()
 
+            var t1 = new Timepicker({
+                field: $('#timepicker1'),
+                onHourSelect: function (h) {
+                    console.log(h)
+                },
+                onMiniteSelect: function (m) {
+                    console.log(m)
+                }
+            })
 
-            // var t1 = new Timepicker({
-            //     el: $('#timepicker1')
-            // })
 
 
         </script>

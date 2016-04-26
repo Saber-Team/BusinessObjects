@@ -22,18 +22,21 @@
     }
 
     var tmpl = [
-        '<label class="dropdown-label">dropdown</label>',
+        '<label class="dropdown-label"></label>',
         '<span class="dropdown-icon"><i></i></span>',
         '<ul class="dropdown-list">',
             // '<li data-value="1" class="dropdown-item">dropdown item 1</li>',
         '</ul>'
     ].join('')
 
+
+    var rootClass     = 'zdh-dropdown' // root class
     var activeClass   = 'active' // dropdown active state
     var labelClass    = 'dropdown-label' // label
     var listClass     = 'dropdown-list' // list
-    var itemClass     = 'dropdown-item' // list item
+    var itemClass     = 'dropdown-item' // item
     var selectedClass = 'selected' // item selected
+    var disabledClass = 'disabled' // disabled
 
     function Dropdown(opt) {
 
@@ -50,15 +53,27 @@
         this.value = null
 
         // auto init
-        this.init()
+        this.el && this.init()
     }
 
     $.extend(Dropdown.prototype, {
+
+        dropdownify: function (list) {
+            var selectIndex
+            list.wrap('<div></div>')
+            this.el = list.parent()
+            selectIndex = $('[selected]', list).index()
+            this.items = list.html()
+            this.init()
+            selectIndex > -1 && this.focus(selectIndex)
+            list = null
+        },
+
         init: function() {
             this.el.html(tmpl)
-            if ($('meta', this.el).length) {
 
-            }
+            this.el.addClass(rootClass)
+
             this.list = $('.' + listClass, this.el)
             // render
             this.items && this.render(this.items)
@@ -67,9 +82,13 @@
             // customer class
             this.theme && this.el.addClass(this.theme)
             // items count
-            this.len   = $('.' + itemClass, this.el).length
+            this.len   = this.list.children().length
+
             //disabled?
-            this.disabled(this.len)
+            // this.disable(this.len)
+
+            // focus
+            this.selectIndex >= 0 && this.focus(this.selectIndex)
 
             // bind events
             this.bind()
@@ -93,7 +112,7 @@
         focus: function(index) {
             index = Math.max(index, 0)
             index = Math.min(index, this.len - 1)
-            $('.' + itemClass, this.el).eq(index).trigger('click.dropdown.select')
+            this.list.children().eq(index).trigger('click.dropdown.select')
             this.hide()
         },
 
@@ -112,26 +131,33 @@
         },
 
         render: function(items) {
+            var html = ''
             this.empty()
-            if (items.length > 0) {
-                this.list.html(
-                    items.map(function(item) {
-                        return '<li data-value="' + (item.value || '') + '" class="' + itemClass + '">' + (item.text || '') + '</li>'
+            if (Array.isArray(items)) {
+                if (items.length > 0) {
+                    html = items.map(function(item) {
+                        return '<li data-value="' + (item.value || '') + '">' + (item.text || '') + '</li>'
                     }).join('')
-                )
+                }
+            } else {
+                // string
+                html = items
             }
+            this.list.html(html)
+            this.list.children().addClass(itemClass)
             // disabled?
-            this.disabled(items.length)
+            // this.disable(items.length > 0)
         },
 
         empty: function() {
             this.list.html('')
             this.len = 0
-            this.selectIndex = undefined
+            this.selectIndex = -1
         },
 
-        disabled: function (disabled) {
-            this.el.toggleClass('disabled', disabled)
+        disable: function (disabled) {
+            typeof disabled === 'undefined' && (disabled = true)
+            this.el.toggleClass(disabledClass, disabled)
         },
 
         setLabel: function(text) {
@@ -156,7 +182,7 @@
                 index = item.index()
                 if (index !== me.selectIndex) {
 
-                    me.selectIndex !== undefined && $('.' + itemClass, me.el).eq(me.selectIndex).removeClass(selectedClass)
+                    me.selectIndex > -1 && me.list.children().eq(me.selectIndex).removeClass(selectedClass)
                     item.addClass(selectedClass)
 
                     me.selectIndex = index
