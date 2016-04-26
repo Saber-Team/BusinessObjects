@@ -165,10 +165,10 @@ $.extend(ImageUploader.prototype, {
 
     registerCrop: function () {
         if (WebUploader.Uploader.regCropImage) {
-            this.trigger('register.crop.duplicate');
+            //this.trigger('register.crop.duplicate');
             return this;
         }
-        this.trigger('register.crop.image');
+        //this.trigger('register.crop.image');
         WebUploader.Uploader.regCropImage = true;
         WebUploader.Uploader.register({
             'before-send-file': 'cropImage'
