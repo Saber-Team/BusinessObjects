@@ -11,6 +11,9 @@
     var selectedClass = 'selected'
     var disabledClass = 'disabled'
     var hiddenClass   = 'hidden'
+    var rootClass     = 'zdh-timepicker-group'
+    var hourClass     = 'hourpicker'
+    var miniteClass   = 'minitepicker'
 
     // conf
     var defaultConf = {
@@ -22,14 +25,13 @@
         theme: undefined,
 
         // time
-        hourStep  : 1,
-        miniteStep: 1,
+        hourStep   : 1,
+        miniteStep : 1,
 
 
         // events
-        onShow  : loop,
-        onSelect: loop,
-        onClose : loop
+        onHourSelect   : loop,
+        onMiniteSelect : loop
 
     }
 
@@ -38,7 +40,13 @@
 
     ].join('')
 
+    var Dropdown = UI.Dropdown
+
     function loop () {}
+
+    function zeroPad (num) {
+        return num < 10 ? '0' + num : '' + num
+    }
 
     function Timepicker (opt) {
         if (!(this instanceof Timepicker)) {
@@ -47,6 +55,11 @@
         opt = opt || {}
         $.extend(this, defaultConf, opt)
         this.uniqueId = idCounter++
+
+        // value
+        this.hour   = undefined
+        this.minite = undefined
+
         this.init()
     }
 
@@ -56,10 +69,27 @@
 
         // create picker
         init: function () {
+            var me = this
             if (!this.inited) {
-                this.el           = this.el
-                this.hourPicker   = $('.zdh-timepicker-hour select', this.el)
-                this.minitePicker = $('.zdh-timepicker-minite select', this.el)
+                this.field.wrap('<div class="' + rootClass + '"></div>')
+                this.group = this.field.parent()
+                this.group.append('<div class="' + hourClass + '"></div>')
+                this.group.append('<div class="' + miniteClass + '"></div>')
+                this.theme && this.group.addClass(this.theme)
+                this.field.css('display', 'none')
+
+                this.hourPicker = new Dropdown({
+                    el: $('.' + hourClass, this.group),
+                    onSelect: function (val) {
+                        me.hourSelect(val.value)
+                    }
+                })
+                this.minitePicker = new Dropdown({
+                    el: $('.' + miniteClass, this.group),
+                    onSelect: function (val) {
+                        me.miniteSelect(val.value)
+                    }
+                })
 
                 // fill
                 this.fillHour()
@@ -70,12 +100,42 @@
 
         },
 
-        setTime: function () {
+        setTime: function (hour, minite) {
+            this.setHour(hour)
+            this.setMinite(minite)
+        },
 
+        setHour: function (hour) {
+            this.hour = hour
+            this.hourPicker.select(hour)
+        },
+
+        setMinite: function (minite) {
+            this.minite = minite
+            this.minitePicker.select(minite)
         },
 
         getTime: function () {
+            return {
+                hour   : this.hour,
+                minite : this.minite
+            }
+        },
 
+        getHour: function () {
+            return this.hour
+        },
+
+        getMinite: function () {
+            return this.minite
+        },
+
+        hourSelect: function (hour) {
+            this.onHourSelect(hour)
+        },
+
+        miniteSelect: function (minite) {
+            this.onMiniteSelect(minite)
         },
 
         // bind events
@@ -83,30 +143,38 @@
 
         },
 
-        fillHour: function () {
-            var h    = 0
-            var step = this.hourStep
-            var html = []
+        fillHour: function (start, end, step) {
+            var items = []
+            start = start || 0
+            end   = end || 24
+            step  = step || this.hourStep
 
-            while (h <= 24) {
-                html.push('<option value="'+ h +'">'+ h +'</option>')
-                h += step
+            while (start <= end) {
+                items.push({
+                    value: start,
+                    text : zeroPad(start)
+                })
+                start += step
             }
 
-            this.hourPicker.html(html.join(''))
+            this.hourPicker.render(items)
         },
 
-        fillMinite: function () {
-            var m    = 0
-            var step = this.miniteStep
-            var html = []
+        fillMinite: function (start, end, step) {
+            var items = []
+            start = start || 0
+            end   = end || 59
+            step  = step || this.miniteStep
 
-            while (m < 60) {
-                html.push('<option value="'+ m +'">'+ m +'</option>')
-                m += step
+            while (start <= end) {
+                items.push({
+                    value: start,
+                    text : zeroPad(start)
+                })
+                start += step
             }
 
-            this.minitePicker.html(html.join(''))
+            this.minitePicker.render(items)
         },
 
         destroy: function () {
