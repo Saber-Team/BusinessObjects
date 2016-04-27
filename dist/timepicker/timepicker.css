@@ -2,6 +2,10 @@
  * @file timepicker
  * @author jinwei01
  */
+.zdh-timepicker-group {
+    display: inline-block;
+    vertical-align: middle;
+}
 .zdh-timepicker-group .minitepicker {
-    margin-left: 20px;
+    margin-left: 10px;
 }

@@ -8,8 +8,8 @@
     var highlightClass     = 'highlight'
 
     var defaultConf = {
-        startRange: undefined,
-        endRange  : undefined,
+        startField: undefined,
+        endField  : undefined,
 
         dayInterval: 0,
 
