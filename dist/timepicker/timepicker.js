@@ -201,14 +201,14 @@
                 this.setMinite(0)
             }
             this.onHourChange(hour)
-            this.onTimeChange(hour, this.minite)
+            this.onTimeChange(this.getTime())
         },
 
         miniteSelect: function (minite) {
             this.setMinite(minite)
             this.fillField()
             this.onMiniteChange(minite)
-            this.onTimeChange(this.hour, this.minite)
+            this.onTimeChange(this.getTime())
         },
 
         fillHour: function (start, end) {

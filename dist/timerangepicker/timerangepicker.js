@@ -1,30 +1,28 @@
 /*
- * @file date range picker
+ * @file time range picker
  * @author jinwei01
  */
-;(function (UI) {
-
-    var highlightModeClass = 'highlight-mode'
-    var highlightClass     = 'highlight'
+;(function (UI, undefined) {
 
     var defaultConf = {
-        startField: undefined,
-        endField  : undefined,
+        startRange: undefined,
+        endRange  : undefined,
 
-        dayInterval: 0,
+        // 间隔（单位：分）
+        interval: 0,
 
         startPickerOpt: {},
         endPickerOpt  : {}
     }
 
 
-    var Datepicker     = UI.Datepicker
-    var toDate         = Datepicker.toDate
-    var getSizeOfMonth = Datepicker.getSizeOfMonth
+    var Timepicker = UI.Timepicker
+    var parseTime  = Timepicker.parseTime
+    var zeroPad    = Timepicker.zeroPad
 
-    function Daterangepicker (opt) {
-        if (!(this instanceof Daterangepicker)) {
-            return new Daterangepicker(opt)
+    function Timerangepicker (opt) {
+        if (!(this instanceof Timerangepicker)) {
+            return new Timerangepicker(opt)
         }
         opt = opt || {}
         $.extend(this, defaultConf, opt)
@@ -32,7 +30,7 @@
         this.bind()
     }
 
-    $.extend(Daterangepicker.prototype, {
+    $.extend(Timerangepicker.prototype, {
 
         constructor: Daterangepicker,
 
@@ -80,37 +78,6 @@
             this.endPicker   = new Datepicker(endPickerOpt)
         },
 
-        highlight: function (date) {
-            var picker  = this.endPicker
-            var curDate = toDate([picker.year, picker.month + 1, date].join('/'))
-            var start   = this.startRange
-            var index   = 1
-            var total   = 0
-
-            if (curDate > start) {
-                this.clearHighlight()
-                index = curDate.getFullYear() === picker.year && start.getMonth() === picker.month ? start.getDate() : 1
-                while (index <= date) {
-                    $('td[date=' + index + ']', picker.dateGrid).addClass(highlightClass)
-                    index++
-                    total++
-                }
-
-                if (total) {
-                    picker.dateGrid.addClass(highlightModeClass)
-                    this.highlighted  = true
-                }
-            }
-        },
-
-        clearHighlight: function () {
-            if (this.highlighted) {
-                this.endPicker.dateGrid.removeClass(highlightModeClass)
-                $('.' + highlightClass, this.endPicker.dateGrid).removeClass(highlightClass)
-                this.highlighted  = false
-            }
-        },
-
         bind: function () {
             var me          = this
             var startPicker = this.startPicker
@@ -151,5 +118,5 @@
         }
     })
 
-    UI.Daterangepicker = Daterangepicker
+    UI.Timerangepicker = Timerangepicker
 })(this.businessUI || (this.businessUI = {}))

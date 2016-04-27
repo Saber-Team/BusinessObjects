@@ -1,0 +1,61 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>time range picker</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+        <link rel="stylesheet" href="../dist/base/base.css">
+        <link rel="stylesheet" href="../dist/dropdown/dropdown.css">
+        <link rel="stylesheet" href="../dist/timepicker/timepicker.css">
+        <script src="../lib/jquery.js"></script>
+        <script src="../src/dropdown/dropdown.js"></script>
+        <script src="../src/timepicker/timepicker.js"></script>
+        <script src="../src/timerangepicker/timerangepicker.js"></script>
+    </head>
+    <body>
+        <style>
+            body {
+                padding: 30px;
+                font-size: 12px;
+            }
+            .item {
+                margin: 20px 0
+            }
+            h3 {
+                line-height: 2;
+            }
+        </style>
+
+        <div class="item">
+            <h3>time range picker(间隔120分钟)</h3>
+            <input id="timepicker1">
+            <span style="margin: 0 10px">-</span>
+            <input id="timepicker2">
+        </div>
+
+        <script>
+
+            var Timerangepicker = businessUI.Timerangepicker
+
+            var r1 = new Timerangepicker({
+                startField    : $('#timepicker1'),
+                endField      : $('#timepicker2'),
+                startPickerOpt: {
+                    miniteStep: 5
+                },
+                endPickerOpt  : {
+                    miniteStep: 5
+                },
+                interval      : 120
+            })
+
+
+        </script>
+
+
+    </body>
+</html>
