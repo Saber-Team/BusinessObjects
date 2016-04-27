@@ -19,6 +19,7 @@
 @icon-color: #666;
 @active-icon-bg-color: #ecf4ff;
 @active-icon-color: @blue;
+@disabled-icon-color: #999;
 
 @item-active-color: #cae2fe;
 
@@ -37,6 +38,7 @@
     height: @group-height;
     line-height: @group-height;
     .setBorder(@default-border-color);
+    font-size: 12px;
     transition: color .2s ease-out;
     user-select: none;
 
@@ -48,6 +50,11 @@
         padding-left: @group-padding-hoziron;
         padding-right: unit(@group-padding-hoziron + 15, px);
         .text-overflow();
+        // placeholder
+        &:empty:before {
+            content: attr(placeholder);
+            color: #a9a9a9;
+        }
     }
     &.active:not(.disabled) {
         .setBorder(@blue);
@@ -97,6 +104,9 @@
             }
             &:after {
                 border-color: @icon-bg-color transparent transparent transparent;
+            }
+            .disabled&:before {
+                border-color: @disabled-icon-color transparent transparent transparent;
             }
 
         }

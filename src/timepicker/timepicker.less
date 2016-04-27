@@ -1,0 +1,34 @@
+/**
+ * @file timepicker
+ * @author jinwei01
+ */
+
+@base-path: '../base';
+
+@import "@{base-path}/conf";
+@import "@{base-path}/color";
+
+
+@root-classname: timepicker;
+
+//size
+@height: 30px;
+
+// color
+@normal-color        : @black;
+@secondary-color     : @gray;
+@disabled-color      : @silver;
+@active-color        : @blue;
+@default-border-color: #dfe2e3;
+
+.@{namespace}-@{root-classname}-group {
+    .hourpicker,
+    .minitepicker {
+        .dropdown-label {
+
+        }
+    }
+    .minitepicker {
+        margin-left: 20px;
+    }
+}

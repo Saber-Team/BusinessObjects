@@ -12,6 +12,7 @@
     height: 30px;
     line-height: 30px;
     box-shadow: 0 0 0 1px #dfe2e3 inset;
+    font-size: 12px;
     -webkit-transition: color .2s ease-out;
             transition: color .2s ease-out;
     -webkit-user-select: none;
@@ -29,6 +30,10 @@
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+}
+.zdh-dropdown .dropdown-label:empty:before {
+    content: attr(placeholder);
+    color: #a9a9a9;
 }
 .zdh-dropdown.active:not(.disabled) {
     box-shadow: 0 0 0 1px #4497ff inset;
@@ -80,6 +85,9 @@
 }
 .zdh-dropdown .dropdown-icon > i:after {
     border-color: #f3f3f3 transparent transparent transparent;
+}
+.disabled.zdh-dropdown .dropdown-icon > i:before {
+    border-color: #999 transparent transparent transparent;
 }
 .active:not(.disabled).zdh-dropdown .dropdown-icon {
     background-color: #ecf4ff;
