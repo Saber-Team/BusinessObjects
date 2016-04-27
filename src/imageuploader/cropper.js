@@ -145,7 +145,7 @@
             this.$cropper.bind("mousedown touchstart", $.proxy(this.dragstart, this));
             this.$cropper.bind("mousemove touchmove", $.proxy(this.dragmove, this));
             this.$cropper.bind("mouseup mouseleave touchend touchleave", $.proxy(this.dragend, this));
-            $window.on("resize", $.proxy(this.resize, this));
+            //$window.on("resize", $.proxy(this.resize, this));
         },
 
         removeListener: function() {

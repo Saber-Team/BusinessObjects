@@ -11,36 +11,60 @@
 
     .popup-container {
         position: fixed;
-        box-shadow: 2px 2px 4px rgba(0,0,0,.5),-2px -2px 4px rgba(0,0,0,.5),-2px 2px 4px rgba(0,0,0,.5),2px -2px 4px rgba(0,0,0,.5);
-        background-color: #FFFFFF;
-        padding: 18px 30px 20px;
+        box-shadow: 2px 2px 4px rgba(0,0,0,.1),-2px -2px 4px rgba(0,0,0,.1),-2px 2px 4px rgba(0,0,0,.1),2px -2px 4px rgba(0,0,0,.1);
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 2px;
         top: 50%;
         left: 50%;
-        max-width: 90%;
-        min-width: 60%;
+        width: 700px;
+        height: 550px;
+        box-sizing: border-box;
         transform: translate(-50%, -50%);
     }
 
     .popup-title {
-        font-size: 18px;
-        color: #333333;
+        font-size: 16px;
+        line-height: 1;
+        color: #333;
         padding-bottom: 15px;
-        border-bottom: 1px solid #DFE2E3;
+        border-bottom: 1px solid #dfe2e3;
         position: relative;
 
         .popup-close {
             position: absolute;
-            right: -15px;
-            color: #999999;
+            right: 0;
+            color: #999;
             cursor: pointer;
+            width: 14px;
+            height: 14px;
 
-            &:hover {
-                color: #ED5565;
+            &:before,
+            &:after {
+                content: "";
+                display: block;
+                position: absolute;
+                background-color: #333;
+                width: 15px;
+                height: 1px;
+                top: 50%;
+            }
+            &:before {
+                transform: rotate(45deg);
+            }
+            &:after {
+                transform: rotate(-45deg);
+            }
+
+            &:hover:before, &:hover:after{
+                background-color: #ed5565;
             }
         }
     }
     .popup-body {
-        margin: 20px 0;
+        width: 660px;
+        height: 400px;
+        margin: 20px auto;
         position: relative;
     }
     .popup-footer {

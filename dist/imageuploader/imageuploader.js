@@ -40,7 +40,7 @@ var ImageCropper = (function() {
     var tpl = [
         '<div class="o-imagepopup">',
             '<div class="popup-container">',
-                '<div class="popup-title">裁切图片 <span class="popup-close cancel">X</span></div>',
+                '<div class="popup-title">图片上传 <span class="popup-close cancel"></span></div>',
                 '<div class="popup-body">',
                     '<img class="popup-img">',
                 '</div>',
@@ -81,6 +81,8 @@ var ImageCropper = (function() {
                 $image = $popup.find('img');
                 $image.cropper({
                     aspectRatio: 1,
+                    minHeight: 200,
+                    minWidth: 200,
                     done: function(data) {
                         //console.log(data);
                     }

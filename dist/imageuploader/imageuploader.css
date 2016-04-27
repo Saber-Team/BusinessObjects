@@ -158,18 +158,16 @@
     right: 1px;
     z-index: 20;
     height: 30px;
-    border-top: 1px solid #7ebf33;
     text-align: center;
-    background-color: rgba(0, 0, 0, .5);
 }
 .o-webuploader .o-edit-thumb .view {
     -webkit-box-flex: 1;
     -webkit-flex: 1;
         -ms-flex: 1;
             flex: 1;
-    border-right: 1px solid #7ebf33;
     box-sizing: border-box;
     cursor: pointer;
+    background-color: rgba(0, 0, 0, .5);
 }
 .o-webuploader .o-edit-thumb .view:before {
     content: '';
@@ -180,9 +178,6 @@
     cursor: pointer;
     display: block;
 }
-.o-webuploader .o-edit-thumb .webuploader-container {
-    background: transparent;
-}
 .o-webuploader .re-upload {
     -webkit-box-flex: 1;
     -webkit-flex: 1;
@@ -191,11 +186,13 @@
     cursor: pointer;
     height: 30px;
     line-height: 30px;
+    margin-left: 1px;
+    background-color: rgba(0, 0, 0, .5);
 }
 .o-webuploader .re-upload .webuploader-pick {
     height: 30px;
     position: relative;
-    width: 60px;
+    width: 57px;
 }
 .o-webuploader .re-upload .webuploader-pick:before {
     content: '';
@@ -271,7 +268,7 @@
     width: 90px;
 }
 .o-webuploader-logo .o-edit-thumb .re-upload .webuploader-pick {
-    width: 45px;
+    width: 42px;
 }
 .o-webuploader-logo .o-upload-fail .re-upload .webuploader-pick {
     width: 90px;

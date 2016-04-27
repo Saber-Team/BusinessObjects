@@ -11,19 +11,22 @@
 }
 .o-imagepopup .popup-container {
     position: fixed;
-    box-shadow: 2px 2px 4px rgba(0, 0, 0, .5), -2px -2px 4px rgba(0, 0, 0, .5), -2px 2px 4px rgba(0, 0, 0, .5), 2px -2px 4px rgba(0, 0, 0, .5);
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, .1), -2px -2px 4px rgba(0, 0, 0, .1), -2px 2px 4px rgba(0, 0, 0, .1), 2px -2px 4px rgba(0, 0, 0, .1);
     background-color: #fff;
-    padding: 18px 30px 20px;
+    padding: 20px;
+    border-radius: 2px;
     top: 50%;
     left: 50%;
-    max-width: 90%;
-    min-width: 60%;
+    width: 700px;
+    height: 550px;
+    box-sizing: border-box;
     -webkit-transform: translate(-50%, -50%);
         -ms-transform: translate(-50%, -50%);
             transform: translate(-50%, -50%);
 }
 .o-imagepopup .popup-title {
-    font-size: 18px;
+    font-size: 16px;
+    line-height: 1;
     color: #333;
     padding-bottom: 15px;
     border-bottom: 1px solid #dfe2e3;
@@ -31,15 +34,40 @@
 }
 .o-imagepopup .popup-title .popup-close {
     position: absolute;
-    right: -15px;
+    right: 0;
     color: #999;
     cursor: pointer;
+    width: 14px;
+    height: 14px;
 }
-.o-imagepopup .popup-title .popup-close:hover {
-    color: #ed5565;
+.o-imagepopup .popup-title .popup-close:before,
+.o-imagepopup .popup-title .popup-close:after {
+    content: '';
+    display: block;
+    position: absolute;
+    background-color: #333;
+    width: 15px;
+    height: 1px;
+    top: 50%;
+}
+.o-imagepopup .popup-title .popup-close:before {
+    -webkit-transform: rotate(45deg);
+        -ms-transform: rotate(45deg);
+            transform: rotate(45deg);
+}
+.o-imagepopup .popup-title .popup-close:after {
+    -webkit-transform: rotate(-45deg);
+        -ms-transform: rotate(-45deg);
+            transform: rotate(-45deg);
+}
+.o-imagepopup .popup-title .popup-close:hover:before,
+.o-imagepopup .popup-title .popup-close:hover:after {
+    background-color: #ed5565;
 }
 .o-imagepopup .popup-body {
-    margin: 20px 0;
+    width: 660px;
+    height: 400px;
+    margin: 20px auto;
     position: relative;
 }
 .o-imagepopup .popup-footer {
