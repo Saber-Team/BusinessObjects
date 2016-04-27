@@ -9,14 +9,11 @@
 
 
         <link rel="stylesheet" href="../dist/base/base.css">
-        <link rel="stylesheet" href="../dist/input/input.css">
         <link rel="stylesheet" href="../dist/dropdown/dropdown.css">
-        <link rel="stylesheet" href="../dist/datepicker/datepicker.css">
-        <link rel="stylesheet" href="../dist/datepicker/timepicker.css">
+        <link rel="stylesheet" href="../dist/timepicker/timepicker.css">
         <script src="../lib/jquery.js"></script>
-        <script src="../src/datepicker/datepicker.js"></script>
         <script src="../src/dropdown/dropdown.js"></script>
-        <script src="../src/datepicker/timepicker.js"></script>
+        <script src="../src/timepicker/timepicker.js"></script>
     </head>
     <body>
         <style>
@@ -31,53 +28,38 @@
                 line-height: 2;
             }
         </style>
-        <div class="item">
-            <h3>simple</h3>
-            <input id="datepicker1" placeholder="请选择日期">
-        </div>
-        <div class="item">
-            <h3>min date</h3>
-            <input id="datepicker2" value="2016/04/28">
-        </div>
-        <div class="item">
-            <h3>disabled</h3>
-            <input id="datepicker3" value="2016/05/04">
-        </div>
+
         <div class="item">
             <h3>timepicker</h3>
             <input id="timepicker1">
         </div>
+        <div class="item">
+            <h3>placeholder</h3>
+            <input id="timepicker2">
+        </div>
+        <div class="item">
+            <h3>default value</h3>
+            <input id="timepicker3" value="12:20">
+        </div>
+        <div class="item">
+            <h3>梯度</h3>
+            <input id="timepicker4" value="11:13">
+        </div>
+        <div class="item">
+            <h3>起始值(mintime)</h3>
+            <input id="timepicker5" value="11:13">
+        </div>
+        <div class="item">
+            <h3>disabled</h3>
+            <input id="timepicker6" value="11:13">
+        </div>
 
         <script>
 
-            var Datepicker = businessUI.Datepicker
             var Timepicker = businessUI.Timepicker
-
-            var picker = new Datepicker({
-                field: $('#datepicker1'),
-                onShow: function () {
-
-                },
-                onClose: function () {
-
-                }
-            });
-
-
-            var picker2 = new Datepicker({
-                field: $('#datepicker2'),
-                minDate: new Date
-            });
-
-            var picker3 = new Datepicker({
-                field: $('#datepicker3')
-            });
-
-            picker3.disable()
 
             var t1 = new Timepicker({
                 field: $('#timepicker1'),
-                miniteStep: 5,
                 onHourChange: function (h) {
                     console.log('hourchange', h)
                 },
@@ -88,8 +70,33 @@
                     console.log('timechange', h, m)
                 }
             })
-            // t1.setTime(13, 20)
+            // t1.setTime('9:30')
 
+            var t2 = new Timepicker({
+                field: $('#timepicker2'),
+                hourPlaceholder: '请选择小时',
+                minitePlaceholder: '请选择分钟'
+            })
+
+            var t3 = new Timepicker({
+                field: $('#timepicker3')
+            })
+
+            var t4 = new Timepicker({
+                field     : $('#timepicker4'),
+                hourStep: 4,
+                miniteStep: 5
+            })
+            var t5 = new Timepicker({
+                field     : $('#timepicker5'),
+            })
+            t5.fillHour(0, 24)
+            t5.setMinTime('11:20')
+
+            var t6 = new Timepicker({
+                field     : $('#timepicker6'),
+            })
+            t6.disable()
 
 
         </script>

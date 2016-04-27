@@ -15,6 +15,8 @@
         autohide  : true,
         // label 和 list等宽
         equalWidth: true,
+        // placeholder
+        placeholder: '',
         // events
         onShow    : loop,
         onClose   : loop,
@@ -79,13 +81,13 @@
             this.items && this.render(this.items)
             // equal width label
             this.equalWidth && this.el.addClass('equalwidth')
+            // label
+            this.label = $('.' + labelClass, this.el)
+            this.label.attr('placeholder', this.placeholder)
             // customer class
             this.theme && this.el.addClass(this.theme)
             // items count
             this.len   = this.list.children().length
-
-            //disabled?
-            // this.disable(this.len)
 
             // focus
             this.selectIndex >= 0 && this.focus(this.selectIndex)
@@ -94,19 +96,30 @@
             this.bind()
         },
 
+        setValue: function (val) {
+            $('[data-value=' + val + ']', this.list).trigger('click.dropdown.select')
+            // this.hide()
+        },
+
         getValue: function () {
-            // {text:'xxx', value: 'xxx'}
             return this.value
         },
 
         show: function() {
-            this.toggle(true)
-            this.onShow()
+            if (!this.disabled) {
+                this.toggle(true)
+                this.onShow()
+            }
         },
 
         hide: function() {
             this.toggle(false)
             this.onClose()
+        },
+
+        toggle: function(isDisplay) {
+            this.isOpen = isDisplay
+            this.el.toggleClass(activeClass, isDisplay)
         },
 
         focus: function(index) {
@@ -117,17 +130,10 @@
         },
 
         select: function(val) {
-            // val: {text:'xxx', value: 'xxx'}
-            this.value = val
+            // val = {text:'xxx', value: 'xxx'}
+            this.value = val.value
             this.setLabel(val.text)
-            this.onSelect(val)
-        },
-
-        toggle: function(isDisplay) {
-            isDisplay   = isDisplay || !this.isOpen
-            this.isOpen = isDisplay
-
-            this.el.toggleClass(activeClass, isDisplay)
+            this.onSelect(val.value)
         },
 
         render: function(items) {
@@ -136,7 +142,13 @@
             if (Array.isArray(items)) {
                 if (items.length > 0) {
                     html = items.map(function(item) {
-                        return '<li data-value="' + (item.value || '') + '">' + (item.text || '') + '</li>'
+                        return '<li data-value="'
+                            + (item.value === undefined ? '' : item.value)
+                            + '"'
+                            + (item.selected ? ' class="selected"' : '')
+                            + '">'
+                            + (item.text || '')
+                            + '</li>'
                     }).join('')
                 }
             } else {
@@ -145,8 +157,6 @@
             }
             this.list.html(html)
             this.list.children().addClass(itemClass)
-            // disabled?
-            // this.disable(items.length > 0)
         },
 
         empty: function() {
@@ -155,13 +165,12 @@
             this.selectIndex = -1
         },
 
-        disable: function (disabled) {
-            typeof disabled === 'undefined' && (disabled = true)
-            this.el.toggleClass(disabledClass, disabled)
+        disable: function () {
+            this.disabled = true
+            this.el.addClass(disabledClass)
         },
 
         setLabel: function(text) {
-            this.label || (this.label = $('.' + labelClass, this.el))
             this.label.html(text)
         },
 

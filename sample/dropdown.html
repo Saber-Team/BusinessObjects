@@ -77,6 +77,7 @@
 
             var d1 = new Dropdown({
                 el        : $('#dropdown1'),
+                placeholder: '请选择',
                 items     : [
                     {value: 1, text: 'x1'},
                     {value: 2, text: 'x2'},
@@ -90,6 +91,7 @@
 
             var d2 = new Dropdown({
                 el: $('#dropdown2'),
+                placeholder: 'placeholder',
                 onSelect: function (val) {
                     console.log(val)
                 },
@@ -113,6 +115,7 @@
 
             var d3 = new Dropdown({
                 el: $('#dropdown3'),
+                placeholder: '请选择xx',
                 items: [
                     {value: 1, text: 'x1'},
                     {value: 2, text: 'x2'},
