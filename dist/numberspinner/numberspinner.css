@@ -1,0 +1,97 @@
+/**
+ * @file number spinner
+ * @author jinwei01
+ */
+.zdh-numberspinner-group {
+    display: inline-block;
+    overflow: hidden;
+    vertical-align: middle;
+    border: 1px solid #dfe2e3;
+    border-radius: 2px;
+}
+.zdh-numberspinner-group.disabled {
+    border-color: #f1f1f1;
+}
+.zdh-numberspinner-group > input,
+.zdh-numberspinner-group > .spinner-plus,
+.zdh-numberspinner-group > .spinner-minus {
+    float: left;
+}
+.zdh-numberspinner-group .spinner-input {
+    box-sizing: border-box;
+    vertical-align: middle;
+    width: 6em;
+    height: 28px;
+    border: none;
+    border-left: 1px solid #dfe2e3;
+    border-right: 1px solid #dfe2e3;
+    line-height: 28px;
+    padding: 1px 10px 0 10px;
+    border-radius: 0;
+    text-align: center;
+}
+.zdh-numberspinner-group .spinner-input:focus {
+    outline: none;
+}
+.disabled.zdh-numberspinner-group .spinner-input {
+    border-color: #f1f1f1;
+    cursor: default;
+}
+.zdh-numberspinner-group .spinner-plus,
+.zdh-numberspinner-group .spinner-minus {
+    position: relative;
+    width: 28px;
+    height: 28px;
+    background-color: #f3f3f3;
+    -webkit-user-select: none;
+       -moz-user-select: none;
+        -ms-user-select: none;
+            user-select: none;
+    cursor: pointer;
+}
+.disabled.zdh-numberspinner-group .spinner-plus,
+.disabled.zdh-numberspinner-group .spinner-minus {
+    cursor: default;
+}
+.zdh-numberspinner-group .spinner-plus:before,
+.zdh-numberspinner-group .spinner-minus:before {
+    content: '';
+    position: absolute;
+    width: 14px;
+    height: 0;
+    border-bottom: 2px solid #666;
+    left: 50%;
+    top: 50%;
+    margin-left: -7px;
+    margin-top: -1px;
+}
+.disabled.zdh-numberspinner-group .spinner-plus:before,
+.disabled.zdh-numberspinner-group .spinner-minus:before {
+    border-color: #999;
+}
+.zdh-numberspinner-group .spinner-plus.disabled,
+.zdh-numberspinner-group .spinner-minus.disabled {
+    border-color: #999;
+    cursor: default;
+}
+.zdh-numberspinner-group .spinner-plus.disabled:before,
+.zdh-numberspinner-group .spinner-minus.disabled:before {
+    border-color: #999;
+}
+.zdh-numberspinner-group .spinner-plus:after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 14px;
+    border-right: 2px solid #666;
+    left: 50%;
+    top: 50%;
+    margin-left: -1px;
+    margin-top: -7px;
+}
+.disabled.zdh-numberspinner-group .spinner-plus:after {
+    border-color: #999;
+}
+.zdh-numberspinner-group .spinner-plus.disabled:after {
+    border-color: #999;
+}

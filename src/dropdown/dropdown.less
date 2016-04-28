@@ -9,7 +9,7 @@
 @import "@{base-path}/color";
 @import "@{base-path}/mixin";
 
-@root-classname: dropdown;
+@component-name: dropdown;
 
 @group-height: 30px;
 @group-border-color: @default-border-color;
@@ -31,7 +31,7 @@
 /**
  * dropdown
  */
-.@{namespace}-@{root-classname} {
+.@{namespace}-@{component-name} {
     position: relative;
     display: inline-block;
     width: 8em;
@@ -42,7 +42,7 @@
     transition: color .2s ease-out;
     user-select: none;
 
-    .@{root-classname}-label {
+    .@{component-name}-label {
         box-sizing: border-box;
         display: block;
         line-height: @group-height;
@@ -63,7 +63,7 @@
         .setBorder(#f1f1f1)
     }
 
-    .@{root-classname}-icon {
+    .@{component-name}-icon {
         position: absolute;
         z-index: -1;
         width: 15px;
@@ -127,7 +127,7 @@
     }
 
     // list
-    .@{root-classname}-list {
+    .@{component-name}-list {
         display: none;
         box-sizing: border-box;
         position: absolute;
@@ -155,7 +155,7 @@
         }
 
         // item
-        .@{root-classname}-item {
+        .@{component-name}-item {
             display: block;
             box-sizing: border-box;
             width: 100%;

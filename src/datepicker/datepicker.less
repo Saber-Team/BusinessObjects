@@ -9,7 +9,7 @@
 @import "@{base-path}/color";
 
 
-@root-classname: datepicker;
+@component-name: datepicker;
 
 // cell size
 @cell-width: 30px;
@@ -26,7 +26,7 @@
 @week-bg-color       : #f8f8f8;
 @triangle-icon-color : #666;
 
-.@{namespace}-@{root-classname} {
+.@{namespace}-@{component-name} {
     position: absolute;
     font-size: 12px;
     line-height: 1;
@@ -36,20 +36,20 @@
     user-select: none;
 }
 // header
-.@{root-classname}-header {
+.@{component-name}-header {
     position: relative;
     padding: 10px 0;
     text-align: center;
 }
 // calendar
-.@{root-classname}-calendar {
+.@{component-name}-calendar {
     td,
     th {
         text-align: center;
         vertical-align: middle;
     }
     // day of week
-    .@{root-classname}-dayofweek {
+    .@{component-name}-dayofweek {
         border-top: 1px solid @default-border-color;
         border-bottom: 1px solid @default-border-color;
         th {
@@ -125,7 +125,7 @@
             height: @cell-height;
             vertical-align: middle;
         }
-        .@{root-classname}-today {
+        .@{component-name}-today {
             display: inline-block;
             padding: 0 15px;
             color: @active-color;
@@ -135,19 +135,19 @@
 
 }
 // style select
-.@{root-classname}-select {
+.@{component-name}-select {
     position: relative;
     z-index: 0; // create a stacking context
     display: inline-block;
     padding: 3px 24px 3px 8px;
     border: 1px solid @default-border-color;
-    &.@{root-classname}-year {
+    &.@{component-name}-year {
         margin-right: 7px;
         label {
             width: 40px;
         }
     }
-    &.@{root-classname}-month {
+    &.@{component-name}-month {
         label {
             width: 26px;
         }
@@ -183,18 +183,18 @@
 }
 
 // nav
-.@{root-classname}-prev-month,
-.@{root-classname}-next-month,
-.@{root-classname}-prev-year,
-.@{root-classname}-next-year {
+.@{component-name}-prev-month,
+.@{component-name}-next-month,
+.@{component-name}-prev-year,
+.@{component-name}-next-year {
     position: absolute;
     width: 16px;
     height: 20px;
     cursor: pointer;
 }
 // prev & next month
-.@{root-classname}-prev-month,
-.@{root-classname}-next-month {
+.@{component-name}-prev-month,
+.@{component-name}-next-month {
     &:after {
         position: absolute;
         content: '';
@@ -203,7 +203,7 @@
         border-style: solid;
     }
 }
-.@{root-classname}-prev-month {
+.@{component-name}-prev-month {
     left: 20px;
     &:after {
         left: 6px;
@@ -214,7 +214,7 @@
         border-color: transparent @disabled-color transparent transparent;
     }
 }
-.@{root-classname}-next-month {
+.@{component-name}-next-month {
     right: 20px;
     &:after {
         right: 6px;
@@ -226,8 +226,8 @@
     }
 }
 // prev & next month
-.@{root-classname}-prev-year,
-.@{root-classname}-next-year {
+.@{component-name}-prev-year,
+.@{component-name}-next-year {
     &:before,
     &:after {
         position: absolute;
@@ -238,7 +238,7 @@
     }
 
 }
-.@{root-classname}-prev-year {
+.@{component-name}-prev-year {
     left: 4px;
     &:before,
     &:after {
@@ -254,7 +254,7 @@
         border-color: transparent @disabled-color transparent transparent;
     }
 }
-.@{root-classname}-next-year {
+.@{component-name}-next-year {
     right: 4px;
     &:before,
     &:after {
@@ -272,7 +272,7 @@
 }
 
 // datepicker group
-.@{namespace}-@{root-classname}-group {
+.@{namespace}-@{component-name}-group {
        display: inline-table;
        box-shadow: 0 0 0 1px @silver inset;
        > * {
@@ -283,14 +283,14 @@
            border: none;
            background: transparent !important;
            // disabled
-           .disabled& ~ .@{root-classname}-icon:before {
+           .disabled& ~ .@{component-name}-icon:before {
                background-position: 0 -38px;
            }
        }
        &.disabled {
            box-shadow: 0 0 0 1px #f1f1f1 inset;
        }
-       .@{root-classname}-icon {
+       .@{component-name}-icon {
            text-align: center;
            vertical-align: middle;
            padding-right: 5px;
@@ -306,7 +306,7 @@
        // active
        &.active {
            box-shadow: 0 0 0 1px @active-color inset;
-           .@{root-classname}-icon {
+           .@{component-name}-icon {
                &:before {
                    background-position: 0 -19px
                }
