@@ -9,7 +9,6 @@
     // default conf
     var defaultConf = {
         step: 1,
-
         // events
         onChange: loop
     }
@@ -108,11 +107,11 @@
         bind: function () {
             var me = this
             // click plus button
-            this.group.on('click', '.spinner-plus:not(.disabled)', function () {
+            this.group.on('click', '.' + plusClass + ':not(.disabled)', function () {
                 !me.disabled && me.plus()
             })
             // click minus button
-            this.group.on('click', '.spinner-minus:not(.disabled)', function () {
+            this.group.on('click', '.' + minusClass + ':not(.disabled)', function () {
                 !me.disabled && me.minus()
             })
             // input bind

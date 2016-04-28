@@ -33,9 +33,6 @@
     }
 
     $.extend(Daterangepicker.prototype, {
-
-        constructor: Daterangepicker,
-
         init: function () {
             var startPickerOpt    = this.startPickerOpt
             var endPickerOpt      = this.endPickerOpt
