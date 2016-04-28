@@ -22,7 +22,9 @@
     .importance {
         font-weight: bold;
     }
-
+    .number{
+        color:#ed5565;
+    }
     &-icon{
         display: inline-block;
         vertical-align: middle;
@@ -32,7 +34,7 @@
     }
 
     &-red{
-        .setWarningColor(#faf0f1,#f7d0d4);
+        .setWarningColor(#fbf0f1,#f7d0d4);
         .importance {
             color : #ed5565;
         }
@@ -43,19 +45,56 @@
     }
 
     &-orange{
-        .setWarningColor(#fdefd4,#f7d0d4);
+        .setWarningColor(#fcefd4,#f4dcaa);
         .importance {
             color : #ff9900;
         }
         i{
-            .setIconBg(0,-58px);
+            .setIconBg(0,-48px);
         }
     }
 
     &-gray{
-        .setWarningColor(#faf0f1,#f7d0d4);
+        .setWarningColor(#f4f4f4,#e9e9e9);
         i{
-            .setIconBg(0,-28px);
+            .setIconBg(0,-24px);
+        }
+    }
+
+    &-darkgray{
+        .setWarningColor(#f4f4f4,#e9e9e9);
+        .importance {
+            color : #666666;
+        }
+        i{
+            .setIconBg(0,-72px);
+        }
+    }
+
+    &-blue{
+        .setWarningColor(#e5f0fe,#cde3fd);
+        .importance {
+            color : #4497ff;
+        }
+        i{
+            .setIconBg(0,-96px);
+        }
+    }
+
+    &-green{
+        .setWarningColor(#e4fac8,#d1e9b1);
+        .importance {
+            color : #7cc123;
+        }
+        i{
+            .setIconBg(0,-120px);
+        }
+    }
+
+    &-tip{
+        .setWarningColor(#fcfcfc,#ebebeb);
+        i{
+            .setIconBg(0,-141px);
         }
     }
 
