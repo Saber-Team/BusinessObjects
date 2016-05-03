@@ -1,15 +1,27 @@
 # 概要
 简单包装Webuploader实现统一样式的图片上传功能。并提供图片预览，图片重新上传，图片删除功能。如果是LOGO上传的话，提供图片尺寸过滤,图片剪裁功能。
 支持全局方式调用或者AMD形式使用.
+
 通过全局方式时,需要保证在加载 `imageuploader`时,已经加载了`jquery` , `WebUploader`, `cropper.js`, `imageviewer.js`.
-通过AMD方式加载时, 需要保证已经加载了`jquery` , `WebUploader`
 
-# 实现
-区分LOGO上传和普通上传，通过创建上传实例的配置参数来实现.
+通过AMD方式加载时, 需要保证已经加载了`jquery` , `WebUploader`. 
 
+# 示例
+1. 打开终端
+
+2. 切换路径到 sample 下.
+
+3. 执行 
+
+```
+   python server.py
+```
+   
+4. 打开浏览器, 输入 `127.0.0.1:8080/imageuploader.html`, 全局方式使用imageuploaer;
+   输入 `http://127.0.0.1:8080/imageuploader-async.html`, 通过AMD方式加载imageuploader
 
 # 参数列表
-除(webuploader默认参数)[http://fex.baidu.com/webuploader/doc/index.html#WebUploader_Uploader]之外，还扩展了一下参数：
+除[webuploader默认参数](http://fex.baidu.com/webuploader/doc/index.html#WebUploader_Uploader)之外，还扩展了一下参数：
 
 - `fileNumExist` {int} [可选] [默认值：0] 已经存在的图片数量，图片上传后，再次编辑需要提供。
 
@@ -26,7 +38,7 @@
 
 
 # 事件说明
-使用者可以直接监听WebUploader提供的(事件)[http://fex.baidu.com/webuploader/doc/index.html#WebUploader_Uploader_events]。监听方式是：
+使用者可以直接监听WebUploader提供的[事件](http://fex.baidu.com/webuploader/doc/index.html#WebUploader_Uploader_events)。监听方式是：
 
 ```
 var imageUploader = new ImageUpload(opts);
@@ -63,4 +75,8 @@ imageUploader.on('beforeFileQueued', function(){
 
 # API介绍
 
+1. getResponse
 
+   getResponse(origin) => obj || array
+   
+   获得上传图片的结果, 如果参数`origin`为true, 返回未处理过的数据, 类型为Object, 否则返回新上传图片的结果和已经存在图片（图片url）
