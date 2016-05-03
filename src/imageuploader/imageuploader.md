@@ -13,9 +13,9 @@
 
 3. 执行 
 
-```
+    ```
    python server.py
-```
+   ```
    
 4. 打开浏览器, 输入 `127.0.0.1:8080/imageuploader.html`, 全局方式使用imageuploaer;
    输入 `http://127.0.0.1:8080/imageuploader-async.html`, 通过AMD方式加载imageuploader
