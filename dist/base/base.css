@@ -410,6 +410,14 @@ button,
 input {
     background: none;
 }
+i,
+cite,
+em,
+var,
+address,
+dfn {
+    font-style: normal;
+}
 .clearfix:before,
 .clearfix:after {
     content: '';
