@@ -37,6 +37,11 @@
                 height: 90,
                 type: 'image/jpeg'
             },
+            logoSize: { // 图片裁切的最小尺寸 和 长宽比例
+                minWidth: 200,
+                minHeight: 200,
+                aspectRatio: 1
+            },
             duplicate: true,
             errImgPath: './uploader-error.png',
             formData: {}
@@ -47,94 +52,99 @@
      * LOGO裁切弹窗的类包装
      * @constructor LOGO裁切弹窗的构造函数
      */
-    var ImageCropper = (function () {
-        var tpl = [
-            '<div class="o-imagepopup">',
-                '<div class="popup-container">',
-                    '<div class="popup-title">图片上传 <span class="popup-close cancel"></span></div>',
-                    '<div class="popup-body">',
-                        '<img class="popup-img">',
-                    '</div>',
-                    '<div class="popup-footer">',
-                        '<button class="btn-blue btn-38 btn-upload">确认</button>',
-                        '<button class="btn-gray btn-38 btn-cancel cancel">取消</button>',
-                    '</div>',
-                '</div>',
-            '</div>'
-        ].join('');
+    function ImageCropper (opts) {
+        if (opts.minWidth / opts.minHeight > opts.aspectRatio) {
+            opts.minWidth = opts.minHeight * opts.aspectRatio;
+        }
+        if (opts.minWidth / opts.minHeight < opts.aspectRatio) {
+            opts.minHeight = opts.minWidth / opts.aspectRatio;
+        }
+        this.opts = opts;
+        this.init();
+    }
 
-        var $popup = '';
-        var $image = '';
-        var callback;
-
-        function bindEvents() {
+    $.extend(ImageCropper.prototype, {
+        init: function (src) {
+            var that = this;
+            if (!this.instance) {
+                var tpl = [
+                    '<div class="o-imagepopup">',
+                        '<div class="popup-container">',
+                            '<div class="popup-title">图片上传 <span class="popup-close cancel"></span></div>',
+                            '<div class="popup-body">',
+                                '<img class="popup-img">',
+                            '</div>',
+                            '<div class="popup-footer">',
+                                '<button class="btn-blue btn-38 btn-upload">确认</button>',
+                                '<button class="btn-gray btn-38 btn-cancel cancel">取消</button>',
+                            '</div>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+                this.$popup = $(tpl).appendTo(document.body);
+                this.$image = this.$popup.find('img');
+                this.$image.cropper({
+                    aspectRatio: that.opts.aspectRatio,
+                    minHeight: that.opts.minHeight,
+                    minWidth: that.opts.minWidth,
+                    done: function (data) {
+                        //console.log(data);
+                    }
+                });
+                this.bind();
+            }
+            src && this.setSrc(src);
+            return this;
+        },
+        setSrc: function (src) {
+            this.$image.cropper('setImgSrc', src);
+            return this;
+        },
+        getImageSize: function () {
+            var img = this.$image.get(0);
+            return {
+                width: img.naturalWidth,
+                height: img.naturalHeight
+            }
+        },
+        setCallback: function (confirm, cancel) {
+            var noop = function () {};
+            this.callback = {
+                confirm: typeof confirm === 'function' ? confirm : noop,
+                cancel: typeof cancel === 'function' ? cancel : noop
+            };
+            return this;
+        },
+        bind: function () {
+            var that = this;
+            var $popup = this.$popup;
             $popup.on('click', '.cancel', function (e) {
-                callback.cancel();
+                that.callback.cancel();
                 $popup.hide();
             });
             $popup.on('click', '.btn-upload', function (e) {
-                callback.confirm($image.cropper("getData"));
+                that.callback.confirm(that.$image.cropper("getData"));
                 $popup.hide();
             });
-            $image.on('ready.cropper', function (e) {
+            that.$image.on('ready.cropper', function (e) {
                 $popup.css('visibility', 'visible'); // cropper ready时 触发该事件 此时图片已经渲染完成,显示弹窗
             }).on('ready.duplicate', function (e) {
                 setTimeout(function () {
-                    ImageCropper.show();
+                    that.show();
                 }, 0);
             });
+        },
+        show: function (isHidden) {
+            var that = this;
+            isHidden ? that.$popup.css({'visibility': 'hidden', 'display': 'block'}) :
+                that.$popup.css({'visibility': 'visible', 'display': 'block'}); // 防止渲染图片 弹窗抖动
+            return this;
+        },
+        hide: function () {
+            this.$popup.hide();
+            return this;
         }
-
-        return {
-            init: function (src) {
-                if (!$popup) {
-                    $popup = $(tpl).appendTo(document.body);
-                    $image = $popup.find('img');
-                    $image.cropper({
-                        aspectRatio: 1,
-                        minHeight: 200,
-                        minWidth: 200,
-                        done: function (data) {
-                            //console.log(data);
-                        }
-                    });
-                    bindEvents();
-                }
-                this.setSrc(src);
-                return this;
-            },
-            setSrc: function (src) {
-                $image.cropper('setImgSrc', src);
-                return this;
-            },
-            getImageSize: function () {
-                var img = $image.get(0);
-                return {
-                    width: img.naturalWidth,
-                    height: img.naturalHeight
-                }
-            },
-            setCallback: function (confirm, cancel) {
-                var noop = function () {
-                };
-                callback = {
-                    confirm: typeof confirm === 'function' ? confirm : noop,
-                    cancel: typeof cancel === 'function' ? cancel : noop
-                };
-                return this;
-            },
-            show: function (isHidden) {
-                isHidden ? $popup.css({'visibility': 'hidden', 'display': 'block'}) :
-                    $popup.css({'visibility': 'visible', 'display': 'block'}); // 防止渲染图片 弹窗抖动
-                return this;
-            },
-            hide: function () {
-                $popup.hide();
-                return this;
-            }
-        }
-    })();
-
+    });
 
     function ImageUploader(opts) {
         this.opts = $.extend(true, {}, defaultOpts, opts);
@@ -168,6 +178,7 @@
                     }
                 });
                 this.registerCrop();
+                this.imageCropper = new ImageCropper(this.opts.logoSize);
             }
             this.uploader = new WebUploader.Uploader(this.opts);
             //fix 查看态变为编辑态 总数达到限额,则不显示新增图片上传按钮
@@ -295,15 +306,15 @@
                         that.removeQueueFile(file);
                         return false;
                     }
-                    ImageCropper.init(src);
-                    ImageCropper.setCallback(function (data) {
+                    that.imageCropper.init(src);
+                    that.imageCropper.setCallback(function (data) {
                         isReupload && $item.removeClass('o-upload-success o-upload-fail');
                         file._cropData = {
                             x: data.x1,
                             y: data.y1,
                             width: data.width,
                             height: data.height,
-                            scale: ImageCropper.getImageSize().width / file._info.width
+                            scale: that.imageCropper.getImageSize().width / file._info.width
                         };
 
                         file._uploaderData = {
@@ -316,7 +327,7 @@
                         that.restoreQueueFile();
                         that.removeQueueFile(file);
                     });
-                    ImageCropper.show(true);
+                    that.imageCropper.show(true);
                 }
                 else {
                     isReupload ? $item.removeClass('o-upload-success o-upload-fail') : that.render($item);

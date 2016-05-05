@@ -61,6 +61,11 @@
                         },
                         errImgPath: '../../dist/imageuploader/uploader-error.png',
                         logo: true,
+                        logoSize: {  // 保证logo的最小尺寸,
+                            minWidth: 200,
+                            minHeight: 100,
+                            aspectRatio: 2 // 裁切区域长和宽的比率
+                        },
                         originImage: function (file) {
                             console.log('get origin image url');
                             var result = logoUploader.getResponse(true);

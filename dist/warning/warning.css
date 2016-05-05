@@ -8,6 +8,9 @@
 .zdh-warning .importance {
     font-weight: bold;
 }
+.zdh-warning .number {
+    color: #ed5565;
+}
 .zdh-warning-icon {
     display: inline-block;
     vertical-align: middle;
@@ -16,7 +19,7 @@
     height: 20px;
 }
 .zdh-warning-red {
-    background-color: #faf0f1;
+    background-color: #fbf0f1;
     border: 1px solid #f7d0d4;
 }
 .zdh-warning-red .importance {
@@ -26,21 +29,58 @@
     background-position: 0 0;
 }
 .zdh-warning-orange {
-    background-color: #fdefd4;
-    border: 1px solid #f7d0d4;
+    background-color: #fcefd4;
+    border: 1px solid #f4dcaa;
 }
 .zdh-warning-orange .importance {
     color: #f90;
 }
 .zdh-warning-orange i {
-    background-position: 0 -58px;
+    background-position: 0 -48px;
 }
 .zdh-warning-gray {
-    background-color: #faf0f1;
-    border: 1px solid #f7d0d4;
+    background-color: #f4f4f4;
+    border: 1px solid #e9e9e9;
 }
 .zdh-warning-gray i {
-    background-position: 0 -28px;
+    background-position: 0 -24px;
+}
+.zdh-warning-darkgray {
+    background-color: #f4f4f4;
+    border: 1px solid #e9e9e9;
+}
+.zdh-warning-darkgray .importance {
+    color: #666;
+}
+.zdh-warning-darkgray i {
+    background-position: 0 -72px;
+}
+.zdh-warning-blue {
+    background-color: #e5f0fe;
+    border: 1px solid #cde3fd;
+}
+.zdh-warning-blue .importance {
+    color: #4497ff;
+}
+.zdh-warning-blue i {
+    background-position: 0 -96px;
+}
+.zdh-warning-green {
+    background-color: #e4fac8;
+    border: 1px solid #d1e9b1;
+}
+.zdh-warning-green .importance {
+    color: #7cc123;
+}
+.zdh-warning-green i {
+    background-position: 0 -120px;
+}
+.zdh-warning-tip {
+    background-color: #fcfcfc;
+    border: 1px solid #ebebeb;
+}
+.zdh-warning-tip i {
+    background-position: 0 -141px;
 }
 .zdh-warning-link {
     color: #4497ff;

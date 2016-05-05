@@ -10,7 +10,11 @@
 
     if ( typeof module === "object" && typeof module.exports === "object" ) {
         module.exports = factory( global, true );
-    } else {
+    }
+    else if (typeof define === 'function' && (define.amd || define.cmd)) {
+        define(function() { return factory( global, true ); });
+    }
+    else {
         factory( global );
     }
 }(typeof window !== "undefined" ? window : this, function( window, noGlobal ) {
