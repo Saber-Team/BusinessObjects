@@ -38,7 +38,7 @@
                 var $tar = $(e.target);
                 var previousTab = self.$actived;
 
-                if (self.$actived === $tar) {
+                if ($tar.hasClass('active')) {
                     return ;
                 }
                 setTimeout(function () {
@@ -47,9 +47,9 @@
                 }, 50);
                 setTimeout(function () {
                     $tar.addClass('active');
-                }, 200);
+                }, 90);
                 var left = $tar.offset().left - self.opts.parentOffsetLeft + 'px';
-                self.$sliding.animate({'left': left, 'width': $tar.width() + 20}, 300, 'easeInOutQuart', function () {
+                self.$sliding.animate({'left': left, 'width': $tar.width() + 20}, 100, 'easeInOutQuart', function () {
                     //$tar.addClass('active');
                     self.$actived = $tar;
                     self.opts.onActive();

@@ -12,6 +12,10 @@
     list-style: none;
     position: relative;
     border-bottom: 1px solid #f2f2f5;
+    -webkit-user-select: none;
+       -moz-user-select: none;
+        -ms-user-select: none;
+            user-select: none;
 }
 .zdh-tab-card .tab-cell {
     display: inline-block;
@@ -22,6 +26,8 @@
     margin: 0 0 0 20px;
     box-sizing: border-box;
     cursor: pointer;
+    min-width: 64px;
+    text-align: center;
     -webkit-animation: all .2s ease;
             animation: all .2s ease;
 }

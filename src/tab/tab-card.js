@@ -44,7 +44,7 @@
                 self.$actived.removeClass('active');
 
                 var left = $tar.offset().left - self.opts.parentOffsetLeft + 'px';
-                self.$sliding.stop(false, true).animate({'left' : left, 'width': $tar.width()}, 300, 'easeInOutQuart');
+                self.$sliding.stop(false, true).animate({'left' : left, 'width': $tar.width()}, 100, 'easeInOutQuart');
                 $tar.addClass('active');
                 self.$actived = $tar;
 
