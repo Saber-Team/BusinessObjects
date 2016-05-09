@@ -53,6 +53,10 @@
             <h3>disabled</h3>
             <input id="timepicker6" value="11:13">
         </div>
+        <div class="item">
+            <h3>no minite</h3>
+            <input id="timepicker7" value="11:13">
+        </div>
 
         <script>
 
@@ -97,6 +101,12 @@
                 field     : $('#timepicker6'),
             })
             t6.disable()
+
+            var t7 = new Timepicker({
+                field     : $('#timepicker7'),
+                noMinite: true
+            })
+
 
 
         </script>
