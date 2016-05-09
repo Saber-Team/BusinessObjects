@@ -29,6 +29,16 @@
 
 - `logo` {Boolean} [可选] [默认值: false] 是否是LOGO上传，默认情况不是logo上传。
 
+- `logoSize` {Object} [可选] [默认最小宽度和高度为200px, 比例为1] 裁切图片时,可选区域的大小已经长宽比例.
+  
+  '''
+  {
+      minWidth: 200, 
+      minHeight: 200,
+      aspectRatio: 1 // 长宽比例值
+  }
+  '''
+
 - `originImage` {Function} [可选] 用于提供上传图片之后的原图url, 参数 `file`.
 
 - `errCallback` {Function} [可选] 只要设置了该参数,在图片上传之后都会执行, 该回调函数的参数为`file` 和 `response`(后端返回的数据). 
