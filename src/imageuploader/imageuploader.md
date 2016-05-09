@@ -7,9 +7,13 @@
 通过AMD方式加载时, 需要保证已经加载了`jquery` , `WebUploader`. 
 
 # 示例
-1. 打开终端
+1. 在项目目录下打开终端
 
-2. 切换路径到 sample 下.
+2. 切换路径到 `sample/imageuploader` 下.
+   
+    ```
+   cd sample/imageuploader
+   ```
 
 3. 执行 
 
