@@ -31,13 +31,13 @@
 
 - `logoSize` {Object} [可选] [默认最小宽度和高度为200px, 比例为1] 裁切图片时,可选区域的大小已经长宽比例.
   
-  '''
+  ```
   {
       minWidth: 200, 
       minHeight: 200,
       aspectRatio: 1 // 长宽比例值
   }
-  '''
+  ```
 
 - `originImage` {Function} [可选] 用于提供上传图片之后的原图url, 参数 `file`.
 
