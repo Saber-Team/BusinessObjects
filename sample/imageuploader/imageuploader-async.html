@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>web uploader</title>
+    <link rel="stylesheet" href="../../dist/imageuploader/imageuploader.css">
+    <link rel="stylesheet" href="../../dist/imageuploader/imageviewer.css">
+    <link rel="stylesheet" href="../../dist/imageuploader/imagepopup.css">
+    <link rel="stylesheet" href="../../dist/imageuploader/cropper.css">
+
+    <script src="../../lib/jquery.js"></script>
+    <script src="//cdn.bootcss.com/require.js/2.1.22/require.js"></script>
+    <script src="../../dist/imageuploader/webuploader.js"></script>
+
+    <style>
+        body {
+            margin: 10px 30px;
+        }
+
+        .logo,
+        .normal {
+            margin: 0 10px 20px;
+        }
+
+        .logo h2,
+        .normal h2 {
+            padding-bottom: 10px;
+            border-bottom: 1px solid #f2f2f5;
+        }
+
+        button {
+            margin-right: 20px;
+        }
+
+    </style>
+</head>
+<body>
+
+<div class="logo">
+    <div class="module">
+        <h2>LOGO上传</h2>
+        <div class="o-webuploader o-webuploader-logo">
+            <div id="logo" class="o-filepicker"></div>
+        </div>
+        <div class="edit">
+            <button id="getResponse">获取结果</button>
+            <button id="getResponse1">获取未处理的原始值</button>
+        </div>
+        <script>
+
+            $(function () {
+                require([
+                        '../../dist/imageuploader/imageuploader'
+                ], function (ImageUploader ) {
+                    var logoUploader = new ImageUploader({
+                        server: '/upload',
+                        fileVal: 'ufile',
+                        pick: {
+                            id: '#logo',
+                            multiple: false
+                        },
+                        errImgPath: '../../dist/imageuploader/uploader-error.png',
+                        logo: true,
+                        logoSize: {  // 保证logo的最小尺寸,
+                            minWidth: 200,
+                            minHeight: 100,
+                            aspectRatio: 2 // 裁切区域长和宽的比率
+                        },
+                        originImage: function (file) {
+                            console.log('get origin image url');
+                            var result = logoUploader.getResponse(true);
+                            return result[file.id].origin.data.filehash;
+                        },
+                        errCallback: function (response) { //上传错误回调, 返回错误原因
+                            if (response['error_code'] === 100) {
+                                return "测试错误情况";
+                            }
+                            return response["error_msg"];
+                        },
+                        successCallback: function (response) { // 上传成功回调,
+                            console.log('success callback');
+                            console.dir(response);
+                        }
+                    });
+                    logoUploader.init();
+
+                    $('#getResponse').on('click', function () {
+                        console.log('get response --------');
+                        console.dir(logoUploader.getResponse());
+                        alert('在控制台查看上传数据');
+                    });
+                    $('#getResponse1').on('click', function () {
+                        console.log('get origin response --------');
+                        console.dir(logoUploader.getResponse(true));
+                        alert('在控制台查看上传数据');
+                    })
+                });
+
+            })
+        </script>
+    </div>
+</div>
+</body>
+</html>

@@ -27,6 +27,7 @@
     list-style: none;
     position: relative;
     border-bottom: 1px solid @border-bottom;
+    user-select: none;
 
     .tab-cell {
         display: inline-block;
@@ -37,6 +38,8 @@
         margin: 0 0 0 20px;
         box-sizing: border-box;
         cursor: pointer;
+        min-width: 64px;
+        text-align: center;
         animation: all .2s ease;
 
         &.active {

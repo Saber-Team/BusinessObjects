@@ -57,11 +57,20 @@
                     },
                     errImgPath: '../../dist/imageuploader/uploader-error.png',
                     logo: true,
+                    originImage: function (file) {
+                        console.log('get origin image url');
+                        var result = logoUploader.getResponse(true);
+                        return result[file.id].origin.data.filehash;
+                    },
                     errCallback: function (response) { //上传错误回调, 返回错误原因
                         if (response['error_code'] === 100) {
                             return "测试错误情况";
                         }
                         return response["error_msg"];
+                    },
+                    successCallback: function (response) { // 上传成功回调,
+                        console.log('success callback');
+                        console.dir(response);
                     }
                 });
                 logoUploader.init();

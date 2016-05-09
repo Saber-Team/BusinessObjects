@@ -8,55 +8,63 @@
  *
  */
 
-window.ImageViewer = (function(){
-  var instantiated;
+(function( global, factory ) {
 
-  function init() {
-    var domString = [
-      '<div class="o-imageviewer">',
-        '<img>',
-      '</div>'
-    ].join('');
-    var $dom = $(domString).appendTo(document.body);
-
-    $dom.on('click', function(e) {
-      e.preventDefault();
-      if (e.target.tagName === 'IMG') {
-        return false;
-      }
-      $dom.hide();
-    });
-
-    return {
-      open: function(src) {
-        $dom.children('img').attr('src', src);
-        $dom.show();
-        return $dom;
-      },
-      close: function(){
-        $dom.hide();
-        return $dom;
-      },
-      destroy: function() {
-        $dom.off();
-        $dom.remove();
-        $dom = null;
-      }
+    if ( typeof module === "object" && typeof module.exports === "object" ) {
+        module.exports = factory( global, true );
+    } else {
+        factory( global );
     }
-  }
+}(typeof window !== "undefined" ? window : this, function( window, noGlobal ) {
+    var instantiated = '';
 
-  return  {
-    open: function(src) {
-      if (!instantiated) {
-        instantiated = init();
-      }
-      return instantiated.open(src);
-    },
-    close: function() {
-      return instantiated && instantiated.close();
-    },
-    destroy: function() {
-      return instantiated && instantiated.destroy();
+    function ImageViewerFactory () {
+        var domString = [
+            '<div class="o-imageviewer">',
+            '<img>',
+            '</div>'
+        ].join('');
+        var $dom = $(domString).appendTo(document.body);
+
+        $dom.on('click', function (e) {
+            e.preventDefault();
+            if (e.target.tagName === 'IMG') {
+                return false;
+            }
+            $dom.hide();
+        });
+
+        return {
+            open: function (src) {
+                $dom.children('img').attr('src', src);
+                $dom.show();
+                return $dom;
+            },
+            close: function () {
+                $dom.hide();
+                return $dom;
+            },
+            destroy: function () {
+                $dom.off();
+                $dom.remove();
+                $dom = null;
+            }
+        }
     }
-  }
-})();
+    window.ImageViewer = {
+        open: function (src) {
+            if (!instantiated) {
+                instantiated = ImageViewerFactory();
+            }
+            return instantiated.open(src);
+        },
+        close: function () {
+            return instantiated && instantiated.close();
+        },
+        destroy: function () {
+            return instantiated && instantiated.destroy();
+        }
+    };
+
+    return window.ImageViewer;
+}));

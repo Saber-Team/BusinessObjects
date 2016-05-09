@@ -6,18 +6,22 @@
  * Released under the MIT license
  */
 
-(function(factory) {
-    if (typeof define === "function" && define.amd) {
-        // AMD. Register as anonymous module.
-        define(["jquery"], factory);
-    } else {
-        // Browser globals.
-        factory(jQuery);
+(function( global, factory ) {
+
+    if ( typeof module === "object" && typeof module.exports === "object" ) {
+        module.exports = factory( global, true );
     }
-}(function($) {
+    else if (typeof define === 'function' && (define.amd || define.cmd)) {
+        define(function() { return factory( global, true ); });
+    }
+    else {
+        factory( global );
+    }
+}(typeof window !== "undefined" ? window : this, function( window, noGlobal ) {
 
     "use strict";
 
+    var $ = jQuery;
     var $window = $(window),
         Cropper = function(element, options) {
             options = $.isPlainObject(options) ? options : {};
@@ -798,8 +802,4 @@
     $.fn.cropper.setDefaults = Cropper.setDefaults;
 
     window.Cropper = Cropper;
-
-    /*$(function() {
-        $("img[cropper]").cropper();
-    });*/
 }));
