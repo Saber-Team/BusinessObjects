@@ -8,6 +8,8 @@
         startField: undefined,
         endField  : undefined,
 
+        noMinite: false,
+
         // 间隔（单位：分）
         interval: 0,
 
@@ -37,7 +39,7 @@
             var startPickerOpt        = this.startPickerOpt
             var endPickerOpt          = this.endPickerOpt
             var originalOnTimeChange  = startPickerOpt.onTimeChange
-            var originalOnTimeChange2 = endPickerOpt.onTimeChange
+            var originalOnHourChange  = endPickerOpt.onHourChange
 
             // interval
             var interval       = this.interval
@@ -66,8 +68,19 @@
                 }
             }
 
+            endPickerOpt.onHourChange = function (h) {
+                originalOnHourChange && originalOnHourChange.call(this, h)
+                if ( h=== this.minHour) {
+                    this.setMinMinite(this.minMinite)
+                }
+            }
+
             startPickerOpt.field = this.startField
             endPickerOpt.field   = this.endField
+            if (this.noMinite) {
+                startPickerOpt.noMinite = true
+                endPickerOpt.noMinite   = true
+            }
 
             // init components
             this.startPicker = new Timepicker(startPickerOpt)

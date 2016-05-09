@@ -17,7 +17,9 @@
 
     // conf
     var defaultConf = {
-        field       : null,
+        field: null,
+
+        noMinite: false,
 
         // custom class
         theme: undefined,
@@ -49,7 +51,7 @@
     function parseTime (str) {
         var ret = {}
         var timeArr
-        if (str.split) {
+        if (str && str.split) {
             timeArr    = str.split(':')
             ret.hour   = timeArr[0]
             ret.minite = timeArr[1]
@@ -67,7 +69,8 @@
 
         // value
         this.hour    = undefined
-        this.minite  = undefined
+        this.minite  = this.noMinite ? 0 : undefined
+
         this.hourEnd = 23
 
         this.init()
@@ -106,17 +109,20 @@
                     }
                 })
                 // minitePicker
-                this.minitePicker = new Dropdown({
-                    el         : $('.' + miniteClass, this.group),
-                    placeholder: this.minitePlaceholder,
-                    onSelect   : function (val) {
-                        me.miniteSelect(val)
-                    }
-                })
+                if (!this.noMinite) {
+                    this.minitePicker = new Dropdown({
+                        el         : $('.' + miniteClass, this.group),
+                        placeholder: this.minitePlaceholder,
+                        onSelect   : function (val) {
+                            me.miniteSelect(val)
+                        }
+                    })
+                }
+
 
                 // fill
                 this.fillHour()
-                this.fillMinite()
+                this.noMinite || this.fillMinite()
 
                 // init value
                 if (this.field.val() !== '') {
@@ -130,7 +136,7 @@
         setTime: function (timestring) {
             var time = parseTime(timestring)
             this.setHour(time.hour * 1)
-            this.setMinite(time.minite * 1)
+            this.noMinite || this.setMinite(time.minite * 1)
         },
 
         setHour: function (hour) {
@@ -142,9 +148,11 @@
 
         setMinite: function (minite) {
             var step = this.miniteStep
-            minite = Math.ceil(minite / step) * step
-            this.minite = minite
-            this.minitePicker.setValue(minite)
+            if (!this.noMinite) {
+                minite = Math.ceil(minite / step) * step
+                this.minite = minite
+                this.minitePicker.setValue(minite)
+            }
         },
 
         getTime: function () {
@@ -174,7 +182,8 @@
         setMinTime: function (timestring) {
             var time = parseTime(timestring)
             this.setMinHour(time.hour * 1)
-            this.setMinMinite(time.minite * 1)
+
+            this.noMinite || this.setMinMinite(time.minite * 1)
         },
 
         setMinHour: function (hour) {
@@ -186,20 +195,25 @@
         },
 
         setMinMinite: function (minite) {
-            this.minMinite = minite
-            this.fillMinite(minite)
-            if (this.minMinite > this.minite) {
-                this.setMinite(minite)
+            if (!this.noMinite) {
+                this.minMinite = minite
+                this.fillMinite(minite)
+                if (this.minMinite > this.minite) {
+                    this.setMinite(minite)
+                }
             }
         },
 
         hourSelect: function (hour) {
             this.setHour(hour)
             this.fillField()
-            this.fillMinite()
-            if (hour >= 24) {
-                this.setMinite(0)
+            if (!this.noMinite) {
+                this.fillMinite()
+                if (hour >= 24) {
+                    this.setMinite(0)
+                }
             }
+
             this.onHourChange(hour)
             this.onTimeChange(this.getTime())
         },

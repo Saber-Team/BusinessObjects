@@ -9,10 +9,14 @@
 
 
         <link rel="stylesheet" href="../dist/base/base.css">
+        <link rel="stylesheet" href="../dist/input/input.css">
         <link rel="stylesheet" href="../dist/dropdown/dropdown.css">
+        <link rel="stylesheet" href="../dist/datepicker/datepicker.css">
         <link rel="stylesheet" href="../dist/timepicker/timepicker.css">
         <script src="../lib/jquery.js"></script>
         <script src="../src/dropdown/dropdown.js"></script>
+        <script src="../src/datepicker/datepicker.js"></script>
+        <script src="../src/daterangepicker/daterangepicker.js"></script>
         <script src="../src/timepicker/timepicker.js"></script>
         <script src="../src/timerangepicker/timerangepicker.js"></script>
     </head>
@@ -37,9 +41,35 @@
             <input id="timepicker2">
         </div>
 
+        <div class="item">
+            <h3>no minite</h3>
+            <input id="timepicker3">
+            <span style="margin: 0 10px">-</span>
+            <input id="timepicker4">
+        </div>
+
+        <div class="item">
+            <h3>with datepicker）</h3>
+            <input id="datepicker1">
+            <input id="timepicker5">
+            <span style="margin: 0 10px">–</span>
+            <input id="datepicker2">
+            <input id="timepicker6">
+        </div>
+
+        <div class="item">
+            <h3>with datepicker）</h3>
+            <input id="datepicker3">
+            <input id="timepicker7">
+            <span style="margin: 0 10px">–</span>
+            <input id="datepicker4">
+            <input id="timepicker8">
+        </div>
+
         <script>
 
             var Timerangepicker = businessUI.Timerangepicker
+            var Daterangepicker = businessUI.Daterangepicker
 
             var r1 = new Timerangepicker({
                 startField    : $('#timepicker1'),
@@ -52,6 +82,53 @@
                 },
                 interval      : 120
             })
+
+            var r2 = new Timerangepicker({
+                startField    : $('#timepicker3'),
+                endField      : $('#timepicker4'),
+                noMinite      : true,
+                startPickerOpt: {
+                    miniteStep: 5
+                },
+                endPickerOpt  : {
+                    miniteStep: 5
+                }
+            })
+
+            // with datepicker
+            var r3 = new Timerangepicker({
+                startField    : $('#timepicker5'),
+                endField      : $('#timepicker6'),
+                startPickerOpt: {
+                    miniteStep: 5
+                },
+                endPickerOpt  : {
+                    miniteStep: 5
+                }
+            })
+            var d1 = new Daterangepicker({
+                startField    : $('#datepicker1'),
+                endField      : $('#datepicker2')
+            })
+
+            // with datepicker no minite
+            var r4 = new Timerangepicker({
+                startField    : $('#timepicker7'),
+                endField      : $('#timepicker8'),
+                noMinite      : true,
+                startPickerOpt: {
+                    miniteStep: 5
+                },
+                endPickerOpt  : {
+                    miniteStep: 5
+                }
+            })
+            var d2 = new Daterangepicker({
+                startField    : $('#datepicker3'),
+                endField      : $('#datepicker4'),
+                dayInterval   : 1 // 日期间隔
+            })
+
 
 
         </script>
