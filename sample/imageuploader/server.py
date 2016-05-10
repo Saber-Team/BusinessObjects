@@ -67,6 +67,8 @@ class Handler(BaseHTTPRequestHandler):
 
             uploadFile = form['ufile']
 
+            print uploadFile.filename
+
             if uploadFile.filename and uploadFile.filename != 'error.jpg':
                 if not os.path.exists(curdir + sep + 'images'):
                     os.mkdir(curdir + sep + 'images')

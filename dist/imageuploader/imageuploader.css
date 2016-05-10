@@ -236,8 +236,11 @@
 .o-webuploader .o-upload-fail .o-edit-thumb .view {
     display: none;
 }
+.o-webuploader .o-upload-fail .re-upload {
+    margin-left: 0;
+}
 .o-webuploader .o-upload-fail .re-upload .webuploader-pick {
-    width: 120px;
+    width: 116px;
     height: 30px;
 }
 .o-webuploader .o-upload-fail .re-upload .webuploader-pick:before {

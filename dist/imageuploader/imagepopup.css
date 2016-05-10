@@ -45,7 +45,7 @@
     content: '';
     display: block;
     position: absolute;
-    background-color: #333;
+    background-color: #999;
     width: 15px;
     height: 1px;
     top: 50%;
@@ -62,7 +62,7 @@
 }
 .o-imagepopup .popup-title .popup-close:hover:before,
 .o-imagepopup .popup-title .popup-close:hover:after {
-    background-color: #ed5565;
+    background-color: #3f8ef1;
 }
 .o-imagepopup .popup-body {
     width: 660px;

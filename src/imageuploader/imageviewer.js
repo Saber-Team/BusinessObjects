@@ -21,7 +21,10 @@
     function ImageViewerFactory () {
         var domString = [
             '<div class="o-imageviewer">',
-            '<img>',
+                '<div class="imageviewer-wrapper">',
+                    '<span class="imageviewer-close"></span>',
+                    '<img>',
+                '</div>',
             '</div>'
         ].join('');
         var $dom = $(domString).appendTo(document.body);
@@ -36,7 +39,7 @@
 
         return {
             open: function (src) {
-                $dom.children('img').attr('src', src);
+                $dom.find('img').attr('src', src);
                 $dom.show();
                 return $dom;
             },

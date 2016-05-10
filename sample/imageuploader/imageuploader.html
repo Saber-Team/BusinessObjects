@@ -112,7 +112,7 @@
                     },
                     errImgPath: '../../dist/imageuploader/uploader-error.png',
                     logo: true,
-                    errCallback: function (response) { //上传错误回调, 返回错误原因
+                    errCallback: function (file, response) { //上传错误回调, 返回错误原因
                         if (response['error_code'] === 100) {
                             return "测试错误情况";
                         }
@@ -158,7 +158,7 @@
                     },
                     errImgPath: '../../dist/imageuploader/uploader-error.png',
                     fileNumLimit: 1,
-                    errCallback: function (response) { //上传错误回调, 返回错误原因
+                    errCallback: function (file, response) { //上传错误回调, 返回错误原因
                         if (response['error_code'] === 100) {
                             return "测试错误情况";
                         }
@@ -188,7 +188,7 @@
                     },
                     errImgPath: '../../dist/imageuploader/uploader-error.png',
                     fileNumLimit: 3,
-                    errCallback: function (response) { //上传错误回调, 返回错误原因
+                    errCallback: function (file, response) { //上传错误回调, 返回错误原因
                         if (response['error_code'] === 100) {
                             return "测试错误情况";
                         }
@@ -235,7 +235,7 @@
                     },
                     errImgPath: '../../dist/imageuploader/uploader-error.png',
                     fileNumLimit: 1,
-                    errCallback: function (response) { //上传错误回调, 返回错误原因
+                    errCallback: function (file, response) { //上传错误回调, 返回错误原因
                         if (response['error_code'] === 100) {
                             return "测试错误情况";
                         }
@@ -307,7 +307,7 @@
                     },
                     errImgPath: '../../dist/imageuploader/uploader-error.png',
                     fileNumLimit: 10,
-                    errCallback: function (response) { //上传错误回调, 返回错误原因
+                    errCallback: function (file, response) { //上传错误回调, 返回错误原因
                         if (response['error_code'] === 100) {
                             return "测试错误情况";
                         }
