@@ -197,8 +197,12 @@
             if (!image) {
                 return;
             }
-            // imageId作为已有图片的ID, 为了防止重复,使用初始化的时间作为ID;
-            !this.imageId && (this.imageId = new Date().getTime());
+            if (!this.imageId) {
+                // imageId作为已有图片的ID, 为了防止重复,使用初始化的时间作为ID;
+                this.imageId = new Date().getTime();
+                this.init();
+            }
+
             var $item = $('<div id="init' + (this.imageId++) + '" class="o-thumb o-upload-success"> <img> </div>');
             var $img = $item.children('img');
             var idx = this.addImageData(image);

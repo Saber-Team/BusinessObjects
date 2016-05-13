@@ -12,34 +12,76 @@
 
     if ( typeof module === "object" && typeof module.exports === "object" ) {
         module.exports = factory( global, true );
-    } else {
+    }
+    else if (typeof define === 'function' && (define.amd || define.cmd)) {
+        define( function() { return factory( global ) });
+    }
+    else {
         factory( global );
     }
-}(typeof window !== "undefined" ? window : this, function( window, noGlobal ) {
-    var instantiated = '';
+}(typeof window !== "undefined" ? window : this, function( window ) {
+
+    var domString = [
+        '<div class="o-imageviewer">',
+            '<div class="imageviewer-wrapper">',
+                '<span class="imageviewer-close"></span>',
+                '<img>',
+            '</div>',
+        '</div>'
+    ].join('');
 
     function ImageViewerFactory () {
-        var domString = [
-            '<div class="o-imageviewer">',
-                '<div class="imageviewer-wrapper">',
-                    '<span class="imageviewer-close"></span>',
-                    '<img>',
-                '</div>',
-            '</div>'
-        ].join('');
-        var $dom = $(domString).appendTo(document.body);
-        var $img = $dom.find('img');
-        var size = {};
-
-        $dom.on('click', function (e) {
-            e.preventDefault();
-            if (e.target.tagName === 'IMG') {
-                return false;
-            }
-            $dom.hide();
-        });
-
-        function setSize() {
+        this.init();
+    }
+    $.extend(ImageViewerFactory.prototype, {
+        init: function () {
+            this.$dom = $(domString).appendTo(document.body);
+            this.$img = this.$dom.find('img');
+            this.bind();
+        },
+        bind: function () {
+            var that = this;
+            that.$dom.on('click', function (e) {
+                e.preventDefault();
+                if (e.target.tagName === 'IMG') {
+                    return false;
+                }
+                that.hide();
+            });
+        },
+        unbind: function () {
+            this.$dom.off();
+        },
+        open: function (src) {
+            this.getSize(src);
+            return this;
+        },
+        hide: function () {
+            this.$dom.hide();
+            return this;
+        },
+        show: function () {
+            this.$dom.show();
+            return this;
+        },
+        setSrc: function (src) {
+            this.$img.attr('src', src);
+            return this;
+        },
+        getSize: function (src) {
+            var that = this;
+            var img = new Image();
+            img.onload = function () {
+                var size = {
+                    width: this.width,
+                    height: this.height
+                };
+                that.setSize(size, src);
+            };
+            img.src = src;
+            return this;
+        },
+        setSize: function (size, src) {
             var width = window.innerWidth * .9;
             var height = window.innerHeight * .9;
             var ratio = size.width / size.height;
@@ -51,57 +93,35 @@
                 size.height > height && (size.height = height);
                 size.width = size.height * ratio;
             }
-            $img.css({'height': size.height, 'width': size.width});
-        }
-        function resetSize() {
-            $img.css({'height': 'auto', 'width': 'auto'});
-        }
-
-        return {
-            getSize: function (src, callback) {
-                var img = new Image();
-                img.onload = function () {
-                    size = {
-                        width: this.width,
-                        height: this.height
-                    };
-                    setSize();
-                    callback(src);
-                };
-                img.src = src;
-            },
-            open: function (src) {
-                $img.attr('src', src);
-                $dom.show();
-                return $dom;
-            },
-            close: function () {
-                $dom.hide();
-                return $dom;
-            },
-            destroy: function () {
-                $dom.off();
-                $img = null;
-                $dom.remove();
-                $dom = null;
-            }
-        }
-    }
-    window.ImageViewer = {
-        open: function (src) {
-            if (!instantiated) {
-                instantiated = ImageViewerFactory();
-            }
-            instantiated.getSize(src, instantiated.open);
-            //return instantiated.open(src);
-        },
-        close: function () {
-            return instantiated && instantiated.close();
+            this.$img.css({'height': size.height, 'width': size.width});
+            this.setSrc(src).show();
+            return this;
         },
         destroy: function () {
-            return instantiated && instantiated.destroy();
+            this.unbind();
+            this.$img = null;
+            this.$dom.remove();
+            this.$dom = null;
+        }
+    });
+
+    var instance;
+
+    window.ImageViewer = {
+        open: function (src) {
+            if (!instance) {
+                instance = new ImageViewerFactory();
+            }
+            instance.open(src);
+            return instance;
+        },
+        close: function () {
+            return instance && instance.close();
+        },
+        destroy: function () {
+            return instance && instance.destroy();
         }
     };
 
-    return window.ImageViewer;
+    return ImageViewerFactory;
 }));

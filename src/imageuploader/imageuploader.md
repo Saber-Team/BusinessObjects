@@ -6,7 +6,7 @@
 
 通过AMD方式加载时, 需要保证已经加载了`jquery` , `WebUploader`. 
 
-# 示例
+# 查看示例
 1. 在项目目录下打开终端
 
 2. 切换路径到 `sample/imageuploader` 下.
@@ -23,6 +23,87 @@
    
 4. 打开浏览器, 输入 `127.0.0.1:8080/imageuploader.html`, 全局方式使用imageuploaer;
    输入 `http://127.0.0.1:8080/imageuploader-async.html`, 通过AMD方式加载imageuploader
+
+# 使用说明
+### 全局方式加载imageuploader
+1. 引入静态资源
+
+    ```
+        <link rel="stylesheet" href="../../dist/imageuploader/imageuploader.css">
+        <link rel="stylesheet" href="../../dist/imageuploader/imageviewer.css">
+        <link rel="stylesheet" href="../../dist/imageuploader/cropper.css">
+    
+        <script src="../../lib/jquery.js"></script>
+        <script src="../../dist/imageuploader/webuploader.js"></script>
+        <script src="../../dist/imageuploader/cropper.js"></script>
+        <script src="../../dist/imageuploader/imageviewer.js"></script>
+        <script src="../../dist/imageuploader/imageuploader.js"></script>
+    ```
+    
+2. 在html页面添加上传组件DOM元素
+
+    ```
+    <div class="o-webuploader o-webuploader-logo">
+        <div id="logo" class="o-filepicker"></div>
+    </div>
+    ```
+    如果是LOGO上传, 则需要添加类`o-webuploader-logo`, 如果不是则不需要添加.
+    
+    
+3. 初始化上传组件
+
+    ```
+    var uploader = new ImageUploader({
+        server: '/upload',
+        fileVal: 'ufile',
+        pick: {
+            id: '#logo',
+            multiple: false
+        },
+        errImgPath: '../../dist/imageuploader/uploader-error.png',
+        logo: true,
+        originImage: function (file) {
+            // 预览图片时使用,  当后端的数据格式和示例的不一致时使用
+            console.log('get origin image url');
+            var result = logoUploader.getResponse(true);
+            return result[file.id].origin.data.filehash;
+        },
+        errCallback: function (response) { 
+             // 上传错误回调, 返回错误原因
+            if (response['error_code'] === 100) {
+                return "测试错误情况";
+            }
+            return response["error_msg"];
+        },
+        successCallback: function (response) { 
+            // 上传成功回调,
+            console.log('success callback');
+            console.dir(response);
+        }
+    });
+    uploader.init();
+    ```
+    
+4. 初始化已上传的图片
+   
+   ```
+   var images = ['./images/avatar_1.jpg', './images/avatar_1.jpg'];
+   uploader.initImages(images);
+   ```
+   
+   或者初始化单个文件
+   
+   ```
+   uploader.initImages('./images/avatar_1.jpg');
+   ```
+   以上两种方式初始化后图片均可查看, 删除, 重新上传.
+   
+5. 获取上传结果
+
+   ```
+   // 返回上传结果,并且合并已有的图片.
+   uploader.getResponse();
+   ```
 
 # 参数列表
 除[webuploader默认参数](http://fex.baidu.com/webuploader/doc/index.html#WebUploader_Uploader)之外，还扩展了一下参数：
