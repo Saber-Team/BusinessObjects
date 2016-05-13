@@ -28,6 +28,8 @@
             '</div>'
         ].join('');
         var $dom = $(domString).appendTo(document.body);
+        var $img = $dom.find('img');
+        var size = {};
 
         $dom.on('click', function (e) {
             e.preventDefault();
@@ -37,9 +39,39 @@
             $dom.hide();
         });
 
+        function setSize() {
+            var width = window.innerWidth * .9;
+            var height = window.innerHeight * .9;
+            var ratio = size.width / size.height;
+            if (size.width / size.height > width / height) {
+                size.width = size.width > width ? width : size.width;
+                size.height = size.width / ratio;
+            }
+            else {
+                size.height > height && (size.height = height);
+                size.width = size.height * ratio;
+            }
+            $img.css({'height': size.height, 'width': size.width});
+        }
+        function resetSize() {
+            $img.css({'height': 'auto', 'width': 'auto'});
+        }
+
         return {
+            getSize: function (src, callback) {
+                var img = new Image();
+                img.onload = function () {
+                    size = {
+                        width: this.width,
+                        height: this.height
+                    };
+                    setSize();
+                    callback(src);
+                };
+                img.src = src;
+            },
             open: function (src) {
-                $dom.find('img').attr('src', src);
+                $img.attr('src', src);
                 $dom.show();
                 return $dom;
             },
@@ -49,6 +81,7 @@
             },
             destroy: function () {
                 $dom.off();
+                $img = null;
                 $dom.remove();
                 $dom = null;
             }
@@ -59,7 +92,8 @@
             if (!instantiated) {
                 instantiated = ImageViewerFactory();
             }
-            return instantiated.open(src);
+            instantiated.getSize(src, instantiated.open);
+            //return instantiated.open(src);
         },
         close: function () {
             return instantiated && instantiated.close();

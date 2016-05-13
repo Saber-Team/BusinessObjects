@@ -147,7 +147,25 @@
     });
 
     function ImageUploader(opts) {
-        this.opts = $.extend(true, {}, defaultOpts, opts);
+        if (opts.logo) {
+            this.opts = $.extend(true, {}, defaultOpts, opts, {
+                fileNumLimit: 1,
+                pick: {
+                    multiple: false
+                },
+                compress: false,
+                chunked: false,
+                auto: false,
+                thumb: {
+                    width: 1,
+                    height: 1
+                }
+            });
+        }
+        else {
+            this.opts = $.extend(true, {}, defaultOpts, opts);
+        }
+
         //记录绑定webuploader的按钮
         this.ele = $(opts.pick && opts.pick.id || opts.pick);
         // 记录图片上传之后，服务器的返回值，
@@ -164,19 +182,7 @@
                 return this;
             }
             if (this.opts.logo) { //logo 上传, 只支持单个文件.
-                $.extend(true, this.opts, {
-                    fileNumLimit: 1,
-                    pick: {
-                        multiple: false
-                    },
-                    compress: false,
-                    chunked: false,
-                    auto: false,
-                    thumb: {
-                        width: 1,
-                        height: 1
-                    }
-                });
+                //$.extend(true, this.opts, );
                 this.registerCrop();
                 this.imageCropper = new ImageCropper(this.opts.logoSize);
             }
@@ -186,6 +192,35 @@
             //注册Webuploader提供的中介者，使ImageUploader具备事件行为，降低耦合度。
             WebUploader.Mediator.installTo(ImageUploader.prototype);
             this.bindUploadEvents();
+        },
+        initImage: function (image, noTrigger) {
+            if (!image) {
+                return;
+            }
+            // imageId作为已有图片的ID, 为了防止重复,使用初始化的时间作为ID;
+            !this.imageId && (this.imageId = new Date().getTime());
+            var $item = $('<div id="init' + (this.imageId++) + '" class="o-thumb o-upload-success"> <img> </div>');
+            var $img = $item.children('img');
+            var idx = this.addImageData(image);
+            $img.attr('src', image);
+            this.render($item);
+            this.bindThumbEvents($item, idx);
+            !noTrigger && this.trigger('toggleUploader');
+        },
+        initImages: function (images) {
+            if (!Array.isArray(images)) {
+                return;
+            }
+            var len = images.length;
+            if (len > this.opts.fileNumLimit || this.opts.count >= this.opts.fileNumLimit) {
+                this.showError('初始化的图片不能大于设置最大上传图片数t: ' + this.opts.fileNumLimit);
+                return ;
+            }
+            this.init();
+            for(var i = 0; i < len; i++) {
+                this.initImage(images[i], true);
+            }
+            this.trigger('toggleUploader')
         },
 
         registerCrop: function () {
@@ -392,8 +427,14 @@
                     $ele.removeClass('o-thumb-viewer').addClass('o-upload-success');
                     that.bindThumbEvents($ele, idx, $ele.find('.webuploader-container').length);
                 });
-                that.existData = data;
-                that.opts.count = data.length;
+                if (that.existData && that.existData.length) {
+                    that.existData = that.existData.concat(data);
+                    that.opts.count += data.length;
+                }
+                else {
+                    that.existData = data;
+                    that.opts.count = data.length;
+                }
             }
             that.trigger('toggleUploader');
         },
@@ -406,7 +447,6 @@
             var that = this;
             var max = that.opts.fileNumLimit;
             var flag = true;
-            var logoUploaderDpn = false;
 
             //文件加入队列前,判断文件总是是否超过限制,超过则不加入队列
             that.uploader.on('beforeFileQueued', function (file) {
@@ -575,6 +615,15 @@
                 this.opts.count--;
             }
         },
+        addImageData: function (src) {
+            // 添加已有图片, 同时返回添加图片的下标
+            !this.existData && (this.existData = []);
+            var len = this.existData.length;
+            this.existData[len] = src;
+            // 已有图片的数量
+            this.opts.count += 1;
+            return len;
+        },
         restoreQueueFile: function () {
             if (!this.response.lastRemove) {
                 return ;
@@ -658,7 +707,6 @@
                 return (result = $('.o-webuploader').find('object').length);
             };
         })(),
-
 
         getResponse: function (origin) {
             var that = this,

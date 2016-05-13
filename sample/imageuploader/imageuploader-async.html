@@ -71,13 +71,13 @@
                             var result = logoUploader.getResponse(true);
                             return result[file.id].origin.data.filehash;
                         },
-                        errCallback: function (response) { //上传错误回调, 返回错误原因
+                        errCallback: function (file, response) { //上传错误回调, 返回错误原因
                             if (response['error_code'] === 100) {
                                 return "测试错误情况";
                             }
                             return response["error_msg"];
                         },
-                        successCallback: function (response) { // 上传成功回调,
+                        successCallback: function (file, response) { // 上传成功回调,
                             console.log('success callback');
                             console.dir(response);
                         }
@@ -97,6 +97,130 @@
                 });
 
             })
+        </script>
+    </div>
+
+    <br>
+    <br>
+
+    <div class="module">
+        <h2>初始化LOGO图片</h2>
+        <section>
+            <p>根据提供的图片url初始化,多个图片以 ","分割, 具体使用请查看
+                <a href="https://github.com/Saber-Team/BusinessObjects/blob/master/src/imageuploader/imageuploader.md">
+                    图片上传组件README
+                </a>
+            </p>
+            <input type="text" placeholder="图片地址,多个图片以逗号分割" value="./images/dog.jpg">
+            <button id="init">初始化</button>
+        </section>
+        <div class="o-webuploader">
+            <div id="normal1" class="o-filepicker"></div>
+        </div>
+
+        <script>
+
+            $(function () {
+                require([
+                    '../../dist/imageuploader/imageuploader'
+                ], function (ImageUploader ) {
+                    var uploader = new ImageUploader({
+                        server: '/upload',
+                        fileVal: 'ufile',
+                        pick: {
+                            id: '#normal1',
+                            multiple: false
+                        },
+                        errImgPath: '../../dist/imageuploader/uploader-error.png',
+                        logo: true,
+                        logoSize: {  // 保证logo的最小尺寸,
+                            minWidth: 200,
+                            minHeight: 200,
+                            aspectRatio: 1 // 裁切区域长和宽的比率
+                        },
+                        originImage: function (file) {
+                            console.log('get origin image url:');
+                            var result = uploader.getResponse(true);
+                            console.log('--->' + result[file.id].origin.data.filehash);
+                            return result[file.id].origin.data.filehash;
+                        },
+                        errCallback: function (file, response) { //上传错误回调, 返回错误原因
+                            if (response['error_code'] === 100) {
+                                return "测试错误情况";
+                            }
+                            return response["error_msg"];
+                        },
+                        successCallback: function (file, response) { // 上传成功回调,
+                            console.log('success callback');
+                            console.dir(response);
+                        }
+                    });
+
+                    $('#init').on('click', function (e) {
+                        var images = $(this).prev('input').val().split(',');
+                        uploader.initImages(images);
+                    });
+                });
+            });
+        </script>
+    </div>
+
+    <div class="module">
+        <h2>初始化多张图片</h2>
+        <section>
+            <p>根据提供的图片url初始化,多个图片以 ","分割, 具体使用请查看
+                <a href="https://github.com/Saber-Team/BusinessObjects/blob/master/src/imageuploader/imageuploader.md">
+                    图片上传组件README
+                </a>
+            </p>
+            <input type="text" placeholder="图片地址,多个图片以逗号分割"
+                   value="./images/avatar.jpg,./images/avatar_1.jpg,./images/banner_red.png"
+                   style="display: block; width: 100%">
+            <button id="init2">初始化</button>
+        </section>
+        <div class="o-webuploader">
+            <div id="normal2" class="o-filepicker"></div>
+        </div>
+
+        <script>
+
+            $(function () {
+                require([
+                    '../../dist/imageuploader/imageuploader'
+                ], function (ImageUploader ) {
+                    var uploader = new ImageUploader({
+                        server: '/upload',
+                        fileVal: 'ufile',
+                        pick: {
+                            id: '#normal2',
+                            multiple: true
+                        },
+                        errImgPath: '../../dist/imageuploader/uploader-error.png',
+                        fileNumLimit: 4,
+                        originImage: function (file) {
+                            console.log('get origin image url:');
+                            var result = uploader.getResponse(true);
+                            console.log('--->' + result[file.id].origin.data.filehash);
+                            return result[file.id].origin.data.filehash;
+                        },
+                        errCallback: function (file, response) { //上传错误回调, 返回错误原因
+                            if (response['error_code'] === 100) {
+                                return "测试错误情况";
+                            }
+                            return response["error_msg"];
+                        },
+                        successCallback: function (file, response) { // 上传成功回调,
+                            console.log('success callback');
+                            console.dir(response);
+                        }
+                    });
+
+                    $('#init2').on('click', function (e) {
+                        var images = $(this).prev('input').val().split(',');
+                        uploader.initImages(images);
+                    });
+                });
+            });
         </script>
     </div>
 </div>
