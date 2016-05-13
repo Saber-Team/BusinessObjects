@@ -104,6 +104,69 @@
    // 返回上传结果,并且合并已有的图片.
    uploader.getResponse();
    ```
+详细请查看 `sample/imageuploader/imageuploader.html`文件
+   
+### AMD方式加载
+1. 加载静态资源
+    
+    ```
+        <link rel="stylesheet" href="../../dist/imageuploader/imageuploader.css">
+        <link rel="stylesheet" href="../../dist/imageuploader/imageviewer.css">
+        <link rel="stylesheet" href="../../dist/imageuploader/cropper.css">
+    
+        <script src="../../lib/jquery.js"></script>
+        <script src="//cdn.bootcss.com/require.js/2.1.22/require.js"></script>
+        <script src="../../dist/imageuploader/webuploader.js"></script>
+    ```
+2. 在html页面添加上传组件DOM元素
+
+    ```
+    <div class="o-webuploader o-webuploader-logo">
+        <div id="logo" class="o-filepicker"></div>
+    </div>
+    ```
+    如果是LOGO上传, 则需要添加类`o-webuploader-logo`, 如果不是则不需要添加.
+    
+    
+3. 初始化上传组件
+
+   ```
+   require([
+           '../../dist/imageuploader/imageuploader'
+   ], function (ImageUploader ) {
+       var logoUploader = new ImageUploader({
+           server: '/upload',
+           fileVal: 'ufile',
+           pick: {
+               id: '#logo',
+               multiple: false
+           },
+           errImgPath: '../../dist/imageuploader/uploader-error.png',
+           logo: true,
+           logoSize: {  // 保证logo的最小尺寸,
+               minWidth: 200,
+               minHeight: 100,
+               aspectRatio: 2 // 裁切区域长和宽的比率
+           },
+           originImage: function (file) {
+               console.log('get origin image url');
+               var result = logoUploader.getResponse(true);
+               return result[file.id].origin.data.filehash;
+           },
+           errCallback: function (file, response) { //上传错误回调, 返回错误原因
+               if (response['error_code'] === 100) {
+                   return "测试错误情况";
+               }
+               return response["error_msg"];
+           },
+           successCallback: function (file, response) { // 上传成功回调,
+               console.log('success callback');
+               console.dir(response);
+           }
+       });
+   logoUploader.init();
+   ```
+ 后续和全局方式加载的方式一致.
 
 # 参数列表
 除[webuploader默认参数](http://fex.baidu.com/webuploader/doc/index.html#WebUploader_Uploader)之外，还扩展了一下参数：
