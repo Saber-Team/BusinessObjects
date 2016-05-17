@@ -482,8 +482,8 @@
                 var $item = $('#' + file.id),
                     $text = $item.find('.o-mask .progress-text'),
                     $bar = $item.find('.o-mask .progress-bar');
-
-                $text.text(percentage * 100 + '%');
+                // 显示进度时忽视小数点后面的位数
+                $text.text((percentage * 100).toFixed(0) + '%');
                 $bar.css('width', percentage * 100 + '%');
                 that.trigger('uploadProgress', file, percentage);
             });
