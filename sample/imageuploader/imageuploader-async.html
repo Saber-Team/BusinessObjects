@@ -63,7 +63,11 @@
                         logoSize: {  // 保证logo的最小尺寸,
                             minWidth: 200,
                             minHeight: 100,
-                            aspectRatio: 2 // 裁切区域长和宽的比率
+                            maxWidth: 1000, // 用于检测LOGO的尺寸是否满足要求,防止过大或过小
+                            maxHeight: 1000,
+                            aspectRatio: 2, // 裁切区域长和宽的比率,
+                            width: 200, //如果设置了 width 和 height  则裁切区域固定为该值
+                            height: 100
                         },
                         originImage: function (file) {
                             console.log('get origin image url');
