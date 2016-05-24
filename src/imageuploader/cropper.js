@@ -243,11 +243,22 @@
                 };
             }
 
-            dragger.minHeight = (this.defaults.minHeight || 200) * image.ratio;
-            dragger.minWidth = (this.defaults.minWidth || 200) * image.ratio;
+            if (this.defaults.height && this.defaults.width) {
+                dragger.maxHeight = this.defaults.height * image.ratio;
+                dragger.maxWidth = this.defaults.width * image.ratio;
+                dragger.width = this.defaults.width * image.ratio;
+                dragger.height = this.defaults.height * image.ratio;
+                dragger.minHeight = this.defaults.height * image.ratio;
+                dragger.minWidth = this.defaults.width * image.ratio;
+            }
+            else {
+                dragger.height *= 0.8;
+                dragger.width *= 0.8;
+                dragger.minHeight = (this.defaults.minHeight || 200) * image.ratio;
+                dragger.minWidth = (this.defaults.minWidth || 200) * image.ratio;
+            }
 
-            dragger.height *= 0.8;
-            dragger.width *= 0.8;
+
 
             dragger.left = (cropper.width - dragger.width) / 2;
             dragger.top = (cropper.height - dragger.height) / 2;

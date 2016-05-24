@@ -83,14 +83,7 @@
                 ].join('');
                 this.$popup = $(tpl).appendTo(document.body);
                 this.$image = this.$popup.find('img');
-                this.$image.cropper({
-                    aspectRatio: that.opts.aspectRatio,
-                    minHeight: that.opts.minHeight,
-                    minWidth: that.opts.minWidth,
-                    done: function (data) {
-                        //console.log(data);
-                    }
-                });
+                this.$image.cropper(that.opts);
                 this.bind();
             }
             src && this.setSrc(src);
@@ -148,19 +141,20 @@
 
     function ImageUploader(opts) {
         if (opts.logo) {
-            this.opts = $.extend(true, {}, defaultOpts, opts, {
+            var logoOpts = {
                 fileNumLimit: 1,
                 pick: {
                     multiple: false
                 },
-                compress: false,
                 chunked: false,
+                compress: false,
                 auto: false,
                 thumb: {
                     width: 1,
                     height: 1
                 }
-            });
+            };
+            this.opts = $.extend(true, {}, defaultOpts, opts, logoOpts);
         }
         else {
             this.opts = $.extend(true, {}, defaultOpts, opts);
@@ -259,7 +253,7 @@
                         image.crop(data.x, data.y, data.width, data.height, data.scale);
                     });
 
-                    image.once('complete', function () {
+                    image.once('complete', function (type) {
                         var blob, size;
 
                         // 展示缩略图
@@ -348,6 +342,10 @@
                     that.imageCropper.init(src);
                     that.imageCropper.setCallback(function (data) {
                         isReupload && $item.removeClass('o-upload-success o-upload-fail');
+                        if (that.opts.logoSize.width && that.opts.logoSize.height) {
+                            data.width = that.opts.logoSize.width;
+                            data.height = that.opts.logoSize.height;
+                        }
                         file._cropData = {
                             x: data.x1,
                             y: data.y1,
@@ -572,7 +570,7 @@
 
                     case 'Q_LOGO_SIZE_WRONG':
                     {
-                        that.showError('上传LOGO尺寸长宽均不能小于200px，请确认后重试');
+                        that.showError('上传图片尺寸不满足要求，请确认后重试');
                         break;
                     }
                 }
@@ -643,7 +641,12 @@
         },
 
         validateLogoSize: function (info) {
-            if (info.width < 200 || info.height < 200) {
+            var logoSize = this.opts.logoSize;
+            if ((logoSize.minWidth && (info.width < logoSize.minWidth))
+                || (logoSize.minHeight && (info.height < logoSize.minHeight))
+                || (logoSize.maxWidth && (info.width > logoSize.maxWidth))
+                || (logoSize.maxHeight && (info.height > logoSize.maxHeight))
+            ){
                 this.uploader.trigger('error', 'Q_LOGO_SIZE_WRONG');
                 return false;
             }
